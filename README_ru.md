@@ -99,7 +99,7 @@ Muon был протестирован с различными серверам�
 
 
 <p>
-<a href="https://github.com/devlinx9/muon-ssh/releases">Otras versiones</a>
+<a href="https://github.com/devlinx9/muon-ssh/releases">Другие версии</a>
 </p>
 
 
