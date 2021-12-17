@@ -7,7 +7,8 @@ public class SshKeyHolder {
     private String remotePubKeyFile;
     private String localPubKeyFile;
 
-    public SshKeyHolder(){}
+    public SshKeyHolder() {
+    }
 
     public SshKeyHolder(String remotePublicKey, String localPublicKey,
                         String remoteAuthorizedKeys, String remotePubKeyFile,

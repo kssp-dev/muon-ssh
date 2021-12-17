@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components.session.logviewer;
 
@@ -8,7 +8,7 @@ package muon.app.ui.components.session.logviewer;
  *
  */
 public interface SearchListener {
-	public void search(String text);
+    void search(String text);
 
-	public void select(long index);
+    void select(long index);
 }

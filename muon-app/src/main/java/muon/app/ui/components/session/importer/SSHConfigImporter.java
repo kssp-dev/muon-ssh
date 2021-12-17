@@ -37,14 +37,14 @@ public class SSHConfigImporter {
             } else if (linea.contains(IDENTITY_FILE_TEXT)) {
                 info.setPrivateKeyFile(sanitizeString(linea, IDENTITY_FILE_TEXT));
             } else if (linea.contains(HOST_TEXT)) {
-                if (info.getName()!= null){
+                if (info.getName() != null) {
                     sessionInfoList.add(info);
                 }
                 info = new SessionInfo();
                 info.setName(sanitizeString(linea, HOST_TEXT));
             }
         }
-        if (info.getName()!= null){
+        if (info.getName() != null) {
             sessionInfoList.add(info);
         }
 

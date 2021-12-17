@@ -1,15 +1,5 @@
 package muon.app.ui.components.session.terminal;
 
-import java.awt.Component;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import javax.swing.JButton;
-import javax.swing.JPopupMenu;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
-
 import muon.app.App;
 import muon.app.ui.components.ClosableTabbedPanel;
 import muon.app.ui.components.session.Page;
@@ -18,39 +8,47 @@ import muon.app.ui.components.session.SessionInfo;
 import muon.app.ui.components.session.terminal.snippets.SnippetPanel;
 import util.FontAwesomeContants;
 
+import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class TerminalHolder extends Page implements AutoCloseable {
-	private ClosableTabbedPanel tabs;
-//	private DefaultComboBoxModel<TerminalComponent> terminals;
+    private final ClosableTabbedPanel tabs;
+    //	private DefaultComboBoxModel<TerminalComponent> terminals;
 //	private JComboBox<TerminalComponent> cmbTerminals;
-	private JPopupMenu snippetPopupMenu;
-	private SnippetPanel snippetPanel;
-	private AtomicBoolean init = new AtomicBoolean(false);
-	private int c = 1;
-	private JButton btn;
-	private SessionContentPanel sessionContentPanel;
+    private JPopupMenu snippetPopupMenu;
+    private final SnippetPanel snippetPanel;
+    private final AtomicBoolean init = new AtomicBoolean(false);
+    private int c = 1;
+    private final JButton btn;
+    private final SessionContentPanel sessionContentPanel;
 
-	public TerminalHolder(SessionInfo info, SessionContentPanel sessionContentPanel) {
-		this.sessionContentPanel = sessionContentPanel;
-		this.tabs = new ClosableTabbedPanel(e -> {
-			openNewTerminal(null);
-		});
+    public TerminalHolder(SessionInfo info, SessionContentPanel sessionContentPanel) {
+        this.sessionContentPanel = sessionContentPanel;
+        this.tabs = new ClosableTabbedPanel(e -> {
+            openNewTerminal(null);
+        });
 
-		btn = new JButton();
-		btn.setToolTipText("Snippets");
-		btn.addActionListener(e -> {
-			showSnippets();
-		});
-		btn.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
-		btn.setText(FontAwesomeContants.FA_BOOKMARK);
-		btn.putClientProperty("Nimbus.Overrides", App.SKIN.createTabButtonSkin());
-		btn.setForeground(App.SKIN.getInfoTextForeground());
-		tabs.getButtonsBox().add(btn);
+        btn = new JButton();
+        btn.setToolTipText("Snippets");
+        btn.addActionListener(e -> {
+            showSnippets();
+        });
+        btn.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
+        btn.setText(FontAwesomeContants.FA_BOOKMARK);
+        btn.putClientProperty("Nimbus.Overrides", App.SKIN.createTabButtonSkin());
+        btn.setForeground(App.SKIN.getInfoTextForeground());
+        tabs.getButtonsBox().add(btn);
 
-		long t1 = System.currentTimeMillis();
-		TerminalComponent tc = new TerminalComponent(info, c + "", null, sessionContentPanel);
-		this.tabs.addTab(tc.getTabTitle(), tc);
-		long t2 = System.currentTimeMillis();
-		System.out.println("Terminal init in: " + (t2 - t1) + " ms");
+        long t1 = System.currentTimeMillis();
+        TerminalComponent tc = new TerminalComponent(info, c + "", null, sessionContentPanel);
+        this.tabs.addTab(tc.getTabTitle(), tc);
+        long t2 = System.currentTimeMillis();
+        System.out.println("Terminal init in: " + (t2 - t1) + " ms");
 
 //		this.terminals = new DefaultComboBoxModel<>();
 //		this.cmbTerminals = new JComboBox<>(terminals);
@@ -120,44 +118,44 @@ public class TerminalHolder extends Page implements AutoCloseable {
 //		this.add(b1, BorderLayout.NORTH);
 //		this.add(content);
 //
-		snippetPanel = new SnippetPanel(e -> {
-			TerminalComponent tc1 = (TerminalComponent) tabs.getSelectedContent();
-			tc1.sendCommand(e + "\n");
-		}, e -> {
-			this.snippetPopupMenu.setVisible(false);
-		});
+        snippetPanel = new SnippetPanel(e -> {
+            TerminalComponent tc1 = (TerminalComponent) tabs.getSelectedContent();
+            tc1.sendCommand(e + "\n");
+        }, e -> {
+            this.snippetPopupMenu.setVisible(false);
+        });
 //
-		snippetPopupMenu = new JPopupMenu();
-		snippetPopupMenu.add(snippetPanel);
+        snippetPopupMenu = new JPopupMenu();
+        snippetPopupMenu.add(snippetPanel);
 //
 //		createNewTerminal();
-		this.add(tabs);
-		
-		addAncestorListener(new AncestorListener() {
-			
-			@Override
-			public void ancestorRemoved(AncestorEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void ancestorMoved(AncestorEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void ancestorAdded(AncestorEvent event) {
-				System.err.println("Terminal ancestor component shown");
-				focusTerminal();
-			}
-		});
+        this.add(tabs);
 
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentShown(ComponentEvent e) {
-				focusTerminal();
+        addAncestorListener(new AncestorListener() {
+
+            @Override
+            public void ancestorRemoved(AncestorEvent event) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void ancestorMoved(AncestorEvent event) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                System.err.println("Terminal ancestor component shown");
+                focusTerminal();
+            }
+        });
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                focusTerminal();
 //				int index = cmbTerminals.getSelectedIndex();
 //				if (index != -1) {
 //					TerminalComponent comp = terminals.getElementAt(index);
@@ -167,42 +165,42 @@ public class TerminalHolder extends Page implements AutoCloseable {
 //				}
 //				terminals.addElement(tc);
 //				cmbTerminals.setSelectedIndex(count);
-				//requestFocusInWindow();
-			}
-		});
-	}
+                //requestFocusInWindow();
+            }
+        });
+    }
 
-	private void focusTerminal() {
-		tabs.requestFocusInWindow();
-		System.err.println("Terminal component shown");
-		TerminalComponent comp = (TerminalComponent) tabs.getSelectedContent();
-		if (comp != null) {
-			comp.requestFocusInWindow();
-			comp.getTerm().requestFocusInWindow();
-			comp.getTerm().requestFocus();
-		}
-	}
+    private void focusTerminal() {
+        tabs.requestFocusInWindow();
+        System.err.println("Terminal component shown");
+        TerminalComponent comp = (TerminalComponent) tabs.getSelectedContent();
+        if (comp != null) {
+            comp.requestFocusInWindow();
+            comp.getTerm().requestFocusInWindow();
+            comp.getTerm().requestFocus();
+        }
+    }
 
-	@Override
-	public void onLoad() {
-		if (init.get()) {
-			return;
-		}
-		init.set(true);
-		TerminalComponent tc = (TerminalComponent) this.tabs.getSelectedContent();
-		tc.getTabTitle().getCallback().accept(tc.toString());
-		tc.start();
-	}
+    @Override
+    public void onLoad() {
+        if (init.get()) {
+            return;
+        }
+        init.set(true);
+        TerminalComponent tc = (TerminalComponent) this.tabs.getSelectedContent();
+        tc.getTabTitle().getCallback().accept(tc.toString());
+        tc.start();
+    }
 
-	private void showSnippets() {
-		this.snippetPanel.loadSnippets();
-		this.snippetPopupMenu.setLightWeightPopupEnabled(true);
-		this.snippetPopupMenu.setOpaque(true);
-		this.snippetPopupMenu.pack();
-		this.snippetPopupMenu.setInvoker(this.btn);
-		this.snippetPopupMenu.show(this.btn, this.btn.getWidth() - this.snippetPopupMenu.getPreferredSize().width,
-				this.btn.getHeight());
-	}
+    private void showSnippets() {
+        this.snippetPanel.loadSnippets();
+        this.snippetPopupMenu.setLightWeightPopupEnabled(true);
+        this.snippetPopupMenu.setOpaque(true);
+        this.snippetPopupMenu.pack();
+        this.snippetPopupMenu.setInvoker(this.btn);
+        this.snippetPopupMenu.show(this.btn, this.btn.getWidth() - this.snippetPopupMenu.getPreferredSize().width,
+                this.btn.getHeight());
+    }
 
 //	public void createNewTerminal(String command) {
 //		// lazyInit();
@@ -221,7 +219,7 @@ public class TerminalHolder extends Page implements AutoCloseable {
 //		createNewTerminal(null);
 //	}
 
-	public void removeTerminal() {
+    public void removeTerminal() {
 //		if (App.getGlobalSettings().isConfirmBeforeTerminalClosing()
 //				&& JOptionPane.showConfirmDialog(null,
 //						"Are you sure about closing this terminal?") != JOptionPane.YES_OPTION) {
@@ -237,37 +235,37 @@ public class TerminalHolder extends Page implements AutoCloseable {
 //		threadPool.submit(() -> tc.close());
 //		revalidate();
 //		repaint();
-	}
+    }
 
-	public void close() {
-		Component[] components = tabs.getTabContents();
-		for (int i = 0; i < components.length; i++) {
-			Component c = components[i];
-			if (c instanceof TerminalComponent) {
-				System.out.println("Closing terminal: " + c);
-				((TerminalComponent) c).close();
-			}
-		}
-		revalidate();
-		repaint();
-	}
+    public void close() {
+        Component[] components = tabs.getTabContents();
+        for (int i = 0; i < components.length; i++) {
+            Component c = components[i];
+            if (c instanceof TerminalComponent) {
+                System.out.println("Closing terminal: " + c);
+                ((TerminalComponent) c).close();
+            }
+        }
+        revalidate();
+        repaint();
+    }
 
-	@Override
-	public String getIcon() {
-		return FontAwesomeContants.FA_TELEVISION;
-	}
+    @Override
+    public String getIcon() {
+        return FontAwesomeContants.FA_TELEVISION;
+    }
 
-	@Override
-	public String getText() {
-		return "Terminal";
-	}
+    @Override
+    public String getText() {
+        return "Terminal";
+    }
 
-	public void openNewTerminal(String command) {
-		c++;
-		TerminalComponent tc = new TerminalComponent(this.sessionContentPanel.getInfo(), c + "", command,
-				this.sessionContentPanel);
-		this.tabs.addTab(tc.getTabTitle(), tc);
-		tc.getTabTitle().getCallback().accept(tc.toString());
-		tc.start();
-	}
+    public void openNewTerminal(String command) {
+        c++;
+        TerminalComponent tc = new TerminalComponent(this.sessionContentPanel.getInfo(), c + "", command,
+                this.sessionContentPanel);
+        this.tabs.addTab(tc.getTabTitle(), tc);
+        tc.getTabTitle().getCallback().accept(tc.toString());
+        tc.start();
+    }
 }

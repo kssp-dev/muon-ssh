@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components.session;
 
@@ -8,7 +8,7 @@ package muon.app.ui.components.session;
  *
  */
 public interface GUIBlocker {
-	void blockInterface();
+    void blockInterface();
 
-	void unBlockInterface();
+    void unBlockInterface();
 }

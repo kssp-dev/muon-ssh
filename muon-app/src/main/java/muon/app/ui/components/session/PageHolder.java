@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components.session;
 
@@ -8,5 +8,5 @@ package muon.app.ui.components.session;
  *
  */
 public interface PageHolder {
-	public void showPage(String pageId);
+    void showPage(String pageId);
 }

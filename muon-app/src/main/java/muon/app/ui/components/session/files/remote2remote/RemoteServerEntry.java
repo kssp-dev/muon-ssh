@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components.session.files.remote2remote;
 
@@ -8,58 +8,57 @@ package muon.app.ui.components.session.files.remote2remote;
  *
  */
 public class RemoteServerEntry {
-	public RemoteServerEntry(String host, int port, String user, String path) {
-		super();
-		this.host = host;
-		this.port = port;
-		this.user = user;
-		this.path = path;
-	}
+    private String id, host, user, path;
+    private int port;
 
-	public RemoteServerEntry() {
-		// TODO Auto-generated constructor stub
-	}
+    public RemoteServerEntry(String host, int port, String user, String path) {
+        super();
+        this.host = host;
+        this.port = port;
+        this.user = user;
+        this.path = path;
+    }
+    public RemoteServerEntry() {
+        // TODO Auto-generated constructor stub
+    }
 
-	private String id, host, user, path;
-	private int port;
+    public String getId() {
+        return id;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getHost() {
+        return host;
+    }
 
-	public String getHost() {
-		return host;
-	}
+    public void setHost(String host) {
+        this.host = host;
+    }
 
-	public void setHost(String host) {
-		this.host = host;
-	}
+    public String getUser() {
+        return user;
+    }
 
-	public String getUser() {
-		return user;
-	}
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+    public int getPort() {
+        return port;
+    }
 
-	public int getPort() {
-		return port;
-	}
+    public void setPort(int port) {
+        this.port = port;
+    }
 
-	public void setPort(int port) {
-		this.port = port;
-	}
+    public String getPath() {
+        return path;
+    }
 
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

@@ -1,7 +1,8 @@
 package muon.app.ui.components.session.search;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static muon.app.App.bundle;
 

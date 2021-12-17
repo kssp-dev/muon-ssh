@@ -4,12 +4,6 @@ import java.util.ListResourceBundle;
 
 public class Messages_en extends ListResourceBundle {
 
-    @Override
-    protected Object[][] getContents() {
-
-        return resources;
-    }
-
     private final Object[][] resources = {
 
             {"general", "General"},
@@ -83,10 +77,10 @@ public class Messages_en extends ListResourceBundle {
             {"color_palette", "Color palette"},
             {"terminal_shortcuts", "Terminal shortcuts"},
             {"confirm_delete_files", "Confirm before deleting files"},
-            {"confirm_move_files",  "Confirm before moving or copying files"},
+            {"confirm_move_files", "Confirm before moving or copying files"},
             {"show_hidden_files", "Show hidden files by default"},
             {"prompt_for_sudo", "Prompt for sudo if operation fails due to permission issues"},
-            {"directory_caching",  "Use directory caching"},
+            {"directory_caching", "Use directory caching"},
             {"current_folder", "Show current folder in path bar style"},
             {"show_banner", "Show banner"},
             {"word_wrap", "Word wrap on log viewer"},
@@ -99,7 +93,7 @@ public class Messages_en extends ListResourceBundle {
             {"editor_name", "Editor name"},
             {"add_editor2", "Add editor?"},
             {"zoom_text", "Zoom (Make application look small or big on screen)"},
-            {"global_dark_theme",  "Use global dark theme (Needs restart)"},
+            {"global_dark_theme", "Use global dark theme (Needs restart)"},
             {"zoom_percentage", "Zoom percentage"},
             {"new_master_password", "New master password"},
             {"reenter_master_password", "Re-enter master password"},
@@ -260,7 +254,7 @@ public class Messages_en extends ListResourceBundle {
             {"local_computer", "Local Computer"},
             {"server", "Server"},
             {"language", "Language"},
-            {"log_viewer_lines", "Log viewer lines per page" },
+            {"log_viewer_lines", "Log viewer lines per page"},
             {"log_viewer_font_size", "Log viewer font size"},
             {"system_refresh_interval", "System load refresh interval (sec) "},
             {"autorename", "Autorename"},
@@ -271,4 +265,10 @@ public class Messages_en extends ListResourceBundle {
             {"show", "Show"},
             {"keep_alive", "Keep connection alive"}
     };
+
+    @Override
+    protected Object[][] getContents() {
+
+        return resources;
+    }
 }

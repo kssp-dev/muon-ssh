@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ssh;
 
@@ -8,7 +8,7 @@ package muon.app.ssh;
  *
  */
 public interface InputBlocker {
-	void blockInput();
+    void blockInput();
 
-	void unblockInput();
+    void unblockInput();
 }

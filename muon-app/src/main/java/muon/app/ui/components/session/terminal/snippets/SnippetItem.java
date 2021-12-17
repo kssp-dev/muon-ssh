@@ -7,42 +7,42 @@ import java.util.UUID;
  */
 public class SnippetItem {
 
-	private String name, command, id;
+    private String name, command, id;
 
-	/**
-	 *
-	 */
-	public SnippetItem() {
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     *
+     */
+    public SnippetItem() {
+        // TODO Auto-generated constructor stub
+    }
 
-	public SnippetItem(String name, String command) {
-		this.id = UUID.randomUUID().toString();
-		this.name = name;
-		this.command = command;
-	}
+    public SnippetItem(String name, String command) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.command = command;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCommand() {
-		return command;
-	}
+    public String getCommand() {
+        return command;
+    }
 
-	public void setCommand(String command) {
-		this.command = command;
-	}
+    public void setCommand(String command) {
+        this.command = command;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 }

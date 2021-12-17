@@ -1,10 +1,11 @@
 package muon.app.ui.components.session.files;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class NavigationHistory {
-    private Deque<String> back = new LinkedList<>(),
-            forward = new LinkedList<>();
+    private final Deque<String> back = new LinkedList<>();
+    private final Deque<String> forward = new LinkedList<>();
 
     public boolean hasPrevElement() {
         return !back.isEmpty();
@@ -15,13 +16,11 @@ public class NavigationHistory {
     }
 
     public String prevElement() {
-        String item = back.pop();
-        return item;
+        return back.pop();
     }
 
     public String nextElement() {
-        String item = forward.pop();
-        return item;
+        return forward.pop();
     }
 
     public void addBack(String item) {

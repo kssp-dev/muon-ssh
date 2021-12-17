@@ -1,41 +1,41 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components.session;
 
-import javax.swing.JDialog;
-
 import muon.app.ui.AppWindow;
+
+import javax.swing.*;
 
 /**
  * @author subhro
  *
  */
 public class SessionConnectDialog extends JDialog implements GUIBlocker {
-	/**
-	 * 
-	 */
-	private AppWindow appWindow;
+    /**
+     *
+     */
+    private final AppWindow appWindow;
 
-	public SessionConnectDialog(AppWindow appWindow) {
-		super(appWindow);
-		this.setSize(400, 300);
-		this.setModal(true);
-		this.appWindow = appWindow;
-	}
+    public SessionConnectDialog(AppWindow appWindow) {
+        super(appWindow);
+        this.setSize(400, 300);
+        this.setModal(true);
+        this.appWindow = appWindow;
+    }
 
-	public void connectSession(SessionInfo info) {
+    public void connectSession(SessionInfo info) {
 
-	}
+    }
 
-	@Override
-	public void blockInterface() {
-		setLocationRelativeTo(appWindow);
-		setVisible(true);
-	}
+    @Override
+    public void blockInterface() {
+        setLocationRelativeTo(appWindow);
+        setVisible(true);
+    }
 
-	@Override
-	public void unBlockInterface() {
-		setVisible(false);
-	}
+    @Override
+    public void unBlockInterface() {
+        setVisible(false);
+    }
 }

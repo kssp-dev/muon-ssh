@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components.settings;
 
@@ -10,15 +10,15 @@ import com.jediterm.terminal.TextStyle;
  *
  */
 public interface TerminalTheme {
-	String getName();
+    String getName();
 
-	TextStyle getDefaultStyle();
+    TextStyle getDefaultStyle();
 
-	TextStyle getSelectionColor();
+    TextStyle getSelectionColor();
 
-	TextStyle getFoundPatternColor();
+    TextStyle getFoundPatternColor();
 
-	TextStyle getHyperlinkColor();
+    TextStyle getHyperlinkColor();
 
-	String toString();
+    String toString();
 }

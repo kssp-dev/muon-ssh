@@ -1,14 +1,14 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 
 /**
  * @author subhro
  *
  */
-public class BlockingGlassPane extends JComponent{
+public class BlockingGlassPane extends JComponent {
 
 }

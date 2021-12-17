@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessTableModel extends AbstractTableModel {
-    private String[] columns = {"Command", "PID", "CPU", "Memory", "Time", "PPID", "User", "Nice"};
+    private final String[] columns = {"Command", "PID", "CPU", "Memory", "Time", "PPID", "User", "Nice"};
     private List<ProcessTableEntry> processList = new ArrayList<>();
 
 
@@ -15,6 +15,11 @@ public class ProcessTableModel extends AbstractTableModel {
 
     public List<ProcessTableEntry> getProcessList() {
         return processList;
+    }
+
+    public void setProcessList(List<ProcessTableEntry> list) {
+        this.processList = list;
+        this.fireTableDataChanged();
     }
 
     @Override
@@ -54,11 +59,6 @@ public class ProcessTableModel extends AbstractTableModel {
                 return ent.getNice();
         }
         return "-";
-    }
-
-    public void setProcessList(List<ProcessTableEntry> list) {
-        this.processList = list;
-        this.fireTableDataChanged();
     }
 
     @Override

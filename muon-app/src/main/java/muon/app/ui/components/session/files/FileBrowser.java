@@ -1,21 +1,5 @@
 package muon.app.ui.components.session.files;
 
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JRootPane;
-import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
-
 import muon.app.App;
 import muon.app.common.FileInfo;
 import muon.app.common.FileSystem;
@@ -33,64 +17,73 @@ import muon.app.ui.components.session.files.transfer.FileTransferProgress;
 import muon.app.ui.components.session.files.view.DndTransferData;
 import util.Constants;
 import util.FontAwesomeContants;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static muon.app.App.bundle;
 
 public class FileBrowser extends Page {
-	private FileTransfer ongoingFileTransfer;
-	private final JSplitPane horizontalSplitter;
-	private final ClosableTabbedPanel leftTabs;
-	private final ClosableTabbedPanel rightTabs;
-	private final SessionContentPanel holder;
-	private final SessionInfo info;
-	private final Map<String, List<FileInfo>> sshDirCache = new HashMap<>();
-	private final int activeSessionId;
-	private final AtomicBoolean init = new AtomicBoolean(false);
-	private final JPopupMenu popup;
-	private boolean leftPopup = false;
-	private final List<AbstractFileBrowserView> viewList = new ArrayList<>();
-	private JLabel lblStat1;
-	private Box statusBox;
+    private final JSplitPane horizontalSplitter;
+    private final ClosableTabbedPanel leftTabs;
+    private final ClosableTabbedPanel rightTabs;
+    private final SessionContentPanel holder;
+    private final SessionInfo info;
+    private final Map<String, List<FileInfo>> sshDirCache = new HashMap<>();
+    private final int activeSessionId;
+    private final AtomicBoolean init = new AtomicBoolean(false);
+    private final JPopupMenu popup;
+    private final List<AbstractFileBrowserView> viewList = new ArrayList<>();
+    private FileTransfer ongoingFileTransfer;
+    private boolean leftPopup = false;
+    private JLabel lblStat1;
+    private Box statusBox;
 
-	public FileBrowser(SessionInfo info, SessionContentPanel holder, JRootPane rootPane, int activeSessionId) {
-		this.activeSessionId = activeSessionId;
-		this.info = info;
-		this.holder = holder;
+    public FileBrowser(SessionInfo info, SessionContentPanel holder, JRootPane rootPane, int activeSessionId) {
+        this.activeSessionId = activeSessionId;
+        this.info = info;
+        this.holder = holder;
 
-		JMenuItem localMenuItem = new JMenuItem("Local file browser");
-		JMenuItem remoteMenuItem = new JMenuItem("Remote file browser");
+        JMenuItem localMenuItem = new JMenuItem("Local file browser");
+        JMenuItem remoteMenuItem = new JMenuItem("Remote file browser");
 
-		popup = new JPopupMenu();
-		popup.add(remoteMenuItem);
-		popup.add(localMenuItem);
-		popup.pack();
+        popup = new JPopupMenu();
+        popup.add(remoteMenuItem);
+        popup.add(localMenuItem);
+        popup.pack();
 
-		localMenuItem.addActionListener(e -> {
-			if (leftPopup) {
-				openLocalFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Left);
-			} else {
-				openLocalFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Right);
-			}
-		});
+        localMenuItem.addActionListener(e -> {
+            if (leftPopup) {
+                openLocalFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Left);
+            } else {
+                openLocalFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Right);
+            }
+        });
 
-		remoteMenuItem.addActionListener(e -> {
-			if (leftPopup) {
-				openSshFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Left);
-			} else {
-				openSshFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Right);
-			}
-		});
+        remoteMenuItem.addActionListener(e -> {
+            if (leftPopup) {
+                openSshFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Left);
+            } else {
+                openSshFileBrowserView(null, AbstractFileBrowserView.PanelOrientation.Right);
+            }
+        });
 
-		this.leftTabs = new ClosableTabbedPanel(c -> {
-			popup.setInvoker(c);
-			leftPopup = true;
-			popup.show(c, 0, c.getHeight());
-		});
+        this.leftTabs = new ClosableTabbedPanel(c -> {
+            popup.setInvoker(c);
+            leftPopup = true;
+            popup.show(c, 0, c.getHeight());
+        });
 
-		this.rightTabs = new ClosableTabbedPanel(c -> {
-			popup.setInvoker(c);
-			leftPopup = false;
-			popup.show(c, 0, c.getHeight());
-		});
+        this.rightTabs = new ClosableTabbedPanel(c -> {
+            popup.setInvoker(c);
+            leftPopup = false;
+            popup.show(c, 0, c.getHeight());
+        });
 
 //		this.leftTabs = new ClosableTabbedPanel(tabType -> {
 //			if (tabType == NewTabType.LocalTab) {
@@ -108,8 +101,8 @@ public class FileBrowser extends Page {
 //			}
 //		});
 
-		horizontalSplitter = new SkinnedSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		horizontalSplitter.setResizeWeight(0.5);
+        horizontalSplitter = new SkinnedSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        horizontalSplitter.setResizeWeight(0.5);
 
 //		JPanel leftPanel = new JPanel(new BorderLayout());
 //		JPanel rightPanel = new JPanel(new BorderLayout());
@@ -122,17 +115,17 @@ public class FileBrowser extends Page {
 //		leftPanel.add(this.leftTabs);
 //		rightPanel.add(this.rightTabs);
 
-		horizontalSplitter.setLeftComponent(this.leftTabs);
-		horizontalSplitter.setRightComponent(this.rightTabs);
-		horizontalSplitter.setDividerSize(5);
+        horizontalSplitter.setLeftComponent(this.leftTabs);
+        horizontalSplitter.setRightComponent(this.rightTabs);
+        horizontalSplitter.setDividerSize(5);
 
-		// this.add(horizontalSplitter);
+        // this.add(horizontalSplitter);
 
-		if (App.getGlobalSettings().isDualPaneMode()) {
-			switchToDualPaneMode();
-		} else {
-			switchToSinglePanelMode();
-		}
+        if (App.getGlobalSettings().isDualPaneMode()) {
+            switchToDualPaneMode();
+        } else {
+            switchToSinglePanelMode();
+        }
 
 //		statusBox = Box.createHorizontalBox();
 //		statusBox.setOpaque(true);
@@ -289,7 +282,7 @@ public class FileBrowser extends Page {
 //		rightDropdown.setSelectedIndex(1);
 //		rightPanel.add(fv2, fv2.hashCode() + "");
 //		rightCard.show(rightPanel, fv2.hashCode() + "");
-	}
+    }
 
 //	public void close() {
 //		this.closeRequested.set(true);
@@ -300,71 +293,71 @@ public class FileBrowser extends Page {
 //	}
 //
 
-	private void switchToDualPaneMode() {
-		horizontalSplitter.setRightComponent(this.rightTabs);
-		horizontalSplitter.setLeftComponent(this.leftTabs);
-		this.add(horizontalSplitter);
-		this.revalidate();
-		this.repaint();
-	}
+    private void switchToDualPaneMode() {
+        horizontalSplitter.setRightComponent(this.rightTabs);
+        horizontalSplitter.setLeftComponent(this.leftTabs);
+        this.add(horizontalSplitter);
+        this.revalidate();
+        this.repaint();
+    }
 
-	private void switchToSinglePanelMode() {
-		this.remove(horizontalSplitter);
-		this.add(this.leftTabs);
-		this.revalidate();
-		this.repaint();
-	}
+    private void switchToSinglePanelMode() {
+        this.remove(horizontalSplitter);
+        this.add(this.leftTabs);
+        this.revalidate();
+        this.repaint();
+    }
 
-	public void disableUi() {
-		holder.disableUi();
-	}
+    public void disableUi() {
+        holder.disableUi();
+    }
 
-	public void disableUi(AtomicBoolean stopFlag) {
-		holder.disableUi(stopFlag);
-	}
+    public void disableUi(AtomicBoolean stopFlag) {
+        holder.disableUi(stopFlag);
+    }
 
-	public void enableUi() {
-		holder.enableUi();
-	}
+    public void enableUi() {
+        holder.enableUi();
+    }
 
-	public void openSshFileBrowserView(String path, AbstractFileBrowserView.PanelOrientation orientation) {
-		SshFileBrowserView tab = new SshFileBrowserView(this, path, orientation);
-		if (orientation == AbstractFileBrowserView.PanelOrientation.Left) {
-			this.leftTabs.addTab(tab.getTabTitle(), tab);
-		} else {
-			this.rightTabs.addTab(tab.getTabTitle(), tab);
-		}
-	}
+    public void openSshFileBrowserView(String path, AbstractFileBrowserView.PanelOrientation orientation) {
+        SshFileBrowserView tab = new SshFileBrowserView(this, path, orientation);
+        if (orientation == AbstractFileBrowserView.PanelOrientation.Left) {
+            this.leftTabs.addTab(tab.getTabTitle(), tab);
+        } else {
+            this.rightTabs.addTab(tab.getTabTitle(), tab);
+        }
+    }
 
-	public void openLocalFileBrowserView(String path, AbstractFileBrowserView.PanelOrientation orientation) {
+    public void openLocalFileBrowserView(String path, AbstractFileBrowserView.PanelOrientation orientation) {
 
-		LocalFileBrowserView tab = new LocalFileBrowserView(this, path, orientation);
-		if (orientation == AbstractFileBrowserView.PanelOrientation.Left) {
-			this.leftTabs.addTab(tab.getTabTitle(), tab);
-		} else {
-			this.rightTabs.addTab(tab.getTabTitle(), tab);
-		}
-	}
+        LocalFileBrowserView tab = new LocalFileBrowserView(this, path, orientation);
+        if (orientation == AbstractFileBrowserView.PanelOrientation.Left) {
+            this.leftTabs.addTab(tab.getTabTitle(), tab);
+        } else {
+            this.rightTabs.addTab(tab.getTabTitle(), tab);
+        }
+    }
 
-	public SshFileSystem getSSHFileSystem() {
-		return this.getSessionInstance().getSshFs();
-	}
+    public SshFileSystem getSSHFileSystem() {
+        return this.getSessionInstance().getSshFs();
+    }
 
-	public RemoteSessionInstance getSessionInstance() {
-		return this.holder.getRemoteSessionInstance();
-	}
+    public RemoteSessionInstance getSessionInstance() {
+        return this.holder.getRemoteSessionInstance();
+    }
 
-	public SessionInfo getInfo() {
-		return info;
-	}
+    public SessionInfo getInfo() {
+        return info;
+    }
 
-	public boolean isCloseRequested() {
-		return this.holder.isSessionClosed();
-	}
+    public boolean isCloseRequested() {
+        return this.holder.isSessionClosed();
+    }
 
-	public Map<String, List<FileInfo>> getSSHDirectoryCache() {
-		return this.sshDirCache;
-	}
+    public Map<String, List<FileInfo>> getSSHDirectoryCache() {
+        return this.sshDirCache;
+    }
 //
 //	public void openSftpFileBrowserView(String path,
 //			AbstractFileBrowserView.PanelOrientation orientation) {
@@ -460,131 +453,116 @@ public class FileBrowser extends Page {
 //		}
 //	}
 
-	/**
-	 * @param sourceFs
-	 * @param targetFs
-	 * @param files
-	 * @param sourceFolder
-	 * @param targetFolder
-	 * @param dragsource
-	 * @param defaultOverwriteAction
-	 * @param backgroundTransfer
-	 */
-	public void newFileTransfer(FileSystem sourceFs, FileSystem targetFs, FileInfo[] files, String targetFolder,
-								int dragsource, Constants.ConflictAction defaultConflictAction, RemoteSessionInstance instance) {
-		System.out.println("Initiating new file transfer...");
-		this.ongoingFileTransfer = new FileTransfer(sourceFs, targetFs, files, targetFolder,
-				new FileTransferProgress() {
+    public void newFileTransfer(FileSystem sourceFs, FileSystem targetFs, FileInfo[] files, String targetFolder,
+                                int dragsource, Constants.ConflictAction defaultConflictAction, RemoteSessionInstance instance) {
+        System.out.println("Initiating new file transfer...");
+        this.ongoingFileTransfer = new FileTransfer(sourceFs, targetFs, files, targetFolder,
+                new FileTransferProgress() {
 
-					@Override
-					public void progress(long processedBytes, long totalBytes, long processedCount, long totalCount,
-										 FileTransfer fileTransfer) {
-						SwingUtilities.invokeLater(() -> {
-							if (totalBytes == 0) {
-								holder.setTransferProgress(0);
-							} else {
-								holder.setTransferProgress((int) ((processedBytes * 100) / totalBytes));
-							}
-						});
-					}
+                    @Override
+                    public void progress(long processedBytes, long totalBytes, long processedCount, long totalCount,
+                                         FileTransfer fileTransfer) {
+                        SwingUtilities.invokeLater(() -> {
+                            if (totalBytes == 0) {
+                                holder.setTransferProgress(0);
+                            } else {
+                                holder.setTransferProgress((int) ((processedBytes * 100) / totalBytes));
+                            }
+                        });
+                    }
 
-					@Override
-					public void init(long totalSize, long files, FileTransfer fileTransfer) {
-					}
+                    @Override
+                    public void init(long totalSize, long files, FileTransfer fileTransfer) {
+                    }
 
-					@Override
-					public void error(String cause, FileTransfer fileTransfer) {
-						SwingUtilities.invokeLater(() -> {
-							holder.endFileTransfer();
-							if (!holder.isSessionClosed()) {
-								JOptionPane.showMessageDialog(null, "Operation failed");
-							}
-						});
-					}
+                    @Override
+                    public void error(String cause, FileTransfer fileTransfer) {
+                        SwingUtilities.invokeLater(() -> {
+                            holder.endFileTransfer();
+                            if (!holder.isSessionClosed()) {
+                                JOptionPane.showMessageDialog(null, App.bundle.getString("operation_failed"));
+                            }
+                        });
+                    }
 
-					@Override
-					public void done(FileTransfer fileTransfer) {
-						System.out.println("Done");
-						SwingUtilities.invokeLater(() -> {
-							holder.endFileTransfer();
-							reloadView();
-						});
-					}
-				}, defaultConflictAction, instance);
-		holder.startFileTransferModal(e -> {
-			this.ongoingFileTransfer.close();
-		});
-		holder.EXECUTOR.submit(this.ongoingFileTransfer);
-	}
+                    @Override
+                    public void done(FileTransfer fileTransfer) {
+                        System.out.println("Done");
+                        SwingUtilities.invokeLater(() -> {
+                            holder.endFileTransfer();
+                            reloadView();
+                        });
+                    }
+                }, defaultConflictAction, instance);
+        holder.startFileTransferModal(e -> {
+            this.ongoingFileTransfer.close();
+        });
+        holder.EXECUTOR.submit(this.ongoingFileTransfer);
+    }
 
-	private void reloadView() {
-		Component c = leftTabs.getSelectedContent();
-		System.out.println("c1 " + c);
-		if (c instanceof AbstractFileBrowserView) {
-			((AbstractFileBrowserView) c).reload();
-		}
-		c = rightTabs.getSelectedContent();
-		System.out.println("c2 " + c);
-		if (c instanceof AbstractFileBrowserView) {
-			((AbstractFileBrowserView) c).reload();
-		}
-	}
+    private void reloadView() {
+        Component c = leftTabs.getSelectedContent();
+        System.out.println("c1 " + c);
+        if (c instanceof AbstractFileBrowserView) {
+            ((AbstractFileBrowserView) c).reload();
+        }
+        c = rightTabs.getSelectedContent();
+        System.out.println("c2 " + c);
+        if (c instanceof AbstractFileBrowserView) {
+            ((AbstractFileBrowserView) c).reload();
+        }
+    }
 
-	/**
-	 * @return the activeSessionId
-	 */
-	public int getActiveSessionId() {
-		return activeSessionId;
-	}
+    /**
+     * @return the activeSessionId
+     */
+    public int getActiveSessionId() {
+        return activeSessionId;
+    }
 
-	@Override
-	public void onLoad() {
-		if (init.get()) {
-			return;
-		}
-		init.set(true);
-		SshFileBrowserView left = new SshFileBrowserView(this, null, AbstractFileBrowserView.PanelOrientation.Left);
-		this.leftTabs.addTab(left.getTabTitle(), left);
+    @Override
+    public void onLoad() {
+        if (init.get()) {
+            return;
+        }
+        init.set(true);
+        SshFileBrowserView left = new SshFileBrowserView(this, null, AbstractFileBrowserView.PanelOrientation.Left);
+        this.leftTabs.addTab(left.getTabTitle(), left);
 
-		LocalFileBrowserView right = new LocalFileBrowserView(this, System.getProperty("user.home"),
-				AbstractFileBrowserView.PanelOrientation.Right);
-		this.rightTabs.addTab(right.getTabTitle(), right);
-	}
+        LocalFileBrowserView right = new LocalFileBrowserView(this, System.getProperty("user.home"),
+                AbstractFileBrowserView.PanelOrientation.Right);
+        this.rightTabs.addTab(right.getTabTitle(), right);
+    }
 
-	@Override
-	public String getIcon() {
-		return FontAwesomeContants.FA_FOLDER;
-		// return FontAwesomeContants.FA_FOLDER_OPEN_O;
-	}
+    @Override
+    public String getIcon() {
+        return FontAwesomeContants.FA_FOLDER;
+        // return FontAwesomeContants.FA_FOLDER_OPEN_O;
+    }
 
-	@Override
-	public String getText() {
-		return bundle.getString("file_browser");
-	}
+    @Override
+    public String getText() {
+        return bundle.getString("file_browser");
+    }
 
-	/**
-	 * @return the holder
-	 */
-	public SessionContentPanel getHolder() {
-		return holder;
-	}
+    /**
+     * @return the holder
+     */
+    public SessionContentPanel getHolder() {
+        return holder;
+    }
 
-	public void openPath(String path) {
-		openSshFileBrowserView(path, AbstractFileBrowserView.PanelOrientation.Left);
-	}
+    public void openPath(String path) {
+        openSshFileBrowserView(path, AbstractFileBrowserView.PanelOrientation.Left);
+    }
 
-	public boolean isSessionClosed() {
-		return this.holder.isSessionClosed();
-	}
+    public boolean isSessionClosed() {
+        return this.holder.isSessionClosed();
+    }
 
-	public static class ResponseHolder {
-		public Constants.TransferMode transferMode;
-		public Constants.ConflictAction conflictAction;
-	}
-
-	public boolean selectTransferModeAndConflictAction(ResponseHolder holder) throws Exception {
-		holder.transferMode = App.getGlobalSettings().getFileTransferMode();
-		holder.conflictAction = App.getGlobalSettings().getConflictAction();
+    public boolean selectTransferModeAndConflictAction(ResponseHolder holder) throws Exception {
+        holder.transferMode = App.getGlobalSettings().getFileTransferMode();
+        holder.conflictAction = App.getGlobalSettings().getConflictAction();
 
 		/*if (holder.transferMode == Constants.TransferMode.NORMAL) {
 			DefaultComboBoxModel<Constants.ConflictAction> conflictOptions = new DefaultComboBoxModel<>(Constants.ConflictAction.values());
@@ -629,80 +607,85 @@ public class FileBrowser extends Page {
 				App.saveSettings();
 			}
 		}*/
-		return true;
-	}
+        return true;
+    }
 
-	public boolean handleLocalDrop(DndTransferData transferData, SessionInfo info, FileSystem currentFileSystem,
-								   String currentPath) {
+    public boolean handleLocalDrop(DndTransferData transferData, SessionInfo info, FileSystem currentFileSystem,
+                                   String currentPath) {
 //		System.out.println("### " + transferData.getSource() + " " + this.hashCode());
 //		if (transferData.getSource() == this.hashCode()) {
 //			return false;
 //		}
-		if (App.getGlobalSettings().isConfirmBeforeMoveOrCopy()
-				&& JOptionPane.showConfirmDialog(null, "Move/copy files?") != JOptionPane.YES_OPTION) {
-			return false;
-		}
+        if (App.getGlobalSettings().isConfirmBeforeMoveOrCopy()
+                && JOptionPane.showConfirmDialog(null, "Move/copy files?") != JOptionPane.YES_OPTION) {
+            return false;
+        }
 
-		try {
+        try {
 
-			ResponseHolder holder = new ResponseHolder();
+            ResponseHolder holder = new ResponseHolder();
 
-			if (!selectTransferModeAndConflictAction(holder)) {
-				return false;
-			}
+            if (!selectTransferModeAndConflictAction(holder)) {
+                return false;
+            }
 
-			System.out.println("Dropped: " + transferData);
-			int sessionHashCode = transferData.getInfo();
-			if (sessionHashCode == 0) {
-				System.out.println("Session hash code: " + sessionHashCode);
-				return true;
-			}
+            System.out.println("Dropped: " + transferData);
+            int sessionHashCode = transferData.getInfo();
+            if (sessionHashCode == 0) {
+                System.out.println("Session hash code: " + sessionHashCode);
+                return true;
+            }
 
-			if (info != null && info.hashCode() == sessionHashCode) {
-				if (holder.transferMode == Constants.TransferMode.BACKGROUND) {
-					this.getHolder().downloadInBackground(transferData.getFiles(), currentPath, holder.conflictAction);
-					return true;
-				}
-				FileSystem sourceFs = this.getSSHFileSystem();
-				if (sourceFs == null) {
-					return false;
-				}
-				FileSystem targetFs = currentFileSystem;
-				this.newFileTransfer(sourceFs, targetFs, transferData.getFiles(), currentPath, this.hashCode(),
-						holder.conflictAction, this.getSessionInstance());
-			}
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+            if (info != null && info.hashCode() == sessionHashCode) {
+                if (holder.transferMode == Constants.TransferMode.BACKGROUND) {
+                    this.getHolder().downloadInBackground(transferData.getFiles(), currentPath, holder.conflictAction);
+                    return true;
+                }
+                FileSystem sourceFs = this.getSSHFileSystem();
+                if (sourceFs == null) {
+                    return false;
+                }
+                FileSystem targetFs = currentFileSystem;
+                this.newFileTransfer(sourceFs, targetFs, transferData.getFiles(), currentPath, this.hashCode(),
+                        holder.conflictAction, this.getSessionInstance());
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
-	public void refreshViewMode() {
-		for (AbstractFileBrowserView view : this.viewList) {
-			view.refreshViewMode();
-		}
-		this.revalidate();
-		this.repaint(0);
-	}
+    public void refreshViewMode() {
+        for (AbstractFileBrowserView view : this.viewList) {
+            view.refreshViewMode();
+        }
+        this.revalidate();
+        this.repaint(0);
+    }
 
-	public void registerForViewNotification(AbstractFileBrowserView view) {
-		this.viewList.add(view);
-	}
+    public void registerForViewNotification(AbstractFileBrowserView view) {
+        this.viewList.add(view);
+    }
 
-	public void unRegisterForViewNotification(AbstractFileBrowserView view) {
-		this.viewList.remove(view);
-	}
+    public void unRegisterForViewNotification(AbstractFileBrowserView view) {
+        this.viewList.remove(view);
+    }
 
-	public void updateLocalStatus(String text) {
+    public void updateLocalStatus(String text) {
 //		this.lblStat1.setText(text);
 //		this.statusBox.revalidate();
 //		this.statusBox.repaint(0);
-	}
+    }
 
-	public void updateRemoteStatus(String text) {
+    public void updateRemoteStatus(String text) {
 //		this.lblStat1.setText(text);
 //		this.statusBox.revalidate();
 //		this.statusBox.repaint(0);
-	}
+    }
+
+    public static class ResponseHolder {
+        public Constants.TransferMode transferMode;
+        public Constants.ConflictAction conflictAction;
+    }
 }

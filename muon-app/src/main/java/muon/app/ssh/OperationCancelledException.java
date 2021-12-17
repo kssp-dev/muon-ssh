@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ssh;
 

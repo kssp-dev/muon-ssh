@@ -1,11 +1,9 @@
 package muon.app.ui.components.session.files.view;
 
 
-
-import javax.swing.*;
-
 import muon.app.common.FileInfo;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
@@ -20,12 +18,21 @@ public class FolderViewKeyHandler extends KeyAdapter {
     private String typedString = "";
     private long lastTime = 0L;
 
-    private long timeFactor = 1000L;
+    private final long timeFactor = 1000L;
 
     public FolderViewKeyHandler(JTable table, FolderViewTableModel model) {
         super();
         this.table = table;
         this.model = model;
+    }
+
+    static boolean isMenuShortcutKeyDown(InputEvent event) {
+        return (event.getModifiersEx()
+                & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0;
+    }
+
+    private static int adjustIndex(int index, JTable list) {
+        return index < list.getRowCount() ? index : -1;
     }
 
     @Override
@@ -116,15 +123,6 @@ public class FolderViewKeyHandler extends KeyAdapter {
 
     public void setModel(FolderViewTableModel model) {
         this.model = model;
-    }
-
-    static boolean isMenuShortcutKeyDown(InputEvent event) {
-        return (event.getModifiersEx()
-                & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0;
-    }
-
-    private static int adjustIndex(int index, JTable list) {
-        return index < list.getRowCount() ? index : -1;
     }
 
     private int getNextMatch(String prefix, int startIndex) {

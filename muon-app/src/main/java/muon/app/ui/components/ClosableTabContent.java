@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package muon.app.ui.components;
 
@@ -8,5 +8,5 @@ package muon.app.ui.components;
  *
  */
 public interface ClosableTabContent {
-	boolean close();
+    boolean close();
 }

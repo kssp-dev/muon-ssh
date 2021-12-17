@@ -1,8 +1,11 @@
 package muon.app.ui.components.session;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
-public class SessionFolder extends NamedItem{
+public class SessionFolder extends NamedItem {
     private List<SessionFolder> folders = new ArrayList<>();
     private List<SessionInfo> items = new ArrayList<>();
 

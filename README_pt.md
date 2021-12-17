@@ -1,8 +1,9 @@
 # Muon SSH Terminal/SFTP client ( Formerly Snowflake ) ![Java CI](https://github.com/subhra74/snowflake/workflows/Java%20CI/badge.svg?branch=master) [![Github All Releases](https://img.shields.io/github/downloads/subhra74/snowflake/total.svg)]()
 
-<a href="https://github.com/devlinx9/muon-ssh/blob/master/README_es.md">Español</a>
-<a href="https://github.com/devlinx9/muon-ssh/blob/master/README.md">English</a>
-<a href="https://github.com/devlinx9/muon-ssh/blob/master/README_pt.md">Portuguese</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_es.md">Español</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README.md">English</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_pt.md">Portuguese</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_ru.md">Pусский</a>
 
 Maneira fácil e divertida de trabalhar com servidores remotos via SSH. 
 
@@ -31,7 +32,28 @@ Muon fornece funcionalidade semelhante a painéis de controle baseados na web, m
     <th>Windows</th>
     <th>Ubuntu/Mint/Debian</th>
     <th>MacOS</th>
-    <th>Outros</th>
+    <th>Outros SO</th>
+    <th>Portátil</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.1.0/muonssh_2.1.0.deb">v2.1.0</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.1.0/muonssh_2.1.0.exe">Exe file</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.1.0/muonssh_2.1.0.deb">DEB installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.1.0/muonssh_2.1.0.dmg">DMG installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.1.0/muonssh_2.1.0.jar">Generic installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.1.0/muonssh_2.1.0.jar">Portable JAR (Java 11)</a>
+    </td>
   </tr>
   <tr>
     <td>
@@ -44,10 +66,10 @@ Muon fornece funcionalidade semelhante a painéis de controle baseados na web, m
       <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.0.0/muonssh_2.0.0.deb">DEB installer</a>
     </td>
     <td>
-      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.0.0/muonssh_2.0.0.jar">Generic installer</a>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.0.0/muonssh_2.0.0.dmg">DMG installer</a>
     </td>
     <td>
-      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.0.0/muonssh_2.0.0.dmg">DMG installer</a>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.0.0/muonssh_2.0.0.jar">Generic installer</a>
     </td>
     <td>
       <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.0.0/muonssh_2.0.0.jar">Portable JAR (Java 11)</a>
@@ -64,16 +86,17 @@ Muon fornece funcionalidade semelhante a painéis de controle baseados na web, m
       <a href="https://github.com/devlinx9/muon-ssh/releases/download/v1.2.1/muon_1.2.1.deb">DEB installer</a>
     </td>
     <td>
-      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v1.2.1/muon_1.2.1.jar">Generic installer</a>
-    </td>
-    <td>
       <a href="https://github.com/devlinx9/muon-ssh/releases/download/v1.2.1/muon_1.2.1.dmg">DMG installer</a>
     </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v1.2.1/muon_1.2.1.jar">Generic installer</a>
+    </td>   
     <td>
       <a href="https://github.com/devlinx9/muon-ssh/releases/download/v1.2.1/muon_1.2.1.jar">Portable JAR (Java 11)</a>
     </td>
   </tr>
 </table>
+
 
 <p>
 <a href="https://github.com/devlinx9/muon-ssh/releases">Outros lançamentos</a>

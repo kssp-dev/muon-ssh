@@ -4,12 +4,6 @@ import java.util.ListResourceBundle;
 
 public class Messages_pt extends ListResourceBundle {
 
-    @Override
-    protected Object[][] getContents() {
-
-        return resources;
-    }
-
     private final Object[][] resources = {
 
             {"general", "Em geral"},
@@ -260,7 +254,7 @@ public class Messages_pt extends ListResourceBundle {
             {"local_computer", "Chaves autorizadas"},
             {"server", "Servidor"},
             {"language", "Língua"},
-            {"log_viewer_lines", "Linhas por página para o visualizador de log" },
+            {"log_viewer_lines", "Linhas por página para o visualizador de log"},
             {"log_viewer_font_size", "Tamanho da fonte para visualizador de log"},
             {"system_refresh_interval", "Intervalo de tempo de atualização (segundos) "},
             {"autorename", "Renomeação automática"},
@@ -271,4 +265,10 @@ public class Messages_pt extends ListResourceBundle {
             {"show", "Mostrar"},
             {"keep_alive", "Mantenha a conexão viva"}
     };
+
+    @Override
+    protected Object[][] getContents() {
+
+        return resources;
+    }
 }

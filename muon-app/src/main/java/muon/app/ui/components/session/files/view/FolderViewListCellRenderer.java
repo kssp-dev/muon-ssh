@@ -1,63 +1,57 @@
 package muon.app.ui.components.session.files.view;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-
 import muon.app.App;
 import muon.app.common.FileInfo;
-import muon.app.common.FileType;
 import util.FileIconUtil;
 import util.FontAwesomeContants;
-import util.FormatUtils;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class FolderViewListCellRenderer extends JPanel implements ListCellRenderer<FileInfo> {
-	private JLabel lblIcon;
-	private WrappedLabel lblText;
+    private final JLabel lblIcon;
+    private final WrappedLabel lblText;
 
-	public FolderViewListCellRenderer() {
-		super(new BorderLayout(10, 5));
-		setBorder(new EmptyBorder(10, 10, 10, 10));
-		lblIcon = new JLabel();
-		lblIcon.setOpaque(true);
-		lblIcon.setBorder(new EmptyBorder(0, 20, 0, 20));
-		lblIcon.setHorizontalAlignment(JLabel.CENTER);
-		lblIcon.setVerticalAlignment(JLabel.CENTER);
-		lblIcon.setFont(App.SKIN.getIconFont().deriveFont(Font.PLAIN, 48.f));
-		lblIcon.setText(FontAwesomeContants.FA_FOLDER);
+    public FolderViewListCellRenderer() {
+        super(new BorderLayout(10, 5));
+        setBorder(new EmptyBorder(10, 10, 10, 10));
+        lblIcon = new JLabel();
+        lblIcon.setOpaque(true);
+        lblIcon.setBorder(new EmptyBorder(0, 20, 0, 20));
+        lblIcon.setHorizontalAlignment(JLabel.CENTER);
+        lblIcon.setVerticalAlignment(JLabel.CENTER);
+        lblIcon.setFont(App.SKIN.getIconFont().deriveFont(Font.PLAIN, 48.f));
+        lblIcon.setText(FontAwesomeContants.FA_FOLDER);
 
-		this.lblText = new WrappedLabel();
+        this.lblText = new WrappedLabel();
 
 //		lblText = new JTextArea(2, 1);
 //		lblText.setEditable(false);
 //		lblText.set
 //		lblText.setLineWrap(true);
-		// lblText.setHorizontalAlignment(JLabel.CENTER);
+        // lblText.setHorizontalAlignment(JLabel.CENTER);
 
-		this.add(this.lblIcon);
-		this.add(lblText, BorderLayout.SOUTH);
-	}
+        this.add(this.lblIcon);
+        this.add(lblText, BorderLayout.SOUTH);
+    }
 
-	@Override
-	public Component getListCellRendererComponent(JList<? extends FileInfo> list, FileInfo value, int index,
-			boolean isSelected, boolean cellHasFocus) {
-		this.lblIcon.setText(getIconForType(value));
-		this.lblIcon.setBackground(list.getBackground());
-		this.lblIcon.setForeground(isSelected ? list.getSelectionBackground() : list.getForeground());
-		this.lblText.setBackground(list.getBackground());
-		this.lblText.setForeground(isSelected ? list.getSelectionBackground() : list.getForeground());
-		this.lblText.setText(value.getName());
-		this.setBackground(list.getBackground());
-		return this;
-	}
+    @Override
+    public Component getListCellRendererComponent(JList<? extends FileInfo> list, FileInfo value, int index,
+                                                  boolean isSelected, boolean cellHasFocus) {
+        this.lblIcon.setText(getIconForType(value));
+        this.lblIcon.setBackground(list.getBackground());
+        this.lblIcon.setForeground(isSelected ? list.getSelectionBackground() : list.getForeground());
+        this.lblText.setBackground(list.getBackground());
+        this.lblText.setForeground(isSelected ? list.getSelectionBackground() : list.getForeground());
+        this.lblText.setText(value.getName());
+        this.setBackground(list.getBackground());
+        return this;
+    }
 
-	public String getIconForType(FileInfo ent) {
-		return FileIconUtil.getIconForType(ent);
-	}
+    public String getIconForType(FileInfo ent) {
+        return FileIconUtil.getIconForType(ent);
+    }
 
 //	JPanel panel = new JPanel(new BorderLayout(10, 5));
 //	JLabel lblTitle, lx1, lx2;
