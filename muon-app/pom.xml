@@ -302,7 +302,8 @@
                             <headerType>console</headerType>
                             <outfile>target/muonssh_${project.version}.exe</outfile>
                             <jar>target/muonssh_${project.version}.jar</jar>
-                            <errTitle>muonssh</errTitle>
+                            <errTitle>Failed to load muonssh</errTitle>
+                            <downloadUrl>https://www.oracle.com/java/technologies/downloads/#java11-windows</downloadUrl>
                             <classPath>
                                 <mainClass>muon.app.App</mainClass>
                                 <addDependencies>false</addDependencies>

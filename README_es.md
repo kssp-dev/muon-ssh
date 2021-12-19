@@ -25,7 +25,7 @@ Muon ha sido probado con varios servidores Linux y UNIX, como el servidor Ubuntu
   <img src="https://github.com/subhra74/snowflake-screenshots/raw/master/arch-overview2.png">
 </div>
 
-<h2>Descargar:</h2>
+<h2>Descargar*:</h2>
 
 <table>
   <tr>
@@ -101,6 +101,10 @@ Muon ha sido probado con varios servidores Linux y UNIX, como el servidor Ubuntu
 
 <p>
 <a href="https://github.com/devlinx9/muon-ssh/releases">Otras versiones</a>
+</p>
+
+<p>
+<b>* Debe tener Java 11 instalado como mínimo</b>
 </p>
 
 

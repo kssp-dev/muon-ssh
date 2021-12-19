@@ -26,7 +26,7 @@ Muon has been tested with serveral Linux and UNIX servers, like Ubuntu server, C
   <img src="https://github.com/subhra74/snowflake-screenshots/raw/master/arch-overview2.png">
 </div>
 
-<h2>Download:</h2>
+<h2>Download*:</h2>
 
 <table>
   <tr>
@@ -101,6 +101,10 @@ Muon has been tested with serveral Linux and UNIX servers, like Ubuntu server, C
 
 <p>
 <a href="https://github.com/devlinx9/muon-ssh/releases">Other Releases</a>
+</p>
+
+<p>
+<b>* You must have Java 11 installed minimum</b>
 </p>
 
 

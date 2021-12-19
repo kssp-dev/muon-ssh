@@ -24,7 +24,7 @@ Muon fornece funcionalidade semelhante a painéis de controle baseados na web, m
   <img src="https://github.com/subhra74/snowflake-screenshots/raw/master/arch-overview2.png">
 </div>
 
-<h2>Baixar:</h2>
+<h2>Baixar*:</h2>
 
 <table>
   <tr>
@@ -101,6 +101,11 @@ Muon fornece funcionalidade semelhante a painéis de controle baseados na web, m
 <p>
 <a href="https://github.com/devlinx9/muon-ssh/releases">Outros lançamentos</a>
 </p>
+
+<p>
+<b>* Você deve ter o Java 11 instalado, no mínimo</b>
+</p>
+
 
 
 <h2>Construindo a partir da fonte:</h2>
