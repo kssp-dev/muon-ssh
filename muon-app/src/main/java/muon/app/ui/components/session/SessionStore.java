@@ -102,16 +102,6 @@ public class SessionStore {
         return node;
     }
 
-//	public synchronized static void store(SessionFolder folder) {
-//		File file = new File(App.CONFIG_DIR, App.SESSION_DB_FILE);
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		try {
-//			objectMapper.writeValue(file, folder);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
     public synchronized static void updateFavourites(String id, List<String> localFolders, List<String> remoteFolders) {
         SavedSessionTree tree = load();
         SessionFolder folder = tree.getFolder();

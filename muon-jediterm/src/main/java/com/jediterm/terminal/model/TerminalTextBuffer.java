@@ -1,7 +1,5 @@
 package com.jediterm.terminal.model;
 
-//import com.google.common.collect.Lists;
-//import com.google.common.collect.Maps;
 import com.jediterm.terminal.RequestOrigin;
 import com.jediterm.terminal.StyledTextConsumer;
 import com.jediterm.terminal.StyledTextConsumerAdapter;
@@ -11,8 +9,6 @@ import com.jediterm.terminal.model.hyperlinks.TextProcessing;
 import com.jediterm.terminal.util.CharUtils;
 import com.jediterm.terminal.util.Pair;
 import org.apache.log4j.Logger;
-////import org.jetbrains.annotations.NotNull;
-////import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -56,7 +52,7 @@ public class TerminalTextBuffer {
 
 	private boolean myUsingAlternateBuffer = false;
 
-	private java.util.List<TerminalModelListener> myListeners = new ArrayList<>();
+	private final java.util.List<TerminalModelListener> myListeners = new ArrayList<>();
 
 	private final TextProcessing myTextProcessing;
 

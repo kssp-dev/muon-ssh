@@ -2,7 +2,6 @@ package com.jediterm.terminal.model;
 
 import com.jediterm.terminal.util.CharUtils;
 import com.jediterm.terminal.util.Pair;
-////import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -53,7 +52,7 @@ public class CharBuffer implements Iterable<Character>, CharSequence {
   @Override
   public Iterator<Character> iterator() {
     return new Iterator<Character>() {
-      private int myCurPosition = myStart;
+      private final int myCurPosition = myStart;
 
       @Override
       public boolean hasNext() {

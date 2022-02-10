@@ -10,7 +10,7 @@ public class Constants {
     public static final String UPDATE_URL = "https://devlinx9.github.io/muon-ssh";
     public static final String API_UPDATE_URL = "https://api.github.com/repos/devlinx9/muon-ssh/releases/latest";
     public static final String REPOSITORY_URL = BASE_URL + "/muon-ssh";
-    public static final String APPLICATION_VERSION = "2.1.0";
+    public static final String APPLICATION_VERSION = "2.2.0";
     public static final String APPLICATION_NAME = "Muon SSH";
 
     public enum ConflictAction {
@@ -57,7 +57,7 @@ public class Constants {
 
     public enum TransferMode {
 
-        @JsonEnumDefaultValue NORMAL(0, bundle.getString("transfer_normally")), BACKGROUND(1, bundle.getString("transfer_background"));//, NORMAL ;
+        @JsonEnumDefaultValue NORMAL(0, bundle.getString("transfer_normally")), BACKGROUND(1, bundle.getString("transfer_background"));
 
         private int key;
         private String value;

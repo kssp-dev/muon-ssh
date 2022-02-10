@@ -51,9 +51,6 @@ public class AppSkinDark extends AppSkin {
         this.defaults.put("Table.background", buttonGradient6);
         this.defaults.put("Table[Enabled+Selected].textForeground", selectedTextColor);
 
-//		this.defaults.put("scrollbar", buttonGradient4);
-//		this.defaults.put("scrollbar-hot", buttonGradient3);
-
         this.defaults.put("text", textColor);
         this.defaults.put("menuText", textColor);
         this.defaults.put("controlText", textColor);

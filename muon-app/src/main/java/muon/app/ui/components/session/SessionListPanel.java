@@ -37,9 +37,6 @@ public class SessionListPanel extends JPanel {
 
         SessionListRenderer r = new SessionListRenderer();
         sessionList.setCellRenderer(r);
-//		Dimension d=sessionList.getPreferredSize();
-//		d.setSize(r.getPreferredCellSize().width, d.height);
-//		sessionList.setMaximumSize(new Dimension(r.getPreferredCellSize().width, Short.MAX_VALUE));
 
         JScrollPane scrollPane = new SkinnedScrollPane(sessionList);
         this.add(scrollPane);
@@ -91,7 +88,6 @@ public class SessionListPanel extends JPanel {
         sessionList.addListSelectionListener(e -> {
             System.out.println("called for index: " + sessionList.getSelectedIndex() + " " + e.getFirstIndex() + " "
                     + e.getLastIndex() + e.getValueIsAdjusting());
-            // selectSession(sessionList.getSelectedIndex());
             if (!e.getValueIsAdjusting()) {
                 int index = sessionList.getSelectedIndex();
                 if (index != -1) {
@@ -106,7 +102,6 @@ public class SessionListPanel extends JPanel {
         sessionListModel.insertElementAt(panel, 0);
 
         sessionList.setSelectedIndex(0);
-        // selectSession(0);
     }
 
     public void selectSession(int index) {
@@ -196,8 +191,6 @@ public class SessionListPanel extends JPanel {
 
             SessionInfo info = value.getInfo();
 
-            // String strTitle = info.getName().substring(0,
-            // Math.min(info.getName().length(), 15));
 
             lblText.setText(info.getName());
             lblHost.setText(info.getHost());

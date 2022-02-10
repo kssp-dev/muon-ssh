@@ -25,8 +25,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
     protected PanelOrientation orientation;
     protected TabTitle tabTitle;
 
-    //	protected TransferMode transferMode;
-//	protected ConflictAction conflictAction;
     protected FileBrowser fileBrowser;
 
     public AbstractFileBrowserView(PanelOrientation orientation, FileBrowser fileBrowser) {
@@ -40,8 +38,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         overflowMenuHandler = new OverflowMenuHandler(this, fileBrowser);
         history = new NavigationHistory();
         JPanel toolBar = new JPanel(new BorderLayout());
-//        toolBar.setBorder(new MatteBorder(0, 1, 0, 1,
-//                new Color(240, 240, 240)));
         createAddressBar();
         addressBar.addActionListener(e -> {
             String text = e.getActionCommand();
@@ -73,7 +69,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
 
         btnBack = new JButton();
         btnBack.putClientProperty("Nimbus.Overrides", toolbarButtonSkin);
-        // btnBack.setForeground(Color.DARK_GRAY);
         btnBack.setFont(App.SKIN.getIconFont());
         btnBack.setText("\uf060");
         btnBack.addActionListener(e -> {
@@ -83,7 +78,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         });
 
         btnNext = new JButton();
-        // btnNext.setForeground(Color.DARK_GRAY);
         btnNext.putClientProperty("Nimbus.Overrides", toolbarButtonSkin);
         btnNext.setFont(App.SKIN.getIconFont());
         btnNext.setText("\uf061");
@@ -94,7 +88,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         });
 
         JButton btnHome = new JButton();
-        // btnHome.setForeground(Color.DARK_GRAY);
         btnHome.putClientProperty("Nimbus.Overrides", toolbarButtonSkin);
         btnHome.setFont(App.SKIN.getIconFont());
         btnHome.setText("\uf015");
@@ -104,7 +97,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         });
 
         JButton btnUp = new JButton();
-        // btnUp.setForeground(Color.DARK_GRAY);
         btnUp.putClientProperty("Nimbus.Overrides", toolbarButtonSkin);
         btnUp.addActionListener(upAction);
         btnUp.setFont(App.SKIN.getIconFont());
@@ -113,28 +105,13 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         smallToolbar.add(Box.createHorizontalStrut(5));
 
         JButton btnReload = new JButton();
-        // btnReload.setForeground(Color.DARK_GRAY);
         btnReload.putClientProperty("Nimbus.Overrides", toolbarButtonSkin);
         btnReload.addActionListener(reloadAction);
         btnReload.setFont(App.SKIN.getIconFont());
         btnReload.setText("\uf021");
 
-//        JButton btnSort = new JButton();
-//        btnSort.setForeground(Color.DARK_GRAY);
-//        btnSort.putClientProperty("Nimbus.Overrides", App.toolBarButtonSkin);
-//        btnSort.addActionListener(e -> {
-//            JPopupMenu sortMenu = overflowMenuHandler.getSortMenu();
-//            sortMenu.pack();
-//            Dimension d = sortMenu.getPreferredSize();
-//            int x = btnSort.getWidth() - d.width;
-//            int y = btnSort.getHeight();
-//            sortMenu.show(btnSort, x, y);
-//        });
-//        btnSort.setFont(App.getFontAwesomeFont());
-//        btnSort.setText("\uf161");
 
         JButton btnMore = new JButton();
-        // btnMore.setForeground(Color.DARK_GRAY);
         btnMore.putClientProperty("Nimbus.Overrides", toolbarButtonSkin);
         btnMore.setFont(App.SKIN.getIconFont());
         btnMore.setText("\uf142");
@@ -148,7 +125,7 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
             popupMenu.show(btnMore, x, y);
         });
 
-        LayoutUtilities.equalizeSize(btnMore, btnReload, btnUp, btnHome, btnNext, btnBack);// , btnSort);
+        LayoutUtilities.equalizeSize(btnMore, btnReload, btnUp, btnHome, btnNext, btnBack);
 
         smallToolbar.add(btnBack);
         smallToolbar.add(btnNext);
@@ -159,7 +136,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         b2.add(btnReload);
         b2.setBorder(new EmptyBorder(3, 0, 3, 0));
         b2.add(btnReload);
-        // b2.add(btnSort);
         b2.add(btnMore);
 
         toolBar.add(smallToolbar, BorderLayout.WEST);
@@ -185,8 +161,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
 
         this.fileBrowser.registerForViewNotification(this);
 
-//		setBorder(new LineBorder(App.SKIN.getDefaultBorderColor(), 1));
-
     }
 
     protected abstract void createAddressBar();
@@ -201,20 +175,6 @@ public abstract class AbstractFileBrowserView extends JPanel implements FolderVi
         System.out.println("Unregistering for view mode notification");
         this.fileBrowser.unRegisterForViewNotification(this);
         return true;
-//        if (fs != null) {
-//            synchronized (fileViewMap) {
-//                int c = fileViewMap.get(fs);
-//                if (c > 1) {
-//                    fileViewMap.put(fs, c - 1);
-//                } else if (c == 1) {
-//                    try {
-//                        fs.close();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
     }
 
     public String getCurrentDirectory() {

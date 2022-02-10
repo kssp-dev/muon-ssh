@@ -1,7 +1,6 @@
 package com.jediterm.terminal.model;
 
 import com.jediterm.terminal.util.Pair;
-////import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 

@@ -2,7 +2,6 @@ package com.jediterm.terminal;
 
 import com.jediterm.terminal.ui.*;
 import com.jediterm.terminal.ui.settings.TabbedSettingsProvider;
-////import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 

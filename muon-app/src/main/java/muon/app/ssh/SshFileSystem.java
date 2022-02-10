@@ -141,11 +141,6 @@ public class SshFileSystem implements FileSystem {
                     for (int i = 0; i < files.size(); i++) {
                         RemoteResourceInfo ent = files.get(i).getInfo();
                         String longName = files.get(i).getLongPath();
-//						if (ent.getFilename().equals(".")
-//								|| ent.getFilename().equals("..")) {
-//							continue;
-//						}
-//						SftpATTRS attrs = ent.getAttrs();
 
                         FileAttributes attrs = ent.getAttributes();
 
@@ -187,14 +182,6 @@ public class SshFileSystem implements FileSystem {
     public void close() throws Exception {
         this.closed.set(true);
         this.sftp.close();
-//		stopFlag.set(true);
-//		System.out.println("Inside fs wrapper: " + stopFlag.get());
-//		synchronized (lock) {
-//			if (wrapper != null) {
-//				System.out.println("Closing wrapper");
-//				wrapper.close();
-//			}
-//		}
     }
 
     @Override
@@ -293,36 +280,6 @@ public class SshFileSystem implements FileSystem {
             }
         }
     }
-
-//	@Override
-//	public OutputStream getOutputStream(String file)
-//			throws FileNotFoundException, Exception {
-//		synchronized (ssh) {
-//			throw new IOException("not implemented");
-//		}
-////		synchronized (ssh) {
-////			ensureConnected();
-////			sftp.open(file,
-////					EnumSet.of(OpenMode.TRUNC, OpenMode.WRITE, OpenMode.CREAT));
-////		}
-//	}
-//
-//	@Override
-//	public InputStream getInputStream(String file, long offset)
-//			throws FileNotFoundException, Exception {
-//		return inputTransferChannel().getInputStream(file, offset);
-////		ensureConnected();
-////		synchronized (sftp) {
-////			try {
-////				return sftp.get(file, null, offset);
-////			} catch (Exception e) {
-////				if (sftp.isConnected()) {
-////					throw new FileNotFoundException();
-////				}
-////				throw new Exception();
-////			}
-////		}
-//	}
 
     @Override
     public void rename(String oldName, String newName) throws Exception {
@@ -429,13 +386,7 @@ public class SshFileSystem implements FileSystem {
         return PROTO_SFTP;
     }
 
-    /**
-     * @return the wrapper
-     */
-//	public SshClient getWrapper() {
-//		return null;
-//		// return wrapper;
-//	}
+
     public InputTransferChannel inputTransferChannel() throws Exception {
         synchronized (ssh) {
             ensureConnected();
@@ -510,9 +461,6 @@ public class SshFileSystem implements FileSystem {
     }
 
     public void statFs() throws Exception {
-//		ensureConnected();
-//		SftpStatVFS statVFS = this.sftp.statVFS("/");
-//		System.out.println(statVFS.getSize() + " " + statVFS.getUsed());
     }
 
     private List<RemoteResourceInfoWrapper> ls(String path) throws Exception {

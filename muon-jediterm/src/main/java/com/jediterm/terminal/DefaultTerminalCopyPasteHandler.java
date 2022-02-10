@@ -2,8 +2,6 @@ package com.jediterm.terminal;
 
 import com.jediterm.terminal.ui.UIUtil;
 import org.apache.log4j.Logger;
-////import org.jetbrains.annotations.NotNull;
-////import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.awt.datatransfer.*;

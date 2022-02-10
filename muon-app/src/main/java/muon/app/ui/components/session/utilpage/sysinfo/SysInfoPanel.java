@@ -31,7 +31,7 @@ public class SysInfoPanel extends UtilPageItemView {
     @Override
     protected void createUI() {
         textArea = new SkinnedTextArea();
-        textArea.setFont(new Font(//"DejaVu Sans Mono"
+        textArea.setFont(new Font(
                 "Noto Mono"
                 , Font.PLAIN, 14));
         JScrollPane scrollPane = new SkinnedScrollPane(textArea);

@@ -54,7 +54,6 @@ public class DndTransferHandler extends TransferHandler implements Transferable 
                     this.win32DragHandler.listenForDrop(tempDir.getName(), file -> {
                         System.err.println("Dropped on " + file.getParent());
                         this.fileBrowser.handleLocalDrop(transferData, info, new LocalFileSystem(), file.getParent());
-                        // file.delete();
                     });
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -219,11 +218,4 @@ public class DndTransferHandler extends TransferHandler implements Transferable 
     protected Transferable createTransferable(JComponent c) {
         return this;
     }
-
-//    private DndTransferData createTransferDataFromFiles(List<File>files){
-//        FileInfo[] selectedFiles = folderView.getSelectedFiles();
-//        DndTransferData transferData = new DndTransferData(0, selectedFiles,
-//                fileBrowserView.getCurrentDirectory(), fileBrowserView.hashCode(), DndTransferData.DndSourceType.SSH);
-//        transferData.setTransferAction(cut ? DndTransferData.TransferAction.Cut : DndTransferData.TransferAction.Copy);
-//    }
 }

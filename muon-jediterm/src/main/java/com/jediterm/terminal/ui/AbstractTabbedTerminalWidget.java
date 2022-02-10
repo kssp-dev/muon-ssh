@@ -1,9 +1,5 @@
 package com.jediterm.terminal.ui;
 
-//import com.google.common.base.Predicate;
-//import com.google.common.base.Supplier;
-//import com.google.common.collect.Lists;
-//import com.google.common.collect.Sets;
 import com.jediterm.terminal.RequestOrigin;
 import com.jediterm.terminal.TerminalDisplay;
 import com.jediterm.terminal.TtyConnector;
@@ -11,8 +7,6 @@ import com.jediterm.terminal.TtyConnectorWaitFor;
 import com.jediterm.terminal.ui.settings.TabbedSettingsProvider;
 import com.jediterm.terminal.util.JTextFieldLimit;
 import java.util.function.*;
-//import org.jetbrains.annotations.NotNull;
-//import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,15 +32,15 @@ public abstract class AbstractTabbedTerminalWidget<T extends JediTermWidget> ext
 
   private AbstractTabs<T> myTabs;
 
-  private TabbedSettingsProvider mySettingsProvider;
+  private final TabbedSettingsProvider mySettingsProvider;
 
-  private List<TabListener> myTabListeners = new ArrayList<>();
-  private List<TerminalWidgetListener> myWidgetListeners = new CopyOnWriteArrayList<>();
+  private final List<TabListener> myTabListeners = new ArrayList<>();
+  private final List<TerminalWidgetListener> myWidgetListeners = new CopyOnWriteArrayList<>();
   private TerminalActionProvider myNextActionProvider;
 
   private final Function<AbstractTabbedTerminalWidget<T>, T> myCreateNewSessionAction;
 
-  private JPanel myPanel;
+  private final JPanel myPanel;
 
   public AbstractTabbedTerminalWidget( TabbedSettingsProvider settingsProvider,  Function<AbstractTabbedTerminalWidget<T>, T> createNewSessionAction) {
     super(new BorderLayout());
@@ -405,9 +399,9 @@ public abstract class AbstractTabbedTerminalWidget<T extends JediTermWidget> ext
 
   private class TabComponent extends JPanel implements FocusListener {
 
-    private T myTerminal;
+    private final T myTerminal;
 
-    private MyLabelHolder myLabelHolder = new MyLabelHolder();
+    private final MyLabelHolder myLabelHolder = new MyLabelHolder();
 
     private class MyLabelHolder extends JPanel {
 
@@ -448,9 +442,6 @@ public abstract class AbstractTabbedTerminalWidget<T extends JediTermWidget> ext
       JLabel label = new TabComponentLabel();
 
       label.addFocusListener(this);
-
-      //add more space between the label and the button
-//      label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 
       label.addMouseListener(new MouseAdapter() {
 
@@ -586,7 +577,7 @@ public abstract class AbstractTabbedTerminalWidget<T extends JediTermWidget> ext
   
   private T getTerminalPanel(int index) {
     if (index < myTabs.getTabCount() && index >= 0) {
-      return (T) myTabs.getComponentAt(index);
+      return myTabs.getComponentAt(index);
     }
     else {
       return null;

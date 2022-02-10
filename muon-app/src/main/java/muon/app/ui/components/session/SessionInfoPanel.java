@@ -279,7 +279,6 @@ public class SessionInfoPanel extends JPanel {
         });
 
         inpProxyHostName = new SkinnedTextField(10);// new
-        // JTextField(30);
         inpProxyHostName.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -310,7 +309,6 @@ public class SessionInfoPanel extends JPanel {
         });
         inpProxyPort = new JSpinner(proxyPortModel);
         inpProxyUserName = new SkinnedTextField(10);// new
-        // JTextField(30);
         inpProxyUserName.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -461,7 +459,6 @@ public class SessionInfoPanel extends JPanel {
         Insets noInset = new Insets(5, 10, 0, 10);
 
         inpLocalFolder = new SkinnedTextField(10);// new
-        // JTextField(30);
         inpLocalFolder.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -485,7 +482,6 @@ public class SessionInfoPanel extends JPanel {
         });
 
         inpRemoteFolder = new SkinnedTextField(10);// new
-        // JTextField(30);
         inpRemoteFolder.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -579,7 +575,6 @@ public class SessionInfoPanel extends JPanel {
         Insets topInset = new Insets(20, 10, 0, 10);
         Insets noInset = new Insets(5, 10, 0, 10);
 
-        // setBackground(new Color(245,245,245));
         lblHost = new JLabel(bundle.getString("host"));
         lblHost.setHorizontalAlignment(JLabel.LEADING);
         lblPort = new JLabel(bundle.getString("port"));
@@ -589,7 +584,7 @@ public class SessionInfoPanel extends JPanel {
         lblRemoteFolder = new JLabel(bundle.getString("remote_folder"));
         lblKeyFile = new JLabel(bundle.getString("private_key_file"));
 
-        inpHostName = new SkinnedTextField(10);// new JTextField(30);
+        inpHostName = new SkinnedTextField(10);
         inpHostName.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -620,7 +615,7 @@ public class SessionInfoPanel extends JPanel {
             }
         });
         inpPort = new JSpinner(portModel);
-        inpUserName = new SkinnedTextField(10);// new JTextField(30);
+        inpUserName = new SkinnedTextField(10);
         inpUserName.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -666,7 +661,7 @@ public class SessionInfoPanel extends JPanel {
             }
         });
 
-        inpKeyFile = new SkinnedTextField(10);// new JTextField(30);
+        inpKeyFile = new SkinnedTextField(10);
         inpKeyFile.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -690,7 +685,6 @@ public class SessionInfoPanel extends JPanel {
         });
 
         inpKeyBrowse = new JButton(bundle.getString("browse"));// new
-        // JButton(TextHolder.getString("host.browse"));
         inpKeyBrowse.addActionListener(e -> {
             JFileChooser jfc = new JFileChooser();
             jfc.setFileHidingEnabled(false);

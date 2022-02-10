@@ -41,12 +41,10 @@ public class SSHRemoteFileOutputStream extends OutputStream {
         try {
             this.remoteFile.close();
         } catch (Exception e) {
-            // e.printStackTrace();
         }
         try {
             this.remoteFileOutputStream.close();
         } catch (Exception e) {
-            // e.printStackTrace();
         }
     }
 

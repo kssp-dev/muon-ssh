@@ -92,7 +92,6 @@ public class SshMenuHandler {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                // holder.openWithDefaultApp(fileInfo);
             }
         };
         ksOpen = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
@@ -102,8 +101,6 @@ public class SshMenuHandler {
         act.put("mOpen", aOpen);
         mOpen.setAccelerator(ksOpen);
 
-//		mOpenWithDefApp = new JMenuItem("Default application");
-//		mOpenWithDefApp.addActionListener(e -> openDefaultApp());
 
         if (App.IS_WINDOWS) {
             mOpenWithMenu = new JMenuItem(bundle.getString("open_with"));
@@ -120,9 +117,6 @@ public class SshMenuHandler {
             });
         }
 
-//		mOpenWthInternalEdit = new JMenuItem("Internal editor");
-//		mOpenWthInternalEdit.addActionListener(e -> openWithInternalEditor());
-
         mEditorConfig = new JMenuItem(bundle.getString("configure_editor"));
         mEditorConfig.addActionListener(e -> openEditorConfig());
 
@@ -130,12 +124,6 @@ public class SshMenuHandler {
         mOpenWithLogView.addActionListener(e -> openLogViewer());
 
         mEditWith = new JMenu(bundle.getString("edit_with"));
-//		for (EditorEntry ent : App.getGlobalSettings().getEditors()) {
-//			JMenuItem mEditorItem = new JMenuItem(ent.getName());
-//			mEditorItem.addActionListener(e -> openWithEditor(ent.getPath()));
-//			mEditWith.add(mEditorItem);
-//		}
-//		mEditWith.add(mEditorConfig);
 
         mSendTo = new JMenu(bundle.getString("send_another_server"));
 
@@ -150,11 +138,6 @@ public class SshMenuHandler {
 
         mSendTo.add(mSendViaSSH);
         mSendTo.add(mSendViaLocal);
-
-//		mEditWith.add(mOpenWithDefApp);
-//		mEditWith.add(mOpenWithCustom);
-//		mEditWith.add(mOpenWthInternalEdit);
-//		mEditWith.add(mOpenWithLogView);
 
         mRunScriptInTerminal = new JMenuItem(bundle.getString("run_in_terminal"));
         mRunScriptInTerminal.addActionListener(e -> {
@@ -328,18 +311,16 @@ public class SshMenuHandler {
         mExtractHere.addActionListener(e -> {
             extractArchive(folderView.getSelectedFiles()[0].getPath(), fileBrowserView.getCurrentDirectory(),
                     fileBrowserView.getCurrentDirectory());
-            // openFolderInTerminal(folderView.getSelectedFiles()[0].getPath());
         });
 
         mExtractTo = new JMenuItem(bundle.getString("extract_to"));
         mExtractTo.addActionListener(e -> {
-            String text = JOptionPane.showInputDialog(bundle.getString("selec_target"),
+            String text = JOptionPane.showInputDialog(bundle.getString("select_target"),
                     fileBrowserView.getCurrentDirectory());
             if (text == null || text.length() < 1) {
                 return;
             }
             extractArchive(folderView.getSelectedFiles()[0].getPath(), text, fileBrowserView.getCurrentDirectory());
-            // openFolderInTerminal(folderView.getSelectedFiles()[0].getPath());
         });
 
         mCreateArchive = new JMenuItem(bundle.getString("create_archive"));
@@ -495,7 +476,6 @@ public class SshMenuHandler {
             popup.add(mDelete);
             popup.add(mCreateArchive);
             popup.add(mSendTo);
-            // popup.add(mSendFiles);
             count += 3;
         }
 
@@ -533,16 +513,6 @@ public class SshMenuHandler {
 
         popup.add(mAddToFav);
         count++;
-
-//        if (selectionCount == 0) {
-//            popup.add(mUpload);
-//            count++;
-//        }
-//
-//        if (selectionCount > 0) {
-//            popup.add(mDownload);
-//            count++;
-//        }
 
         if (selectionCount <= 1) {
             popup.add(mCreateLink);
@@ -673,10 +643,6 @@ public class SshMenuHandler {
             try {
                 DndTransferData transferData = (DndTransferData) Toolkit.getDefaultToolkit().getSystemClipboard()
                         .getData(DndTransferHandler.DATA_FLAVOR_DATA_FILE);
-//                for(DataFlavor df:Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors()){
-//                    Object obj=Toolkit.getDefaultToolkit().getSystemClipboard().getData(df);
-//                    System.out.println(obj);
-//                }
                 if (transferData != null) {
                     fileBrowserView.handleDrop(transferData);
                 }
@@ -842,43 +808,6 @@ public class SshMenuHandler {
 
     private void downloadFiles(FileInfo[] files, String currentDirectory) {
         throw new RuntimeException("Not implemented");
-//		try {
-//			JFileChooser jfc = new JFileChooser();
-//			jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//			if (jfc.showSaveDialog(SwingUtilities.getWindowAncestor(
-//					fileBrowserView)) == JFileChooser.APPROVE_OPTION) {
-//				File file = jfc.getSelectedFile();
-//
-//				JComboBox<String> cmbOptions = new JComboBox<>(new String[] {
-//						"Transfer normally", "Transfer in background" });
-//				if (JOptionPane.showOptionDialog(holder,
-//						new Object[] { "Please select a transfer mode",
-//								cmbOptions },
-//						"Transfer options", JOptionPane.OK_CANCEL_OPTION,
-//						JOptionPane.PLAIN_MESSAGE, null, null,
-//						null) != JOptionPane.OK_OPTION) {
-//					return;
-//				}
-//				boolean backgroundTransfer = cmbOptions.getSelectedIndex() == 1;
-//
-//				if (backgroundTransfer) {
-//					FileSystem sourceFs = holder.getSshFileSystem();
-//					FileSystem targetFs = new LocalFileSystem();
-//					holder.newFileTransfer(sourceFs, targetFs, files,
-//							currentDirectory, file.getAbsolutePath(),
-//							this.hashCode(), -1, true);
-//					return;
-//				}
-//				FileSystem targetFs = new LocalFileSystem();
-//				FileSystem sourceFs = holder.getSshFileSystem();
-//				holder.newFileTransfer(sourceFs, targetFs, files,
-//						currentDirectory, file.getAbsolutePath(),
-//						this.hashCode(), -1, false);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return;
-//		}
     }
 
     private void uploadFiles() throws IOException {

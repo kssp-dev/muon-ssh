@@ -1,7 +1,5 @@
 package com.jediterm.terminal;
 
-////import org.jetbrains.annotations.NotNull;
-////import org.jetbrains.annotations.Nullable;
 
 import java.lang.ref.WeakReference;
 import java.util.EnumSet;
@@ -121,7 +119,7 @@ public class TextStyle {
   public static class Builder {
     private TerminalColor myForeground;
     private TerminalColor myBackground;
-    private EnumSet<Option> myOptions;
+    private final EnumSet<Option> myOptions;
 
     public Builder( TextStyle textStyle) {
       myForeground = textStyle.myForeground;

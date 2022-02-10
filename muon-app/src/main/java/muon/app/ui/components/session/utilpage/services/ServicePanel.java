@@ -54,7 +54,6 @@ public class ServicePanel extends UtilPageItemView {
     private static List<ServiceEntry> parseServiceEntries(StringBuilder data) {
         List<ServiceEntry> list = new ArrayList<>();
         Map<String, String> unitMap = new HashMap<>();
-        // Map<String, ServiceEntry> unitMap = new HashMap<>();
         boolean parsingUnit = true;
         for (String s : data.toString().split("\n")) {
             if (parsingUnit && s.equals(SEP)) {
@@ -71,30 +70,16 @@ public class ServicePanel extends UtilPageItemView {
                 }
             }
         }
-//        System.out.println(unitMap);
-//        System.out.println(list);
 
         return list;
-//        return unitMap.entrySet().stream().map(e -> e.getValue())
-//                .collect(Collectors.toList());
     }
 
-//    public void setRefreshActionListener(ActionListener a) {
-//        btnRefresh.addActionListener(a);
-//    }
 
     private static void parseUnitFile(String data, Map<String, String> map) {
         Matcher m = UNIT_PATTERN.matcher(data);
         if (m.find() && m.groupCount() == 2) {
             map.put(m.group(1).trim(), m.group(2).trim());
-//            ServiceEntry e = new ServiceEntry();
-//            e.setName(m.group(1));
-//            e.setUnitStatus("");
-//            e.setDesc("");
-//            e.setUnitFileStatus(m.group(2));
-//            return e;
         }
-//        return null;
     }
 
     private static ServiceEntry parseUnit(String data,
@@ -112,11 +97,6 @@ public class ServicePanel extends UtilPageItemView {
                 return ent;
             }
 
-//            ServiceEntry e = unitMap.get(m.group(1));
-//            if (e != null) {
-//                e.setDesc(m.group(5));
-//                e.setUnitStatus(m.group(3) + "(" + m.group(4) + ")");
-//            }
         }
         return null;
     }
@@ -250,7 +230,7 @@ public class ServicePanel extends UtilPageItemView {
         table.setFillsViewportHeight(true);
 
         JLabel lbl1 = new JLabel(bundle.getString("search"));
-        txtFilter = new SkinnedTextField(30);// new JTextField(30);
+        txtFilter = new SkinnedTextField(30);
         txtFilter.addActionListener(e -> {
             filter();
         });
@@ -400,8 +380,6 @@ public class ServicePanel extends UtilPageItemView {
                             JOptionPane.showMessageDialog(null,
                                     bundle.getString("operation_failed"));
                         }
-                        // JOptionPane.showMessageDialog(null, "Operation
-                        // failed");
                     } else {
                         try {
                             if (this.runCommand(
@@ -416,8 +394,7 @@ public class ServicePanel extends UtilPageItemView {
                         if (!holder.isSessionClosed()) {
                             JOptionPane.showMessageDialog(null,
                                     bundle.getString("operation_failed"));
-                        } // JOptionPane.showMessageDialog(null, "Operation
-                        // failed");
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -430,7 +407,6 @@ public class ServicePanel extends UtilPageItemView {
 
     public boolean runCommandWithSudo(RemoteSessionInstance client,
                                       AtomicBoolean stopFlag, String command, String password) throws Exception {
-        // StringBuilder output = new StringBuilder();
         return SudoUtils.runSudo(command, client, password) == 0;
     }
 

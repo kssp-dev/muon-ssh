@@ -32,9 +32,6 @@ public class PuttyImporter {
     public static void importSessions(DefaultMutableTreeNode node,
                                       List<String> keys) {
 
-        // String[] keys =
-        // Advapi32Util.registryGetKeys(WinReg.HKEY_CURRENT_USER,
-        // PuttyREGKey);
         for (String key : keys) {
             if ("ssh".equals(RegUtil.regGetStr(WinReg.HKEY_CURRENT_USER,
                     PuttyREGKey + "\\" + key, "Protocol"))) {

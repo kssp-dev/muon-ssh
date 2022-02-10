@@ -58,7 +58,6 @@ public class SystemLoadPanel extends JPanel {
         swpGraph.setAlignmentX(Box.LEFT_ALIGNMENT);
         b1.add(swpGraph);
 
-//        add(new JLabel("System performance"), BorderLayout.NORTH);
         add(b1);
     }
 

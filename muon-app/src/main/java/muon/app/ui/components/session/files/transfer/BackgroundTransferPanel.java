@@ -74,18 +74,6 @@ public class BackgroundTransferPanel extends JPanel {
         }
     }
 
-//	public void close() {
-//		for (Component c : this.verticalBox.getComponents()) {
-//			if (c instanceof TransferPanelItem) {
-//				try {
-//					((TransferPanelItem) c).stop();
-//				} catch (Exception e) {
-//
-//				}
-//			}
-//		}
-//	}
-
     class TransferPanelItem extends JPanel implements FileTransferProgress {
         private final BackgroundFileTransfer fileTransfer;
         private final JProgressBar progressBar;

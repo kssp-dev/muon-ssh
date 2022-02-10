@@ -69,8 +69,6 @@ public class LocalMenuHandler {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                // rename(folderView.getSelectedFiles()[0],
-                // fileBrowserView.getCurrentDirectory());
             }
         });
 
@@ -110,7 +108,6 @@ public class LocalMenuHandler {
         mCopy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // copyToClipboard(false);
             }
         });
 
@@ -118,13 +115,6 @@ public class LocalMenuHandler {
         mPaste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if (AppClipboard.getContent() instanceof TransferFileInfo) {
-//                    TransferFileInfo info = (TransferFileInfo) AppClipboard.getContent();
-//                    localFolderView.pasteItem(info, folderView);
-//                    if (info.getAction() == Action.CUT) {
-//                        AppClipboard.setContent(null);
-//                    }
-//                }
             }
         });
 
@@ -132,7 +122,6 @@ public class LocalMenuHandler {
         mCut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // copyToClipboard(true);
             }
         });
 
@@ -168,14 +157,6 @@ public class LocalMenuHandler {
             popup.add(mRename);
         }
 
-//        if (selectionCount == 1) {
-//            popup.add(mRename);
-//        }
-
-//        if (selectionCount > 0) {
-//            popup.add(mCopy);
-//            popup.add(mCut);
-//        }
     }
 
     private void createBuitinItems2(int selectionCount, JPopupMenu popup) {
@@ -190,7 +171,6 @@ public class LocalMenuHandler {
         if (files.length == 1) {
             FileInfo file = files[0];
             if (file.getType() == FileType.FileLink || file.getType() == FileType.File) {
-                // PlatformAppLauncher.shellLaunch(file.getPath());
             }
         }
     }
@@ -275,15 +255,6 @@ public class LocalMenuHandler {
 
         this.fileBrowserView.getOverflowMenuHandler().loadFavourites();
 
-//		FileInfo arr[] = folderView.getSelectedFiles();
-//		if (arr.length == 1) {
-//			// holder.addFavouriteLocation(fileBrowserView, arr[0].getPath());
-//			this.fileBrowserView.getOverflowMenuHandler().loadFavourites();
-//		} else if (arr.length == 0) {
-////			holder.addFavouriteLocation(fileBrowserView,
-////					fileBrowserView.getCurrentDirectory());
-//			this.fileBrowserView.getOverflowMenuHandler().loadFavourites();
-//		}
     }
 
     public JPopupMenu createAddressPopup() {
@@ -299,8 +270,6 @@ public class LocalMenuHandler {
 
         mOpenInNewTab.addActionListener(e -> {
             String path = popupMenu.getName();
-//			fileBrowser.openLocalFileBrowserView(path,
-//					this.fileBrowserView.getOrientation());
         });
 
         mOpenInTerminal.addActionListener(e -> {

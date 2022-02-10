@@ -1,7 +1,5 @@
 package com.jediterm.terminal.ui;
 
-//import com.google.common.base.Predicate;
-//import com.google.common.base.Supplier;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -41,7 +41,6 @@ public class GraphicalHostKeyVerifier extends OpenSSHKnownHosts {
                 write();
             } catch (Exception e) {
                 e.printStackTrace();
-                //throw new RuntimeException(e);
             }
             return true;
         }

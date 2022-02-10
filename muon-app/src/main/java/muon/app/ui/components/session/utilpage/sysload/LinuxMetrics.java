@@ -24,7 +24,6 @@ public class LinuxMetrics {
                 new AtomicBoolean(), out, err);
         if (ret != 0)
             throw new Exception("Error while getting metrics");
-        // System.out.println(new String(bout.toByteArray()));
         updateStats(out.toString());
     }
 

@@ -1,7 +1,6 @@
 package com.jediterm.terminal.emulator.charset;
 
 
-////import org.jetbrains.annotations.NotNull;
 
 public class GraphicSetState {
   private final GraphicSet[] myGraphicSets;

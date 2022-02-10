@@ -115,17 +115,11 @@ public class SysLoadPage extends UtilPageItemView {
             timer.stop();
             timer.setDelay(this.sleepInterval.get() * 1000);
             timer.start();
-            // this.t.interrupt();
         });
 
         systemLoadPanel = new SystemLoadPanel();
 
         Box topPanel = Box.createHorizontalBox();
-//      topPanel.setOpaque(true);
-//      topPanel.setBackground(new Color(240, 240, 240));
-//		topPanel.setBorder(new CompoundBorder(
-//				new MatteBorder(0, 0, 1, 0, App.SKIN.getDefaultBorderColor()),
-//				new EmptyBorder(5, 10, 5, 10)));
         topPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
 
         JLabel titleLabel = new JLabel("System Monitor");

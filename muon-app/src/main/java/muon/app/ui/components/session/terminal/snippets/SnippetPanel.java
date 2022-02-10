@@ -44,7 +44,6 @@ public class SnippetPanel extends JPanel {
         topBox.add(Box.createHorizontalStrut(10));
 
         searchTextField = new SkinnedTextField(30);// new
-        // JTextField(30);
         searchTextField.getDocument()
                 .addDocumentListener(new DocumentListener() {
                     @Override
@@ -74,10 +73,8 @@ public class SnippetPanel extends JPanel {
         btnCopy = new JButton(bundle.getString("copy"));
 
         btnAdd.addActionListener(e -> {
-            JTextField txtName = new SkinnedTextField(30);// new
-            // JTextField(30);
-            JTextField txtCommand = new SkinnedTextField(30);// new
-            // JTextField(30);
+            JTextField txtName = new SkinnedTextField(30);
+            JTextField txtCommand = new SkinnedTextField(30);
 
             if (JOptionPane.showOptionDialog(null,
                     new Object[]{"Snippet name", txtName, "Command",
@@ -108,10 +105,8 @@ public class SnippetPanel extends JPanel {
 
             SnippetItem snippetItem = listModel.get(index);
 
-            JTextField txtName = new SkinnedTextField(30);// new
-            // JTextField(30);
-            JTextField txtCommand = new SkinnedTextField(30);// new
-            // JTextField(30);
+            JTextField txtName = new SkinnedTextField(30);
+            JTextField txtCommand = new SkinnedTextField(30);
 
             txtName.setText(snippetItem.getName());
             txtCommand.setText(snippetItem.getCommand());
@@ -193,7 +188,6 @@ public class SnippetPanel extends JPanel {
         setPreferredSize(new Dimension(400, 500));
         add(topBox, BorderLayout.NORTH);
         JScrollPane jScrollPane = new JScrollPane(listView);
-        //jScrollPane.setBorder(null);
         add(jScrollPane);
         add(bottomBox, BorderLayout.SOUTH);
 

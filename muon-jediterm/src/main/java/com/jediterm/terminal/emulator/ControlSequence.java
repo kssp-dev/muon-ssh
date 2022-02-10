@@ -3,7 +3,6 @@
  */
 package com.jediterm.terminal.emulator;
 
-//import com.google.common.collect.Lists;
 import com.jediterm.terminal.util.CharUtils;
 import com.jediterm.terminal.TerminalDataStream;
 
@@ -157,7 +156,7 @@ public class ControlSequence {
       sb.append(" Unhandled:");
       CharUtils.CharacterType last = CharUtils.CharacterType.NONE;
       for (final char b : myUnhandledChars) {
-        last = CharUtils.appendChar(sb, last, (char)b);
+        last = CharUtils.appendChar(sb, last, b);
       }
     }
   }

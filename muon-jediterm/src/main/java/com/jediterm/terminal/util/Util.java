@@ -1,7 +1,5 @@
 package com.jediterm.terminal.util;
 
-////import org.jetbrains.annotations.NotNull;
-////import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Array;
 import java.util.BitSet;
@@ -51,8 +49,6 @@ public class Util {
 		return string.substring(0, index + 1);
 	}
 
-//	public static boolean containsIgnoreCase( String where,
-//			 String what) {
 	public static boolean containsIgnoreCase( String where,
 			String what) {
 		return indexOfIgnoreCase(where, what, 0) >= 0;
@@ -62,8 +58,7 @@ public class Util {
 	 * Implementation copied from {@link String#indexOf(String, int)} except
 	 * character comparisons made case insensitive
 	 */
-//	public static int indexOfIgnoreCase( String where,
-//			 String what, int fromIndex) {
+
 	public static int indexOfIgnoreCase( String where,
 			 String what, int fromIndex) {
 		int targetCount = what.length();
@@ -123,7 +118,6 @@ public class Util {
 		return Character.toUpperCase(a);
 	}
 
-//  public static int compareVersionNumbers( String v1,  String v2) {
 	public static int compareVersionNumbers(String v1, String v2) {
 		if (v1 == null && v2 == null) {
 			return 0;

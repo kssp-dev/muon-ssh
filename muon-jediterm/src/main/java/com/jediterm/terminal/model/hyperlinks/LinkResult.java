@@ -3,8 +3,6 @@ package com.jediterm.terminal.model.hyperlinks;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//import com.google.common.collect.Lists;
-//import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

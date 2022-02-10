@@ -85,41 +85,11 @@ public class FileBrowser extends Page {
             popup.show(c, 0, c.getHeight());
         });
 
-//		this.leftTabs = new ClosableTabbedPanel(tabType -> {
-//			if (tabType == NewTabType.LocalTab) {
-//				openLocalFileBrowserView(null, PanelOrientation.Left);
-//			} else {
-//				openSshFileBrowserView(null, PanelOrientation.Left);
-//			}
-//		});
-//
-//		this.rightTabs = new ClosableTabbedPanel(tabType -> {
-//			if (tabType == NewTabType.LocalTab) {
-//				openLocalFileBrowserView(null, PanelOrientation.Right);
-//			} else {
-//				openSshFileBrowserView(null, PanelOrientation.Right);
-//			}
-//		});
-
         horizontalSplitter = new SkinnedSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         horizontalSplitter.setResizeWeight(0.5);
-
-//		JPanel leftPanel = new JPanel(new BorderLayout());
-//		JPanel rightPanel = new JPanel(new BorderLayout());
-//
-//		leftPanel.setBorder(new CompoundBorder(new EmptyBorder(10, 10, 10, 0),
-//				new MatteBorder(1, 1, 1, 1, App.SKIN.getDefaultBorderColor())));
-//		rightPanel.setBorder(new CompoundBorder(new EmptyBorder(10, 10, 10, 0),
-//				new MatteBorder(1, 1, 1, 1, App.SKIN.getDefaultBorderColor())));
-//
-//		leftPanel.add(this.leftTabs);
-//		rightPanel.add(this.rightTabs);
-
         horizontalSplitter.setLeftComponent(this.leftTabs);
         horizontalSplitter.setRightComponent(this.rightTabs);
         horizontalSplitter.setDividerSize(5);
-
-        // this.add(horizontalSplitter);
 
         if (App.getGlobalSettings().isDualPaneMode()) {
             switchToDualPaneMode();
@@ -127,171 +97,8 @@ public class FileBrowser extends Page {
             switchToSinglePanelMode();
         }
 
-//		statusBox = Box.createHorizontalBox();
-//		statusBox.setOpaque(true);
-//
-//		JCheckBox chk1 = new JCheckBox();
-//		chk1.setText("Dual pane view");
-//		chk1.setRolloverEnabled(false);
-//		chk1.setSelected(App.getGlobalSettings().isDualPaneMode());
-//		chk1.setSelectedIcon(new FontAwesomeIcon(FontAwesomeContants.FA_TOGGLE_ON, 16, 16));
-//		chk1.setIcon(new FontAwesomeIcon(FontAwesomeContants.FA_TOGGLE_OFF, 16, 16));
-//		chk1.setIconTextGap(10);
-//
-//		chk1.addActionListener(e -> {
-//			if (chk1.isSelected()) {
-//				System.out.println("going dual panel mode");
-//				switchToDualPaneMode();
-//				App.getGlobalSettings().setDualPaneMode(true);
-//			} else {
-//				System.out.println("going single panel mode");
-//				switchToSinglePanelMode();
-//				App.getGlobalSettings().setDualPaneMode(false);
-//			}
-//			App.saveSettings();
-//		});
-
-//		JCheckBox chk2 = new JCheckBox();
-//		chk2.setText("List view");
-//		chk2.setRolloverEnabled(false);
-//		chk2.setSelected(App.getGlobalSettings().isListViewEnabled());
-//		chk2.setSelectedIcon(new FontAwesomeIcon(FontAwesomeContants.FA_TOGGLE_ON, 16, 16));
-//		chk2.setIcon(new FontAwesomeIcon(FontAwesomeContants.FA_TOGGLE_OFF, 16, 16));
-//		chk2.setIconTextGap(10);
-//
-//		chk2.addActionListener(e -> {
-//			if (chk2.isSelected()) {
-//				System.out.println("going to list view mode");
-//				App.getGlobalSettings().setListViewEnabled(true);
-//				this.refreshViewMode();
-//			} else {
-//				System.out.println("going details view mode");
-//				App.getGlobalSettings().setListViewEnabled(false);
-//				this.refreshViewMode();
-//			}
-//			App.saveSettings();
-//		});
-
-//		statusBox.setBackground(App.SKIN.getTableBackgroundColor());
-//		statusBox.setBorder(new CompoundBorder(new MatteBorder(1, 0, 0, 0, App.SKIN.getDefaultBorderColor()),
-//				new EmptyBorder(5, 10, 5, 5)));
-//		// box.setBorder(new EmptyBorder(5, 10, 5, 5));
-//		// box.add(Box.createRigidArea(new Dimension(10, 24)));
-//
-//		statusBox.add(chk1);
-//		statusBox.add(Box.createHorizontalGlue());
-//		this.lblStat1 = new JLabel();
-//		// box.add(chk2);
-//		statusBox.add(lblStat1);
-//		statusBox.add(Box.createRigidArea(new Dimension(10, 5)));
-//		this.add(statusBox, BorderLayout.SOUTH);
-
-//		leftDropdown.addActionListener(e -> {
-//			System.out.println("Left drop down changed");
-//			int index = leftDropdown.getSelectedIndex();
-//			if (index != -1) {
-//				Object obj = leftList.getElementAt(index);
-//				if (obj instanceof String) {
-//					if (ignoreEvent) {
-//						ignoreEvent = false;
-//						return;
-//					}
-//					openSshFileBrowserView(null,
-//							AbstractFileBrowserView.PanelOrientation.Left);
-//				} else {
-//					leftCard.show(leftPanel, obj.hashCode() + "");
-//				}
-//			}
-//		});
-//
-////        leftDropdown.addItemListener(e -> {
-////            System.out.println("Left drop down changed");
-////            int index = leftDropdown.getSelectedIndex();
-////            if (index != -1) {
-////                Object obj = leftList.getElementAt(index);
-////                if (obj instanceof String) {
-////                } else {
-////                    leftCard.show(leftPanel, obj.hashCode() + "");
-////                }
-////            }
-////        });
-//
-//		rightDropdown.addActionListener(e -> {
-//			int index = rightDropdown.getSelectedIndex();
-//			if (index != -1) {
-//				Object obj = rightList.getElementAt(index);
-//				if (obj instanceof String) {
-//					if (ignoreEvent) {
-//						ignoreEvent = false;
-//						return;
-//					}
-//					JComboBox<String> cmbList = new JComboBox<>(
-//							new String[] { "Local files", "SFTP server" });
-//					if (JOptionPane.showOptionDialog(this, new Object[] {
-//							"Please select a server to open in this tab",
-//							cmbList }, "New tab", JOptionPane.OK_CANCEL_OPTION,
-//							JOptionPane.PLAIN_MESSAGE, null, null,
-//							null) == JOptionPane.OK_OPTION) {
-//						int selectedOption = cmbList.getSelectedIndex();
-//						if (selectedOption == 0) {
-//							openLocalFileBrowserView(null,
-//									AbstractFileBrowserView.PanelOrientation.Right);
-//						} else if (selectedOption == 1) {
-//							openSftpFileBrowserView(null,
-//									AbstractFileBrowserView.PanelOrientation.Right);
-//						}
-//					}
-//				} else {
-//					rightCard.show(rightPanel, obj.hashCode() + "");
-//				}
-//			}
-//		});
-//
-////        rightDropdown.addItemListener(e -> {
-////            int index = rightDropdown.getSelectedIndex();
-////            if (index != -1) {
-////                Object obj = rightList.getElementAt(index);
-////                if (obj instanceof String) {
-////                } else {
-////                    rightCard.show(rightPanel, obj.hashCode() + "");
-////                }
-////            }
-////        });
-//
-//		JPanel leftPanelHolder = new JPanel(new BorderLayout());
-//		JPanel rightPanelHolder = new JPanel(new BorderLayout());
-//
-//		leftPanelHolder.setBorder(new EmptyBorder(10, 10, 10, 0));
-//		rightPanelHolder.setBorder(new EmptyBorder(10, 0, 10, 10));
-//
-//		leftPanelHolder.add(leftDropdown, BorderLayout.NORTH);
-//		rightPanelHolder.add(rightDropdown, BorderLayout.NORTH);
-//		leftPanelHolder.add(leftPanel);
-//		rightPanelHolder.add(rightPanel);
-//
-//		SshFileBrowserView fv1 = new SshFileBrowserView(this, rootPane, holder,
-//				null, AbstractFileBrowserView.PanelOrientation.Left);
-//		leftList.addElement(fv1);
-//		leftDropdown.setSelectedIndex(1);
-//		leftPanel.add(fv1, fv1.hashCode() + "");
-//		leftCard.show(leftPanel, fv1.hashCode() + "");
-//
-//		LocalFileBrowserView fv2 = new LocalFileBrowserView(this, rootPane,
-//				holder, null, AbstractFileBrowserView.PanelOrientation.Right);
-//		rightList.addElement(fv2);
-//		rightDropdown.setSelectedIndex(1);
-//		rightPanel.add(fv2, fv2.hashCode() + "");
-//		rightCard.show(rightPanel, fv2.hashCode() + "");
     }
 
-//	public void close() {
-//		this.closeRequested.set(true);
-//	}
-//
-//	public boolean isCloseRequested() {
-//		return closeRequested.get();
-//	}
-//
 
     private void switchToDualPaneMode() {
         horizontalSplitter.setRightComponent(this.rightTabs);
@@ -358,100 +165,6 @@ public class FileBrowser extends Page {
     public Map<String, List<FileInfo>> getSSHDirectoryCache() {
         return this.sshDirCache;
     }
-//
-//	public void openSftpFileBrowserView(String path,
-//			AbstractFileBrowserView.PanelOrientation orientation) {
-//		SessionInfo info = new NewSessionDlg(
-//				SwingUtilities.windowForComponent(this)).newSession();
-//		if (info != null) {
-//			int c = rightList.getSize();
-//			SftpFileBrowserView fv1 = new SftpFileBrowserView(this, rootPane,
-//					holder, path, orientation, info);
-//			rightList.addElement(fv1);
-//			rightPanel.add(fv1, fv1.hashCode() + "");
-//			rightDropdown.setSelectedIndex(c);
-//			rightCard.show(rightPanel, fv1.hashCode() + "");
-//		}
-//	}
-//
-//	public FileSystem getFs(int sessionCode) {
-//		try {
-//			for (int i = 0; i < rightList.getSize(); i++) {
-//				Object obj = rightList.getElementAt(i);
-//				if (obj.hashCode() == sessionCode) {
-//					return ((AbstractFileBrowserView) obj).getFileSystem();
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-//
-////    public void newFileTransfer(FileSystem sourceFs,
-////                                FileSystem targetFs,
-////                                FileInfo[] files,
-////                                String sourceFolder,
-////                                String targetFolder,
-////                                int dragsource) {
-////        holder.newFileTransfer(sourceFs, targetFs, files, sourceFolder, targetFolder, dragsource);
-////    }
-//
-//	public void requestReload(int sourceHashcode) {
-//		for (int i = 0; i < this.leftList.getSize(); i++) {
-//			Object obj = leftList.getElementAt(i);
-//			if (obj.hashCode() == sourceHashcode) {
-//				((AbstractFileBrowserView) obj).reload();
-//				return;
-//			}
-//		}
-//		for (int i = 0; i < this.rightList.getSize(); i++) {
-//			Object obj = rightList.getElementAt(i);
-//			if (obj.hashCode() == sourceHashcode) {
-//				((AbstractFileBrowserView) obj).reload();
-//			}
-//		}
-//	}
-//
-//	public void removeFileView(AbstractFileBrowserView fileBrowserView) {
-//		if (fileBrowserView instanceof SshFileBrowserView) {
-//			removeRemoteFileView(fileBrowserView);
-//		} else {
-//			removeLocalOrForeignFileView(fileBrowserView);
-//		}
-//	}
-//
-//	public void removeRemoteFileView(AbstractFileBrowserView fileBrowserView) {
-//		for (int i = 0; i < this.leftList.getSize(); i++) {
-//			Object obj = leftList.getElementAt(i);
-//			if (obj == fileBrowserView) {
-//				ignoreEvent = true;
-//				System.out.println("Remove remote");
-//				leftPanel.remove((Component) obj);
-//				leftList.removeElement(obj);
-//				revalidate();
-//				repaint();
-//				return;
-//			}
-//		}
-//	}
-//
-//	public void removeLocalOrForeignFileView(
-//			AbstractFileBrowserView fileBrowserView) {
-//		for (int i = 0; i < this.rightList.getSize(); i++) {
-//			Object obj = rightList.getElementAt(i);
-//			if (obj == fileBrowserView) {
-//				ignoreEvent = true;
-//				System.out.println("Remove local or foreign");
-//				rightPanel.remove((Component) obj);
-//				rightList.removeElement(obj);
-//				fileBrowserView.close();
-//				revalidate();
-//				repaint();
-//				return;
-//			}
-//		}
-//	}
 
     public void newFileTransfer(FileSystem sourceFs, FileSystem targetFs, FileInfo[] files, String targetFolder,
                                 int dragsource, Constants.ConflictAction defaultConflictAction, RemoteSessionInstance instance) {
@@ -537,7 +250,6 @@ public class FileBrowser extends Page {
     @Override
     public String getIcon() {
         return FontAwesomeContants.FA_FOLDER;
-        // return FontAwesomeContants.FA_FOLDER_OPEN_O;
     }
 
     @Override
@@ -563,59 +275,11 @@ public class FileBrowser extends Page {
     public boolean selectTransferModeAndConflictAction(ResponseHolder holder) throws Exception {
         holder.transferMode = App.getGlobalSettings().getFileTransferMode();
         holder.conflictAction = App.getGlobalSettings().getConflictAction();
-
-		/*if (holder.transferMode == Constants.TransferMode.NORMAL) {
-			DefaultComboBoxModel<Constants.ConflictAction> conflictOptions = new DefaultComboBoxModel<>(Constants.ConflictAction.values());
-			DefaultComboBoxModel<Constants.TransferMode> transferModes = new DefaultComboBoxModel<>(Constants.TransferMode.values());
-
-			JComboBox<Constants.ConflictAction> cmbConflictOptions = new JComboBox<>(conflictOptions);
-
-			JComboBox<Constants.TransferMode> cmbOptions = new JComboBox<>(transferModes);
-
-			cmbOptions.addActionListener(e -> {
-				if (cmbOptions.getSelectedIndex() == 0) {
-					conflictOptions.removeAllElements();
-					for ( Constants.ConflictAction conflictAction : Constants.ConflictAction.values()) {
-						conflictOptions.addElement(conflictAction);
-					}
-					cmbConflictOptions.setSelectedIndex(3);
-				} else {
-					conflictOptions.removeAllElements();
-					for ( Constants.ConflictAction conflictAction : Constants.ConflictAction.values()) {
-						if (conflictAction.getKey() <3 ) {
-							conflictOptions.addElement(conflictAction);
-						}
-					}
-					cmbConflictOptions.setSelectedIndex(0);
-				}
-			});
-
-			JCheckBox chkRememberOptions = new JCheckBox("Remember this options and don't ask again");
-
-			if (JOptionPane.showOptionDialog(this,
-					new Object[] { "Please select a transfer mode", cmbOptions, "\n",
-							"If a file/folder with same name exists", cmbConflictOptions, "\n", chkRememberOptions },
-					"Transfer options", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null,
-					null) != JOptionPane.OK_OPTION) {
-				return false;
-			}
-			holder.transferMode = (Constants.TransferMode) cmbOptions.getSelectedItem();
-			holder.conflictAction = (Constants.ConflictAction) cmbConflictOptions.getSelectedItem();
-			if (chkRememberOptions.isSelected()) {
-				App.getGlobalSettings().setFileTransferMode(holder.transferMode);
-				App.getGlobalSettings().setConflictAction(holder.conflictAction);
-				App.saveSettings();
-			}
-		}*/
         return true;
     }
 
     public boolean handleLocalDrop(DndTransferData transferData, SessionInfo info, FileSystem currentFileSystem,
                                    String currentPath) {
-//		System.out.println("### " + transferData.getSource() + " " + this.hashCode());
-//		if (transferData.getSource() == this.hashCode()) {
-//			return false;
-//		}
         if (App.getGlobalSettings().isConfirmBeforeMoveOrCopy()
                 && JOptionPane.showConfirmDialog(null, "Move/copy files?") != JOptionPane.YES_OPTION) {
             return false;
@@ -672,16 +336,7 @@ public class FileBrowser extends Page {
         this.viewList.remove(view);
     }
 
-    public void updateLocalStatus(String text) {
-//		this.lblStat1.setText(text);
-//		this.statusBox.revalidate();
-//		this.statusBox.repaint(0);
-    }
-
     public void updateRemoteStatus(String text) {
-//		this.lblStat1.setText(text);
-//		this.statusBox.revalidate();
-//		this.statusBox.repaint(0);
     }
 
     public static class ResponseHolder {

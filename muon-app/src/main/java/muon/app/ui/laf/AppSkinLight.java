@@ -38,6 +38,8 @@ public class AppSkinLight extends AppSkin {
         Color buttonGradient5 = new Color(230, 230, 230);
         Color buttonGradient6 = new Color(220, 220, 220);
 
+        Color buttonGradient7 = new Color(248, 248, 249);
+
         this.defaults.put("nimbusBase", controlColor);
         this.defaults.put("nimbusSelection", selectionColor);
         this.defaults.put("textBackground", selectionColor);
@@ -56,7 +58,7 @@ public class AppSkinLight extends AppSkin {
         this.defaults.put("Table.alternateRowColor", controlColor);
 
         this.defaults.put("tabSelectionBackground", scrollbarColor);
-        this.defaults.put("Table.background", buttonGradient1);
+        this.defaults.put("Table.background", buttonGradient7);
         this.defaults.put("Table[Enabled+Selected].textForeground", selectedTextColor);
 
         this.defaults.put("text", textColor);

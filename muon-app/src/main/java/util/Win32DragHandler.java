@@ -36,24 +36,4 @@ public final class Win32DragHandler {
         System.out.println("File watcher disposed");
         this.fileMonitor.dispose();
     }
-
-//	public final static synchronized void initFSWatcher() {
-//
-//		FileMonitor fileMonitor = new W32FileMonitor();
-//		fileMonitor.addFileListener(e -> {
-//			System.out.println(e.getFile());
-//		});
-//		FileSystemView fsv = FileSystemView.getFileSystemView();
-//		for (File drive : File.listRoots()) {
-//			if (fsv.isDrive(drive)) {
-//				try {
-//					System.out.println("Adding to watch: " + drive.getAbsolutePath());
-//					fileMonitor.addWatch(drive, W32FileMonitor.FILE_RENAMED, true);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//	}
 }

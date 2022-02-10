@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImportDlg extends JDialog {
-    // private JComboBox<String> items;
     private final JList<String> sessionList;
     private final DefaultListModel<String> model;
 
@@ -78,7 +77,6 @@ public class ImportDlg extends JDialog {
 
         add(b2, BorderLayout.SOUTH);
 
-        //importFromPutty();
     }
 
     private void importFromPutty() {
@@ -101,9 +99,6 @@ public class ImportDlg extends JDialog {
         }
 
         PuttyImporter.importSessions(node, list);
-//		SessionFolder folder = SessionStore.load().getFolder();
-//		folder.getItems().addAll(sessions);
-//		SessionStore.store(folder);
     }
 
     private void importSessionsFromWinScp(DefaultMutableTreeNode node) {
@@ -117,8 +112,5 @@ public class ImportDlg extends JDialog {
         }
 
         WinScpImporter.importSessions(node, list);
-//		SessionFolder folder = SessionStore.load().getFolder();
-//		folder.getItems().addAll(sessions);
-//		SessionStore.store(folder);
     }
 }

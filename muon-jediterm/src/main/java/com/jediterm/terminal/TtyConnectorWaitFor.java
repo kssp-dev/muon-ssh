@@ -1,6 +1,5 @@
 package com.jediterm.terminal;
 
-//import com.google.common.base.Predicate;
 import org.apache.log4j.Logger;
 
 import java.util.concurrent.ArrayBlockingQueue;

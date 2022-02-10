@@ -89,27 +89,10 @@ public final class PasswordStore {
 
     public final synchronized char[] getSavedPassword(String alias) throws Exception {
         return this.passwordMap.get(alias);
-//		if (!unlocked.get()) {
-//			throw new IllegalAccessException("Password store is locked");
-//		}
-//
-//		SecretKeyFactory factory = SecretKeyFactory.getInstance("PBE");
-//		KeyStore.SecretKeyEntry ske = (KeyStore.SecretKeyEntry) KEY_STORE.getEntry(alias, protParam);
-//
-//		PBEKeySpec keySpec = (PBEKeySpec) factory.getKeySpec(ske.getSecretKey(), PBEKeySpec.class);
-//
-//		return keySpec.getPassword();
     }
 
     public final synchronized void savePassword(String alias, char[] password) throws Exception {
         this.passwordMap.put(alias, password);
-//		if (!unlocked.get()) {
-//			throw new IllegalAccessException("Password store is locked");
-//		}
-//
-//		SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBE");
-//		SecretKey generatedSecret = secretKeyFactory.generateSecret(new PBEKeySpec(password));
-//		KEY_STORE.setEntry(alias, new SecretKeyEntry(generatedSecret), protParam);
     }
 
     public final synchronized void saveKeyStore() throws Exception {
@@ -161,7 +144,6 @@ public final class PasswordStore {
                 char[] password = this.getSavedPassword(info.getId());
                 info.setPassword(new String(password));
             } catch (Exception e) {
-                // e.printStackTrace();
             }
         }
         for (SessionFolder f : folder.getFolders()) {

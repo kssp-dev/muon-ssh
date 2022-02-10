@@ -40,13 +40,14 @@ public class App {
     public static final VersionEntry VERSION = new VersionEntry("v" + APPLICATION_VERSION);
     public static final String UPDATE_URL2 = UPDATE_URL + "/check-update.html?v="
             + VERSION.getNumericValue();
-    public static final String CONFIG_DIR = System.getProperty("user.home") + File.separatorChar + "muon-ssh";
+    public static String CONFIG_DIR = System.getProperty("user.home") + File.separatorChar + "muon-ssh";
     public static final String SESSION_DB_FILE = "session-store.json";
     public static final String CONFIG_DB_FILE = "settings.json";
     public static final String SNIPPETS_FILE = "snippets.json";
     public static final String PINNED_LOGS = "pinned-logs.json";
     public static final String TRANSFER_HOSTS = "transfer-hosts.json";
     public static final String BOOKMARKS_FILE = "bookmarks.json";
+    private static final String PATH_MESSAGES_FILE= "i18n/messages";
     public static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
     public static final SnippetManager SNIPPET_MANAGER = new SnippetManager();
     public static final boolean IS_MAC = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH)
@@ -56,7 +57,7 @@ public class App {
     public static final String APP_INSTANCE_ID = UUID.randomUUID().toString();
     public static GraphicalHostKeyVerifier HOST_KEY_VERIFIER;
     public static ResourceBundle bundle;
-    public static AppSkin SKIN;// = new AppSkinDark();
+    public static AppSkin SKIN;
     private static Settings settings;
     private static InputBlocker inputBlocker;
     private static ExternalEditorHandler externalEditorHandler;
@@ -69,10 +70,7 @@ public class App {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
-        Language language = Language.ENGLISH;
-        Locale locale = new Locale(language.getLangAbbr());
-
-        bundle = ResourceBundle.getBundle("muon.app.common.i18n.Messages", locale);
+        setBundleLanguage();
 
         Security.addProvider(new BouncyCastleProvider());
 
@@ -84,9 +82,22 @@ public class App {
 
         boolean firstRun = false;
 
+        //Checks if the parameter muonPath is set in the startup
+        String muonPath= System.getProperty("muonPath");
+        boolean isMuonPath=false;
+        if (muonPath != null && !muonPath.isEmpty()){
+            System.out.println("Muon path: "+muonPath);
+            CONFIG_DIR = muonPath;
+            isMuonPath = true;
+        }
+
         File appDir = new File(CONFIG_DIR);
         if (!appDir.exists()) {
-            appDir.mkdirs();
+            //Validate if the config directory can be created
+            if(!appDir.mkdirs()){
+                System.err.println("The config directory for moun cannot be created: "+ CONFIG_DIR);
+                System.exit(1);
+            }
             firstRun = true;
         }
 
@@ -97,7 +108,7 @@ public class App {
             System.setProperty("sun.java2d.uiScale", String.format("%.2f", settings.getUiScaling()));
         }
 
-        if (firstRun) {
+        if (firstRun && !isMuonPath) {
             SessionExportImport.importOnFirstRun();
         }
 
@@ -108,15 +119,10 @@ public class App {
             System.out.println("Searching for known editors...done");
         }
 
+        setBundleLanguage();
+        Constants.TransferMode.update();
+        Constants.ConflictAction.update();
 
-        if (settings.getLanguage() != null) {
-            language = settings.getLanguage();
-            locale = new Locale(language.getLangAbbr());
-            bundle = ResourceBundle.getBundle("muon.app.common.i18n.Messages", locale);
-            Constants.TransferMode.update();
-            Constants.ConflictAction.update();
-
-        }
 
 
         SKIN = settings.isUseGlobalDarkTheme() ? new AppSkinDark() : new AppSkinLight();
@@ -207,7 +213,6 @@ public class App {
     public synchronized static Settings getGlobalSettings() {
         return settings;
     }
-    // public static final AppSkin SKIN = new AppSkinLight();
 
     /**
      * @return the inputBlocker
@@ -280,37 +285,15 @@ public class App {
         return mw;
     }
 
-//	private static final SecretKey generateKeys() {
-//		/*
-//		 * 
-//		 * SecretKeyFactory factory =
-//		 * SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256"); KeySpec spec = new
-//		 * PBEKeySpec(password, salt, 65536, 256); SecretKey tmp =
-//		 * factory.generateSecret(spec); SecretKey secret = new
-//		 * SecretKeySpec(tmp.getEncoded(), "AES");
-//		 * 
-//		 */
-//
-//		KeyGenerator kgen;
-//		try {
-//			kgen = KeyGenerator.getInstance("AES");
-//			SecretKey skey = kgen.generateKey();
-//			try (OutputStream out = new FileOutputStream(new File(App.CONFIG_DIR, "key.dat"))) {
-//				byte[] keyb = skey.getEncoded();
-//				out.write(keyb);
-//				return skey;
-//			} catch (FileNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//		} catch (NoSuchAlgorithmException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+    //Set the bundle language
+    private static void setBundleLanguage(){
+        Language language = Language.ENGLISH;
+        if (settings != null && settings.getLanguage() != null){
+            language = settings.getLanguage();
+        }
+
+        Locale locale =  new Locale.Builder().setLanguage(language.getLangAbbr()).build();
+        bundle = ResourceBundle.getBundle(PATH_MESSAGES_FILE, locale);
+
+    }
 }

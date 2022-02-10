@@ -1,6 +1,5 @@
 package com.jediterm.terminal;
 
-////import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 
@@ -11,8 +10,8 @@ public class TerminalColor {
   public static final TerminalColor BLACK = index(0);
   public static final TerminalColor WHITE = index(15);
 
-  private int myColorIndex;
-  private Color myColor;
+  private final int myColorIndex;
+  private final Color myColor;
 
   public TerminalColor(int index) {
     myColorIndex = index;
@@ -57,14 +56,13 @@ public class TerminalColor {
 
     if (isIndexed()) {
       if (!that.isIndexed()) return false;
-      if (myColorIndex != that.myColorIndex) return false;
+      return myColorIndex == that.myColorIndex;
     } else {
       if (that.isIndexed()) {
         return false;
       }
       return myColor.equals(that.myColor);
     }
-    return true;
   }
 
   @Override

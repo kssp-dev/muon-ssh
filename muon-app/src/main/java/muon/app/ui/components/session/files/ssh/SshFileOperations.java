@@ -303,9 +303,7 @@ public class SshFileOperations {
         } catch (Exception e) {
             e.printStackTrace();
             if (!instance.isSessionClosed()) {
-                JOptionPane.showMessageDialog(null, "Error deleting file");// JOptionPane.showMessageDialog(null,
-                // "Operation
-                // failed");
+                JOptionPane.showMessageDialog(null, "Error deleting file");
             }
 
             return false;
@@ -463,10 +461,8 @@ public class SshFileOperations {
 
     public boolean createLink(FileInfo[] files, FileSystem fs,
                               RemoteSessionInstance instance) {
-        JTextField txtLinkName = new SkinnedTextField(30);// new
-        // JTextField(30);
-        JTextField txtFileName = new SkinnedTextField(30);// new
-        // JTextField(30);
+        JTextField txtLinkName = new SkinnedTextField(30);
+        JTextField txtFileName = new SkinnedTextField(30);
         JCheckBox chkHardLink = new JCheckBox("Hardlink");
 
         if (files.length > 0) {

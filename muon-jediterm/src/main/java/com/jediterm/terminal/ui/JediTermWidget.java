@@ -1,7 +1,5 @@
 package com.jediterm.terminal.ui;
 
-//import com.google.common.base.Predicate;
-//import com.google.common.collect.Lists;
 import com.jediterm.terminal.SubstringFinder.FindResult;
 import com.jediterm.terminal.SubstringFinder.FindResult.FindItem;
 import com.jediterm.terminal.*;
@@ -13,7 +11,6 @@ import com.jediterm.terminal.model.hyperlinks.HyperlinkFilter;
 import com.jediterm.terminal.model.hyperlinks.TextProcessing;
 import com.jediterm.terminal.ui.settings.SettingsProvider;
 import org.apache.log4j.Logger;
-//import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -48,7 +45,7 @@ public class JediTermWidget extends JPanel
 	private Thread myEmuThread;
 	protected final SettingsProvider mySettingsProvider;
 	private TerminalActionProvider myNextActionProvider;
-	private JLayeredPane myInnerPanel;
+	private final JLayeredPane myInnerPanel;
 	private final TextProcessing myTextProcessing;
 	private final List<TerminalWidgetListener> myListeners = new CopyOnWriteArrayList<>();
 

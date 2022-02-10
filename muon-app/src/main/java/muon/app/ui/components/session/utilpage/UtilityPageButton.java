@@ -41,9 +41,6 @@ public class UtilityPageButton extends JToggleButton {
         FontMetrics fm1 = g2.getFontMetrics(iconFont);
         FontMetrics fm2 = g2.getFontMetrics(getFont());
         int y = getHeight() / 2 - (fm1.getHeight() + fm2.getHeight()) / 2;
-//		int x = getWidth() / 2
-//				- Math.max(fm1.stringWidth(iconText), fm2.stringWidth(text))
-//						/ 2;
         g2.setFont(iconFont);
         g2.drawString(iconText, getWidth() / 2 - fm1.stringWidth(iconText) / 2,
                 y + fm1.getAscent());
@@ -74,14 +71,4 @@ public class UtilityPageButton extends JToggleButton {
         return new Dimension(Short.MAX_VALUE, d.height);
     }
 
-//	@Override
-//	public void setSelected(boolean b) {
-//		this.selected = b;
-//		repaint(0);
-//	}
-//
-//	@Override
-//	public boolean isSelected() {
-//		return this.selected;
-//	}
 }

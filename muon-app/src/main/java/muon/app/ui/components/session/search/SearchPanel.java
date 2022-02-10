@@ -91,15 +91,9 @@ public class SearchPanel extends Page {
     }
 
     private void find() {
-//		if (this.holder.isCloseRequested().get()) {
-//			return;
-//		}
         StringBuilder criteriaBuffer = new StringBuilder();
 
         String folder = txtFolder.getText();
-//			if (folder.contains(" ")) {
-//				folder = "\"" + folder + "\"";
-//			}
 
         criteriaBuffer.append(" ");
 
@@ -200,14 +194,6 @@ public class SearchPanel extends Page {
 
         System.out.println("Starting search.. ");
         try {
-//            SshClient client = this.holder.getSshFileSystem().getWrapper();
-//            if (!client.isConnected()) {
-//                if (this.holder.isCloseRequested().get()) {
-//                    return;
-//                }
-//                client.connect();
-//            }
-
             if (searchScript == null) {
                 searchScript = ScriptLoader
                         .loadShellScript("/scripts/search.sh");
@@ -318,19 +304,13 @@ public class SearchPanel extends Page {
 
         radFileName.setSelected(true);
 
-        // setBackground(UIManager.getColor("DefaultBorder.color"));
-
         setLayout(new BorderLayout(1, 1));
         Box b1 = Box.createVerticalBox();
         b1.setOpaque(true);
-        // b1.setBackground(UIManager.getColor("Panel.background"));
-
-//        b1.setBorder(new EmptyBorder(10, 10,
-//                10, 10));
 
         JLabel lblName = new JLabel(bundle.getString("search_for"));
         lblName.setAlignmentX(LEFT_ALIGNMENT);
-        txtName = new SkinnedTextField(20);// new JTextField(20);
+        txtName = new SkinnedTextField(20);
         txtName.addActionListener(e -> {
             find();
         });
@@ -340,23 +320,17 @@ public class SearchPanel extends Page {
 
         JLabel lblFolder = new JLabel(bundle.getString("search_in"));
         lblFolder.setAlignmentX(LEFT_ALIGNMENT);
-        txtFolder = new SkinnedTextField(20);// new JTextField(20);
+        txtFolder = new SkinnedTextField(20);
         txtFolder.setPreferredSize(pref);
         txtFolder.setMaximumSize(pref);
         txtFolder.setAlignmentX(LEFT_ALIGNMENT);
 
         txtFolder.setText("$HOME");
 
-//        if (args == null || args.length < 1) {
-//            txtFolder.setText("$HOME");
-//        } else {
-//            txtFolder.setText(args[0]);
-//        }
-
         JLabel lblSize = new JLabel(bundle.getString("size"));
         lblSize.setAlignmentX(LEFT_ALIGNMENT);
 
-        txtSize = new SkinnedTextField();// new JTextField();
+        txtSize = new SkinnedTextField();
         txtSize.setAlignmentX(LEFT_ALIGNMENT);
         Dimension txtSizeD = new Dimension(60,
                 txtSize.getPreferredSize().height);
@@ -462,7 +436,6 @@ public class SearchPanel extends Page {
 
         btnSearch = new JButton(bundle.getString("search"));
         btnSearch.setAlignmentX(LEFT_ALIGNMENT);
-        // btnSearch.setPreferredSize(pref);
 
         btnSearch.addActionListener(e -> {
             find();
@@ -502,7 +475,6 @@ public class SearchPanel extends Page {
         lblCount = new JLabel("");
         lblCount.setHorizontalAlignment(JLabel.RIGHT);
 
-        // b1.add(Box.createVerticalStrut(10));
 
         b1.add(lblName);
         b1.add(Box.createVerticalStrut(3));
@@ -535,14 +507,9 @@ public class SearchPanel extends Page {
         boxSize.add(cmbSizeUnit);
 
         b1.add(boxSize);
-//        b1.add(Box.createVerticalStrut(3));
-//        b1.add(cmbSize);
-//        b1.add(Box.createVerticalStrut(3));
-//        b1.add(txtSize);
 
         b1.add(Box.createVerticalStrut(10));
 
-        // b1.add(b2);
         b1.add(lblMtime);
         b1.add(Box.createVerticalStrut(3));
         b1.add(radAny);
@@ -578,7 +545,6 @@ public class SearchPanel extends Page {
 
         b1.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        // b1.add(btnSearch);
 
         Box statBox = Box.createHorizontalBox();
         statBox.setOpaque(true);
@@ -589,7 +555,6 @@ public class SearchPanel extends Page {
         statBox.add(Box.createRigidArea(new Dimension(10, 25)));
         statBox.setBorder(
                 new MatteBorder(1, 0, 0, 0, App.SKIN.getDefaultBorderColor()));
-        // statBox.setBackground(UIManager.getColor("Panel.background"));
 
         btnShowInBrowser = new JButton(bundle.getString("show_location"));
         btnCopyPath = new JButton(bundle.getString("copy_path"));
@@ -620,7 +585,6 @@ public class SearchPanel extends Page {
 
         Box bActions = Box.createHorizontalBox();
         bActions.setOpaque(true);
-        // bActions.setBackground(UIManager.getColor("Panel.background"));
         bActions.setBorder(new EmptyBorder(5, 10, 5, 10));
         bActions.add(Box.createHorizontalGlue());
         bActions.add(btnShowInBrowser);
@@ -632,12 +596,9 @@ public class SearchPanel extends Page {
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jspB1.setBorder(null);
 
-        // contentPane.add(jspB1, BorderLayout.WEST);
 
-        // JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
         JPanel p = new JPanel(new BorderLayout(1, 1));
-        // p.setBackground(UIManager.getColor("DefaultBorder.color"));
 
         p.add(jsp, BorderLayout.CENTER);
         p.add(bActions, BorderLayout.SOUTH);
@@ -656,12 +617,6 @@ public class SearchPanel extends Page {
         JPanel splitPane = new JPanel(new BorderLayout());
         splitPane.add(p);
         splitPane.add(pp, BorderLayout.WEST);
-
-//        splitPane.setRightComponent(p);
-//        splitPane.setLeftComponent(pp);
-
-//		splitPane.putClientProperty("Nimbus.Overrides",
-//				GraphicsUtils.getSplitPaneSkin());
 
         add(splitPane);
         add(statBox, BorderLayout.SOUTH);

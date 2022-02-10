@@ -35,18 +35,6 @@ public class PlatformUtils {
         } else {
             throw new IOException("Unsupported OS: '" + System.getProperty("os.name", "") + "'");
         }
-//		if (App.IS_MAC) {
-//
-//		} else if (System.getProperty("os.name").contains("windows"))
-//
-//			if (Desktop.isDesktopSupported()) {
-//				try {
-//					Desktop.getDesktop().open(file);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
     }
 
     public static void openWithApp(File f, String app) throws Exception {
@@ -96,7 +84,7 @@ public class PlatformUtils {
         try {
             ProcessBuilder pb = new ProcessBuilder();
             pb.command("xdg-open", f.getAbsolutePath());
-            pb.start();// .waitFor();
+            pb.start();
         } catch (Exception e) {
             System.out.println(e);
         }

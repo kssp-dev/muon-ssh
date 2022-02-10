@@ -148,13 +148,8 @@ public class SudoUtils {
             int ret = instance.exec(fullCommand, cmd -> {
                 try {
                     InputStream in = cmd.getInputStream();
-                    // InputStream err = cmd.getErrorStream();
                     OutputStream out = cmd.getOutputStream();
                     StringBuilder sb = new StringBuilder();
-//					System.out.println(
-//							"Window buffer: " + cmd.getRemoteWinSize());
-
-                    // byte[] b = new byte[(int) cmd.getRemoteMaxPacketSize()];
 
                     Reader r = new InputStreamReader(in,
                             StandardCharsets.UTF_8);
@@ -175,16 +170,9 @@ public class SudoUtils {
                             out.flush();
                         }
 
-                        // Thread.sleep(50);
                     }
                     cmd.join();
                     cmd.close();
-//					if (in.available() > 0) {
-//						int x = r.read(b);
-//						if (x > 0) {
-//							output.append(b, 0, x);
-//						}
-//					}
                     return cmd.getExitStatus();
                 } catch (Exception e) {
                     e.printStackTrace();

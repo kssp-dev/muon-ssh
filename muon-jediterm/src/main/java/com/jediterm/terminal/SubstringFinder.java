@@ -1,10 +1,7 @@
 package com.jediterm.terminal;
 
-//import com.google.common.collect.Lists;
-//import com.google.common.collect.Maps;
 import com.jediterm.terminal.model.CharBuffer;
 import com.jediterm.terminal.util.Pair;
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class SubstringFinder {
 	private int myPower = 0;
 
 	private final FindResult myResult = new FindResult();
-	private boolean myIgnoreCase;
+	private final boolean myIgnoreCase;
 
 	public SubstringFinder(String pattern, boolean ignoreCase) {
 		myIgnoreCase = ignoreCase;

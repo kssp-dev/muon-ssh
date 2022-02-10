@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class AddressBar extends JPanel {
-    // private AddressBreadCrumbView addressBar;
     private final AddressBarBreadCrumbs addressBar;
     private final JComboBox<String> txtAddressBar;
     private final JButton btnEdit;
@@ -37,7 +36,6 @@ public class AddressBar extends JPanel {
         JButton btnRoot = new JButton();
         btnRoot.putClientProperty("Nimbus.Overrides", toolbarSkin);
         btnRoot.setFont(App.SKIN.getIconFont());
-        // btnRoot.setForeground(Color.DARK_GRAY);
         btnRoot.setText("\uf0a0");
         btnRoot.addActionListener(e -> {
             createAndShowPopup();
@@ -98,13 +96,7 @@ public class AddressBar extends JPanel {
         btnEdit = new JButton();
         btnEdit.putClientProperty("Nimbus.Overrides", toolbarSkin);
         btnEdit.setFont(App.SKIN.getIconFont());
-        // btnEdit.setForeground(Color.DARK_GRAY);
         btnEdit.setText("\uf023");
-        // btnEdit.setBorder(new EmptyBorder(0,5,0,5));
-//        btnEdit.setMargin(new Insets(0, 0, 0, 0));
-//        btnEdit.setBorderPainted(false);
-        // btnEdit.setContentAreaFilled(false);
-        // btnEdit.setFocusPainted(false);
         btnEdit.addActionListener(e -> {
             if (!isSelected()) {
                 switchToText();
@@ -114,43 +106,6 @@ public class AddressBar extends JPanel {
             revalidate();
             repaint();
         });
-
-//        btnEdit.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (!isSelected()) {
-//                    addrPanel.remove(addressBar);
-//                    addrPanel.add(txtAddressBar);
-//                    btnEdit.setIcon(UIManager.getIcon("AddressBar.toggle"));
-//                    btnEdit.putClientProperty("toggle.selected", Boolean.TRUE);
-//                    txtAddressBar.getEditor().selectAll();
-//                } else {
-//                    addrPanel.remove(txtAddressBar);
-//                    addrPanel.add(addressBar);
-//                    btnEdit.setIcon(UIManager.getIcon("AddressBar.edit"));
-//                    btnEdit.putClientProperty("toggle.selected", Boolean.FALSE);
-//                }
-//                revalidate();
-//                repaint();
-//            }
-//        });
-//        btnEdit.addActionListener(e -> {
-//            if (!isSelected()) {
-//                addrPanel.remove(addressBar);
-//                addrPanel.add(txtAddressBar);
-//                btnEdit.setIcon(UIManager.getIcon("AddressBar.toggle"));
-//                btnEdit.putClientProperty("toggle.selected", Boolean.TRUE);
-//                txtAddressBar.getEditor().selectAll();
-//            } else {
-//                addrPanel.remove(txtAddressBar);
-//                addrPanel.add(addressBar);
-//                btnEdit.setIcon(UIManager.getIcon("AddressBar.edit"));
-//                btnEdit.putClientProperty("toggle.selected", Boolean.FALSE);
-//            }
-//            revalidate();
-//            repaint();
-//        });
-
         LayoutUtilities.equalizeSize(btnRoot, btnEdit);
 
         panBtn2.add(btnRoot);

@@ -4,7 +4,9 @@ public enum Language {
     ENGLISH("en", "English"),
     SPANISH("es", "Español"),
     PORTUGUESE("pt", "Portuguese"),
-    RUSSIAN("ru", "Русский");
+    RUSSIAN("ru", "Русский"),
+    GERMAN("de", "Deutsch"),
+    FRENCH("fr", "Français");
     private final String full;
     private final String langAbbr;
 

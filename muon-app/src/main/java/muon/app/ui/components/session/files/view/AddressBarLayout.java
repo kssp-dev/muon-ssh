@@ -52,7 +52,6 @@ public class AddressBarLayout implements LayoutManager {
         int w = c.getWidth() - border.left - border.right;
         int h = c.getHeight() - border.top - border.bottom;
         int availableWidth = w;
-        int count = 0;
 
         List<Component> componentList = new ArrayList<>();
 

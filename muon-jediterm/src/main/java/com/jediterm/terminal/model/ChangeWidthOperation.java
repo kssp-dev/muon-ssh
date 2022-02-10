@@ -1,8 +1,6 @@
 package com.jediterm.terminal.model;
 
-//import com.google.common.base.Preconditions;
 import org.apache.log4j.Logger;
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.List;
@@ -54,8 +52,6 @@ class ChangeWidthOperation {
 			throw new IllegalArgumentException(
 					String.format("screenStartInd < 0: %d", screenStartInd));
 		}
-		// Preconditions.checkState(screenStartInd >= 0, "screenStartInd < 0:
-		// %d", screenStartInd);
 		LinesBuffer screenBuffer = myTextBuffer.getScreenBufferOrBackup();
 		if (screenBuffer.getLineCount() > myTextBuffer.getHeight()) {
 			LOG.warn("Terminal height < screen buffer line count: "

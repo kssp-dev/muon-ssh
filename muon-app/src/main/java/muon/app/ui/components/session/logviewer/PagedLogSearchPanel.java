@@ -21,7 +21,6 @@ import java.nio.ByteBuffer;
  */
 public class PagedLogSearchPanel extends JPanel {
     private final JTextField txtSearch;
-    // private JCheckBox chkRegEx, chkMatchCase, chkFullWord;
     private JLabel lblResults;
     private final SearchListener searchListener;
     private long index;

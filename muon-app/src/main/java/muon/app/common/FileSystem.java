@@ -14,12 +14,6 @@ public interface FileSystem extends AutoCloseable {
 
     boolean isLocal();
 
-//	public InputStream getInputStream(String file, long offset)
-//			throws FileNotFoundException, Exception;
-//
-//	public OutputStream getOutputStream(String file)
-//			throws FileNotFoundException, Exception;
-
     void rename(String oldName, String newName)
             throws Exception;
 

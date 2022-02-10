@@ -16,7 +16,6 @@ public class RegUtil {
         try {
             return Advapi32Util.registryGetStringValue(hkey, key, value);
         } catch (Exception e) {
-            //e.printStackTrace();
         }
         return null;
     }
@@ -25,7 +24,6 @@ public class RegUtil {
         try {
             return Advapi32Util.registryGetIntValue(hkey, key, value);
         } catch (Exception e) {
-            //e.printStackTrace();
         }
         return 0;
     }

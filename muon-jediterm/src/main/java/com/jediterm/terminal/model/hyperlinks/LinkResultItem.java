@@ -1,15 +1,14 @@
 package com.jediterm.terminal.model.hyperlinks;
 
-//import org.jetbrains.annotations.NotNull;
 
 /**
  * @author traff
  */
 public class LinkResultItem {
-  private int myStartOffset;
-  private int myEndOffset;
+  private final int myStartOffset;
+  private final int myEndOffset;
 
-  private LinkInfo myLinkInfo;
+  private final LinkInfo myLinkInfo;
 
   public LinkResultItem(int startOffset, int endOffset,  LinkInfo linkInfo) {
     myStartOffset = startOffset;

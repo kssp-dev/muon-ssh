@@ -134,7 +134,7 @@ public class PortViewer extends UtilPageItemView {
         table.setFillsViewportHeight(true);
 
         JLabel lbl1 = new JLabel(bundle.getString("search"));
-        txtFilter = new SkinnedTextField(30);// new JTextField(30);
+        txtFilter = new SkinnedTextField(30);
         btnFilter = new JButton(bundle.getString("search"));
 
         Box b1 = Box.createHorizontalBox();

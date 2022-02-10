@@ -15,7 +15,6 @@
  */
 package com.jediterm.terminal.util;
 
-////import org.jetbrains.annotations.NotNull;
 
 public class Pair<A, B> {
   public final A first;
@@ -63,9 +62,7 @@ public class Pair<A, B> {
     Pair pair = (Pair)o;
 
     if (first != null ? !first.equals(pair.first) : pair.first != null) return false;
-    if (second != null ? !second.equals(pair.second) : pair.second != null) return false;
-
-    return true;
+    return second != null ? second.equals(pair.second) : pair.second == null;
   }
 
   public int hashCode() {

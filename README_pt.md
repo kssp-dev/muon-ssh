@@ -4,6 +4,8 @@
 - <a href="https://github.com/devlinx9/muon-ssh/blob/master/README.md">English</a>
 - <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_pt.md">Portuguese</a>
 - <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_ru.md">Pусский</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_fr.md">Français</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_de.md">Deutsch</a>
 
 Maneira fácil e divertida de trabalhar com servidores remotos via SSH. 
 
@@ -34,6 +36,26 @@ Muon fornece funcionalidade semelhante a painéis de controle baseados na web, m
     <th>MacOS</th>
     <th>Outros SO</th>
     <th>Portátil</th>
+  </tr>
+<tr>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.deb">v2.2.0</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.exe">Exe file</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.deb">DEB installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.dmg">DMG installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.jar">Generic installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.jar">Portable JAR (Java 11)</a>
+    </td>
   </tr>
   <tr>
     <td>

@@ -1,8 +1,6 @@
 package com.jediterm.terminal.ui;
 
-//import com.google.common.base.Supplier;
 import com.jediterm.terminal.util.Util;
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -49,10 +47,7 @@ public class UIUtil {
 
     final Float scaleFactor = (Float)Toolkit.getDefaultToolkit().getDesktopProperty("apple.awt.contentScaleFactor");
 
-    if (scaleFactor != null && scaleFactor.intValue() == 2) {
-      return true;
-    }
-    return false;
+    return scaleFactor != null && scaleFactor.intValue() == 2;
   }
 
   private static boolean isOracleJvm() {

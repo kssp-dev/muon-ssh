@@ -63,15 +63,6 @@ public class TabCloseButton extends JComponent {
             int w = g2.getFontMetrics()
                     .stringWidth(FontAwesomeContants.FA_WINDOW_CLOSE);
             g2.drawString(FontAwesomeContants.FA_WINDOW_CLOSE, x, y + acc);
-
-//			g2.setColor(getForeground());
-//			g2.fillRoundRect(x, y, size, size, 4, 4);
-//			g2.setColor(getBackground());
-//			g2.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND,
-//					BasicStroke.JOIN_ROUND));
-//			int x1 = x + 5, y1 = y + 5, x2 = x + size - 5, y2 = y + size - 5;
-//			g2.drawLine(x1, y1, x2, y2);
-//			g2.drawLine(x1, y2, x2, y1);
         }
     }
 

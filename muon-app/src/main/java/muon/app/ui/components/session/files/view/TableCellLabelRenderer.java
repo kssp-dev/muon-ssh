@@ -32,7 +32,6 @@ public class TableCellLabelRenderer implements TableCellRenderer {
         iconLabel.setFont(App.SKIN.getIconFont().deriveFont(Font.PLAIN, 20.f));
         iconLabel.setText("\uf016");
         iconLabel.setForeground(foreground);
-        // iconLabel.setForeground(new Color(92, 167, 25));
 
         Dimension d1 = iconLabel.getPreferredSize();
         iconLabel.setText("\uf07b");

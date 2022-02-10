@@ -25,11 +25,9 @@ public class TerminalComponent extends JPanel implements ClosableTabContent {
     private String name;
     private final Box reconnectionBox;
     private final TabTitle tabTitle;
-    //private SessionContentPanel sessionContentPanel;
 
     public TerminalComponent(SessionInfo info, String name, String command, SessionContentPanel sessionContentPanel) {
         setLayout(new BorderLayout());
-        //this.sessionContentPanel = sessionContentPanel;
         System.out.println("Current terminal font: " + App.getGlobalSettings().getTerminalFontName());
         this.name = name;
         this.tabTitle = new TabTitle();
@@ -94,11 +92,8 @@ public class TerminalComponent extends JPanel implements ClosableTabContent {
 
             @Override
             public void onPanelResize(Dimension pixelDimension, RequestOrigin origin) {
-//				System.out.println("pixelDimension: " + pixelDimension
-//						+ " origin: " + origin);
             }
         });
-        // term.start();
         contentPane.add(term);
 
     }
@@ -108,16 +103,6 @@ public class TerminalComponent extends JPanel implements ClosableTabContent {
         return "Terminal " + this.name;
     }
 
-    //	@Override
-//	public boolean isInitiated() {
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean isConnected() {
-//		return tty.isConnected();
-//	}
-//
     @Override
     public boolean close() {
         System.out.println("Closing terminal..." + name);

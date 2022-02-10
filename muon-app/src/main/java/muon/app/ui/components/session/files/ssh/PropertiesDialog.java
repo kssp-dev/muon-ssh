@@ -69,7 +69,6 @@ public class PropertiesDialog extends JDialog {
         setResizable(true);
         setModal(true);
         setTitle("Properties");
-        // setSize(new Dimension((350), (350)));
         chkPermissons = new JCheckBox[9];
         for (int i = 0; i < 9; i++) {
             chkPermissons[i] = new JCheckBox(labels[i % 3]);
@@ -165,10 +164,6 @@ public class PropertiesDialog extends JDialog {
             boxFree.add(btnGetDiskSpaceUsed);
             b.add(boxFree);
             b.add(Box.createVerticalStrut(10));
-
-//			txtCreated = new JTextField(30);
-//			b.add(addPropertyField(txtCreated, "Creation date"));
-//			b.add(Box.createVerticalStrut((10)));
         }
 
         b.add(lblOwner);
@@ -227,15 +222,6 @@ public class PropertiesDialog extends JDialog {
         for (int i = 0; i < 9; i++) {
             perms[i] = (permissions & PropertiesDialog.perms[i]) != 0;
         }
-//		perms[0] = (permissions & S_IRUSR) != 0;
-//		perms[1] = (permissions & S_IWUSR) != 0;
-//		perms[2] = (permissions & S_IXUSR) != 0;
-//		perms[3] = (permissions & S_IRGRP) != 0;
-//		perms[4] = (permissions & S_IWGRP) != 0;
-//		perms[5] = (permissions & S_IXGRP) != 0;
-//		perms[6] = (permissions & S_IROTH) != 0;
-//		perms[7] = (permissions & S_IWOTH) != 0;
-//		perms[8] = (permissions & S_IXOTH) != 0;
         return perms;
     }
 
@@ -257,9 +243,6 @@ public class PropertiesDialog extends JDialog {
                 txtGroup.setText(group);
             }
         }
-//		this.txtCreated.setText(
-//				details.getCreated().format(DateTimeFormatter.ISO_DATE_TIME));
-        // this.txtGroup.setText("");
         this.txtModified.setText(details.getLastModified()
                 .format(DateTimeFormatter.ISO_DATE_TIME));
         this.txtName.setText(details.getName());
@@ -331,7 +314,6 @@ public class PropertiesDialog extends JDialog {
         Box b11 = Box.createHorizontalBox();
         b11.setAlignmentX(Box.LEFT_ALIGNMENT);
         b11.add(lblFileName);
-        // b11.add(Box.createHorizontalGlue());
         b11.add(txt);
         return b11;
     }
@@ -458,9 +440,7 @@ public class PropertiesDialog extends JDialog {
                 StringBuilder output = new StringBuilder();
                 boolean ret = fileBrowser.getSessionInstance().exec(
                         command.toString(), stopFlag, output,
-                        new StringBuilder()) == 0;// SshCommandUtils.exec(holder.getSshFileSystem().getWrapper(),
-                // command.toString(),
-                // stopFlag, output);
+                        new StringBuilder()) == 0;
                 System.out.println(output);
                 if (stopFlag.get()) {
                     System.out.println("stop flag");

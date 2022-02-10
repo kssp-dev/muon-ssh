@@ -204,7 +204,6 @@ public class SshClient2 implements Closeable {
                 }
             }
 
-            // sshj.setRemoteCharset(remoteCharset);
             sshj.getConnection().getKeepAlive().setKeepAliveInterval(5);
             if (closed.get()) {
                 disconnect();
@@ -277,119 +276,8 @@ public class SshClient2 implements Closeable {
                 }
             }
 
-//			if (authenticated.get()) {
-//				return;
-//			}
-
             throw new IOException("Authentication failed");
 
-//			System.out.println("allowedMethods4: " + allowedMethods
-//					+ " closed: " + closed.get() + " authenticated: "
-//					+ authenticated.get());
-//
-//			// either key is not set or authentication with key is failed
-//
-//			// if the user has already provided password then use them,
-//			// otherwise try to figure out which auth methods are supported by
-//			// server
-//
-//			try {
-//				if (isPasswordSet()) {
-//					sshj.authPassword(info.getUser(), info.getPassword());
-//					authenticated.set(true);
-//				} else if (allowedMethods.size() < 1) {
-//					// try to figure out what is supported
-//					sshj.auth(info.getUser(), new AuthNone());
-//					authenticated.set(true);
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				allowedMethods = new ArrayList<>();
-//				for (String method : sshj.getUserAuth().getAllowedMethods()) {
-//					allowedMethods.add(method);
-//				}
-//
-//				System.out.println("Allowed methods: " + allowedMethods);
-//			}
-//
-//			System.out.println("allowedMethods5: " + allowedMethods
-//					+ " closed: " + closed.get() + " authenticated: "
-//					+ authenticated.get());
-//
-//			if (closed.get()) {
-//				disconnect();
-//				throw new OperationCancelledException();
-//			}
-//
-//			System.out.println("allowedMethods6: " + allowedMethods
-//					+ " closed: " + closed.get() + " authenticated: "
-//					+ authenticated.get());
-//
-//			if (authenticated.get()) {
-//				return;
-//			}
-//
-//			System.out
-//					.println("allowedMethods-checkpoint 2: " + allowedMethods);
-//
-//			// still not authenticated, either user did not provide password
-//			// or first password attempt failed
-//			// at this point allowedMethods must be populated
-//			if (allowedMethods.contains("password")) {
-//				// keep on trying with password
-//				while (!closed.get()) {
-//					JTextField txtUser = new JTextField(30);
-//					JPasswordField txtPassword = new JPasswordField(30);
-//
-//					String user = info.getUser();
-//					String password = info.getPassword();
-//
-//					if (password == null || password.length() < 1) {
-//						txtUser.setText(user);
-//						int ret = JOptionPane.showOptionDialog(null,
-//								new Object[] { "User", txtUser, "Password",
-//										txtPassword },
-//								"Authentication", JOptionPane.OK_CANCEL_OPTION,
-//								JOptionPane.PLAIN_MESSAGE, null, null, null);
-//						if (ret == JOptionPane.OK_OPTION) {
-//							user = txtUser.getText();
-//							password = new String(txtPassword.getPassword());
-//						} else {
-//							disconnect();
-//							throw new OperationCancelledException();
-//						}
-//					}
-//					try {
-//						sshj.authPassword(user, password); // provide password
-//															// updater
-//															// PasswordUpdateProvider
-//															// net.schmizz.sshj.userauth.password.PasswordUpdateProvider
-//						authenticated.set(true);
-//						break;
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//						allowedMethods = new ArrayList<>();
-//						for (String method : sshj.getUserAuth()
-//								.getAllowedMethods()) {
-//							allowedMethods.add(method);
-//						}
-//						System.out.println(allowedMethods);
-//					}
-//				}
-//			} else if (allowedMethods.contains("keyboard-interactive")) {
-//				sshj.auth(info.getUser(), new AuthKeyboardInteractive(
-//						new InteractiveResponseProvider()));
-//				authenticated.set(true);
-//			}
-//
-//			if (closed.get()) {
-//				disconnect();
-//				throw new OperationCancelledException();
-//			}
-//
-//			if (!authenticated.get()) {
-//				throw new IOException("Authentication failed");
-//			}
         } catch (Exception e) {
             if (this.sshj != null) {
                 this.sshj.close();
@@ -489,7 +377,6 @@ public class SshClient2 implements Closeable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // ResourceManager.unregister(info.getContainterId(), this);
     }
 
     @Override
@@ -515,45 +402,6 @@ public class SshClient2 implements Closeable {
     public SessionInfo getInfo() {
         return info;
     }
-
-//	private Proxy getProxy() {
-//		String proxyHost = info.getProxyHost();
-//		int proxyType = info.getProxyType();
-//
-//		String proxyUser = info.getProxyUser();
-//		
-//		Proxy proxy=null;
-//
-//		if (proxyType != 0 && proxyHost != null
-//				&& proxyHost.trim().length() > 0) {
-//			switch (proxyType) {
-//			case 1: {
-//				proxy=new Proxy(Type.HTTP, new InetSocketAddress(proxyHost, info.getProxyPort()));
-//				if (proxyUser != null && proxyUser.trim().length() > 0) {
-//					//proxy.
-//					proxy.setUserPasswd(proxyUser, info.getProxyPassword());
-//				}
-//				break;
-//			}
-//			case 2: {
-//				ProxySOCKS4 proxy = new ProxySOCKS4(proxyHost,
-//						info.getProxyPort());
-//				if (proxyUser != null && proxyUser.trim().length() > 0) {
-//					proxy.setUserPasswd(proxyUser, info.getProxyPassword());
-//				}
-//				break;
-//			}
-//			case 3: {
-//				ProxySOCKS5 proxy = new ProxySOCKS5(proxyHost,
-//						info.getProxyPort());
-//				if (proxyUser != null && proxyUser.trim().length() > 0) {
-//					proxy.setUserPasswd(proxyUser, info.getProxyPassword());
-//				}
-//				break;
-//			}
-//			}
-//		}
-//	}
 
     // recursively
     private void tunnelThrough(Deque<HopEntry> hopStack) throws Exception {

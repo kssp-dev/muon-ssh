@@ -54,9 +54,6 @@ public class RemoteHostRenderer implements ListCellRenderer<RemoteServerEntry> {
 
         RemoteServerEntry info = value;
 
-        // String strTitle = info.getName().substring(0,
-        // Math.min(info.getName().length(), 15));
-
         lblText.setText(info.getHost());
         lblHost.setText(info.getPath());
         lblIcon.setText(FontAwesomeContants.FA_CUBE);

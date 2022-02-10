@@ -66,14 +66,12 @@ public class CustomizedSettingsProvider extends DefaultSettingsProvider {
     public TextStyle getDefaultStyle() {
         return new TextStyle(getTerminalColor(App.getGlobalSettings().getDefaultColorFg()),
                 getTerminalColor(App.getGlobalSettings().getDefaultColorBg()));
-        // return terminalTheme.getDefaultStyle();
     }
 
     @Override
     public TextStyle getFoundPatternColor() {
         return new TextStyle(getTerminalColor(App.getGlobalSettings().getDefaultFoundFg()),
                 getTerminalColor(App.getGlobalSettings().getDefaultFoundBg()));
-        // return terminalTheme.getFoundPatternColor();
     }
 
     @Override
@@ -87,8 +85,7 @@ public class CustomizedSettingsProvider extends DefaultSettingsProvider {
     public TextStyle getHyperlinkColor() {
         return new TextStyle(getTerminalColor(App.getGlobalSettings().getDefaultHrefFg()),
                 getTerminalColor(App.getGlobalSettings().getDefaultHrefBg()));
-        // return
-        // terminalTheme.getHyperlinkColor();
+
     }
 
     @Override
@@ -100,11 +97,6 @@ public class CustomizedSettingsProvider extends DefaultSettingsProvider {
     public boolean enableMouseReporting() {
         return true;
     }
-
-//	@Override
-//	public Font getTerminalFont() {
-//		return UIManager.getFont("Terminal.font");
-//	}
 
     @Override
     public boolean pasteOnMiddleMouseClick() {
@@ -121,9 +113,6 @@ public class CustomizedSettingsProvider extends DefaultSettingsProvider {
         System.out.println("Called terminal font: " + App.getGlobalSettings().getTerminalFontName());
         return FontUtils.loadTerminalFont(App.getGlobalSettings().getTerminalFontName()).deriveFont(Font.PLAIN,
                 App.getGlobalSettings().getTerminalFontSize());
-//		
-//		return new Font(App.getGlobalSettings().getTerminalFontName(), Font.PLAIN,
-//				App.getGlobalSettings().getTerminalFontSize());
     }
 
     @Override

@@ -39,7 +39,6 @@ public class FileChangeWatcher {
             while (!stopFlag.get()) {
                 if (!skipMonitoring.get()) {
                     List<FileModificationInfo> list = new ArrayList<>();
-                    //System.out.println("Watching for changes: " + list);
                     for (FileModificationInfo info : filesToWatch) {
                         File f = info.localFile;
                         long modified = f.lastModified();

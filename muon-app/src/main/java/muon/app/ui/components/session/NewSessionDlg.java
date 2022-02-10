@@ -30,7 +30,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
     private JTextField txtName;
     private JPanel namePanel;
     private NamedItem selectedInfo;
-    // private DefaultMutableTreeNode lastConnected;
     private String lastSelected;
     private JPanel prgPanel;
     private JPanel pdet;
@@ -44,7 +43,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
 
     private void createUI() {
         setBackground(new Color(245, 245, 245));
-        // setIconImage(App.getAppIcon());
         setLayout(new BorderLayout());
 
         setSize(800, 600);
@@ -62,18 +60,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
 
         setTitle(bundle.getString("session_manager"));
 
-//		List<SessionFolder> folders = SessionStore.getSharedInstance()
-//				.getFolders();
-//		List<SessionInfo> sessions = SessionStore.getSharedInstance()
-//				.getSessions();
-//		SessionFolder rootFolder = getRoot(folders);
-//		SavedSessionTree stree = SessionStore.load();
-//		this.lastSelected = stree.getLastSelection();
-//		rootNode = SessionStore.getNode(stree.getFolder());// new
-//		// DefaultMutableTreeNode(rootFolder);
-//		rootNode.setAllowsChildren(true);
-        // createTree(rootNode, folders, sessions);
-
         treeModel = new DefaultTreeModel(null, true);
         treeModel.addTreeModelListener(this);
         tree = new AutoScrollingJTree(treeModel);
@@ -82,7 +68,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         tree.setTransferHandler(new TreeTransferHandler());
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.getSelectionModel().addTreeSelectionListener(this);
-        // tree.setDragEnabled(true);
         tree.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -99,55 +84,39 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         jsp = new JScrollPane(tree);
         jsp.setBorder(new LineBorder(App.SKIN.getDefaultBorderColor(), 1));
 
-        // btnNewHost = new JButton(TextHolder.getString("session.newHost"));
         btnNewHost = new JButton(bundle.getString("new_site"));
         btnNewHost.addActionListener(this);
         btnNewHost.putClientProperty("button.name", "btnNewHost");
-        // btnNewHost.setFont(Utility.getFont(Constants.SMALL));
-        btnNewFolder = new JButton(bundle.getString("new_folder"));// new
-        // JButton(TextHolder.getString("session.newFolder"));
+        btnNewFolder = new JButton(bundle.getString("new_folder"));
         btnNewFolder.addActionListener(this);
         btnNewFolder.putClientProperty("button.name", "btnNewFolder");
-        // btnNewFolder.setFont(Utility.getFont(Constants.SMALL));
-        btnDel = new JButton(bundle.getString("remove"));// new
-        // JButton(TextHolder.getString("session.remove"));
+        btnDel = new JButton(bundle.getString("remove"));
         btnDel.addActionListener(this);
         btnDel.putClientProperty("button.name", "btnDel");
-        // btnDel.setFont(Utility.getFont(Constants.SMALL));
-        btnDup = new JButton(bundle.getString("duplicate"));// new
-        // JButton(TextHolder.getString("session.duplicate"));
+        btnDup = new JButton(bundle.getString("duplicate"));
         btnDup.addActionListener(this);
         btnDup.putClientProperty("button.name", "btnDup");
-        // btnDup.setFont(Utility.getFont(Constants.SMALL));
 
-        btnConnect = new JButton(bundle.getString("connect"));// new
-        // JButton(TextHolder.getString("session.connect"));
+        btnConnect = new JButton(bundle.getString("connect"));
         btnConnect.addActionListener(this);
         btnConnect.putClientProperty("button.name", "btnConnect");
-        // btnConnect.setFont(Utility.getFont(Constants.SMALL));
 
-        btnCancel = new JButton(bundle.getString("cancel"));// new
-        // JButton(TextHolder.getString("session.cancel"));
+        btnCancel = new JButton(bundle.getString("cancel"));
         btnCancel.addActionListener(this);
         btnCancel.putClientProperty("button.name", "btnCancel");
 
-        btnExport = new JButton(bundle.getString("export"));// new
-        // JButton(TextHolder.getString("session.cancel"));
+        btnExport = new JButton(bundle.getString("export"));
         btnExport.addActionListener(this);
         btnExport.putClientProperty("button.name", "btnExport");
 
-        btnImport = new JButton(bundle.getString("import"));// new
-        // JButton(TextHolder.getString("session.cancel"));
+        btnImport = new JButton(bundle.getString("import"));
         btnImport.addActionListener(this);
         btnImport.putClientProperty("button.name", "btnImport");
-        // btnCancel.setFont(Utility.getFont(Constants.SMALL));
 
         normalizeButtonSize();
 
         Box box1 = Box.createHorizontalBox();
         box1.setBorder(new EmptyBorder(10, 10, 10, 10));
-        // box1.add(new JLabel("Warning: Passwords will be stored as plain
-        // text"));
         box1.add(Box.createHorizontalGlue());
         box1.add(Box.createHorizontalStrut(10));
         box1.add(btnConnect);
@@ -165,8 +134,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         btnPane.add(btnImport);
 
         JSplitPane splitPane = new SkinnedSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-//		splitPane.putClientProperty("Nimbus.Overrides",
-//				GraphicsUtils.getSplitPaneSkin());
 
         JPanel treePane = new JPanel(new BorderLayout());
         treePane.setBorder(new EmptyBorder(10, 10, 10, 0));
@@ -184,15 +151,12 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         pp.add(sessionInfoPanel);
 
         pdet = new JPanel(new BorderLayout());
-        // pdet.setVisible(false);
 
         JScrollPane scrollPane = new JScrollPane(pp);
-        // scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
         pdet.add(scrollPane);
         pdet.add(box1, BorderLayout.SOUTH);
 
-        // add(pdet);
 
         BoxLayout boxLayout = new BoxLayout(namePanel, BoxLayout.PAGE_AXIS);
         namePanel.setLayout(boxLayout);
@@ -203,12 +167,11 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         lblName.setAlignmentX(Component.LEFT_ALIGNMENT);
         lblName.setHorizontalAlignment(JLabel.LEADING);
         lblName.setBorder(new EmptyBorder(0, 0, 5, 0));
-        // lblName.setFont(Utility.getFont(Constants.SMALL));
 
-        txtName = new SkinnedTextField(10);// new JTextField(30);
+
+        txtName = new SkinnedTextField(10);
         txtName.setAlignmentX(Component.LEFT_ALIGNMENT);
         txtName.setHorizontalAlignment(JLabel.LEADING);
-        // txtName.setFont(Utility.getFont(Constants.SMALL));
         txtName.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -292,36 +255,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         treeModel.nodeChanged(rootNode);
     }
 
-    /*private void loadSessionsInfo(List<SessionInfo> sessions) {
-        this.lastSelected = stree.getLastSelection();
-        rootNode = SessionStore.getNode(stree.getFolder());
-        rootNode.setAllowsChildren(true);
-        treeModel.setRoot(rootNode);
-        try {
-            if (this.lastSelected != null) {
-                selectNode(lastSelected, rootNode);
-            } else {
-                DefaultMutableTreeNode n = null;
-                n = findFirstInfoNode(rootNode);
-                if (n == null) {
-                    SessionInfo sessionInfo = new SessionInfo();
-                    sessionInfo.setName(bundle.getString("new_site"));
-                    sessionInfo.setId(UUID.randomUUID().toString());
-                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(sessionInfo);
-                    childNode.setUserObject(sessionInfo);
-                    childNode.setAllowsChildren(false);
-                    treeModel.insertNodeInto(childNode, rootNode, rootNode.getChildCount());
-                    n = childNode;
-                    tree.scrollPathToVisible(new TreePath(n.getPath()));
-                    TreePath path = new TreePath(n.getPath());
-                    tree.setSelectionPath(path);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        treeModel.nodeChanged(rootNode);
-    }*/
     private boolean selectNode(String id, DefaultMutableTreeNode node) {
         if (id.equals((((NamedItem) node.getUserObject()).getId()))) {
             TreePath path = new TreePath(node.getPath());
@@ -352,52 +285,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         return null;
     }
 
-//	private SessionFolder getRoot(List<SessionFolder> folders) {
-//		for (SessionFolder f : folders) {
-//			if (f.getParentId() == null) {
-//				System.out.println("Root node found: " + f.getId());
-//				return f;
-//			}
-//		}
-//		SessionFolder folder = new SessionFolder(UUID.randomUUID().toString(),
-//				null, TextHolder.getString("sessionTree.defaultText"));
-//		return folder;
-//	}
-
-//	private void createTree(DefaultMutableTreeNode parentNode,
-//			List<SessionFolder> folders, List<SessionInfo> sessions) {
-//		Object obj = parentNode.getUserObject();
-//		if (obj instanceof SessionInfo) {
-//			return;
-//		}
-//		SessionFolder folder = (SessionFolder) obj;
-//		for (SessionFolder f : folders) {
-//			if (f.getParentId() == null)
-//				continue;// Root node has been extracted already
-//			if (f.getParentId().equals(folder.getId())) {
-//				if (f.getParentId().equals(folder.getId())) {
-//					DefaultMutableTreeNode node = new DefaultMutableTreeNode(f);
-//					parentNode.add(node);
-//					createTree(node, folders, sessions);
-//				}
-//			}
-//		}
-//
-//		String lastConnected = SessionStore.getSharedInstance()
-//				.getLastConnected();
-//
-//		for (SessionInfo info : sessions) {
-//			if (info.getParentId().equals(folder.getId())) {
-//				DefaultMutableTreeNode node = new DefaultMutableTreeNode(info);
-//				node.setAllowsChildren(false);
-//				parentNode.add(node);
-//				if (info.getId().equals(lastConnected)) {
-//					this.lastConnected = node;
-//				}
-//			}
-//		}
-//	}
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
@@ -421,7 +308,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
                 SessionInfo sessionInfo = new SessionInfo();
                 sessionInfo.setName(bundle.getString("new_site"));
                 sessionInfo.setId(UUID.randomUUID().toString());
-                // sessionInfo.setParentId(((SessionFolder) obj).getId());
                 DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(sessionInfo);
                 childNode.setUserObject(sessionInfo);
                 childNode.setAllowsChildren(false);
@@ -429,7 +315,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
                 tree.scrollPathToVisible(new TreePath(childNode.getPath()));
                 TreePath path = new TreePath(childNode.getPath());
                 tree.setSelectionPath(path);
-                // tree.startEditingAtPath(path);
                 break;
             case "btnNewFolder":
                 if (parentNode == null) {
@@ -447,7 +332,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
                 tree.scrollPathToVisible(new TreePath(childNode1.getPath()));
                 TreePath path2 = new TreePath(childNode1.getPath());
                 tree.setSelectionPath(path2);
-                // tree.startEditingAtPath(path2);
                 break;
             case "btnDel":
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
@@ -488,7 +372,6 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
                         }
                     }
                     MutableTreeNode parent = (MutableTreeNode) node1.getParent();
-                    //child.setAllowsChildren(false);
                     treeModel.insertNodeInto(newFolderTree, parent, node1.getParent().getChildCount());
                     selectNode(newFolder.getId(), newFolderTree);
                 }
@@ -524,36 +407,12 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
                         } else if (SessionExportImport.importSessions()) {
                             loadTree(SessionStore.load());
                         }
-
-//					JFileChooser jfc = new JFileChooser();
-//					if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-//						File f = jfc.getSelectedFile();
-//						SavedSessionTree stree = SessionStore.load(f);
-//						loadTree(stree);
-////						this.lastSelected = stree.getLastSelection();
-////						rootNode = SessionStore.getNode(stree.getFolder());// new
-////						// DefaultMutableTreeNode(rootFolder);
-////						rootNode.setAllowsChildren(true);
-////						treeModel.setRoot(rootNode);++
-////						treeModel.nodeStructureChanged(rootNode);
-//					}
                     }
                 }
 
                 break;
             case "btnExport":
                 SessionExportImport.exportSessions();
-//			JFileChooser jfc = new JFileChooser();
-//			if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-//				String id = null;
-//				TreePath path3 = tree.getSelectionPath();
-//				if (path3 != null) {
-//					DefaultMutableTreeNode node3 = (DefaultMutableTreeNode) path3.getLastPathComponent();
-//					NamedItem item = (NamedItem) node3.getUserObject();
-//					id = item.getId();
-//				}
-//				SessionStore.save(SessionStore.convertModelFromTree(rootNode), id, jfc.getSelectedFile());
-//			}
                 break;
             default:
                 break;
@@ -623,24 +482,9 @@ public class NewSessionDlg extends JDialog implements ActionListener, TreeSelect
         SessionStore.save(SessionStore.convertModelFromTree(rootNode), id);
     }
 
-//	private void walkSessionTree(DefaultMutableTreeNode node,
-//			List<SessionFolder> folders, List<SessionInfo> sessions) {
-//		if (node.getUserObject() instanceof SessionFolder) {
-//			folders.add((SessionFolder) node.getUserObject());
-//			for (int i = 0; i < node.getChildCount(); i++) {
-//				walkSessionTree((DefaultMutableTreeNode) node.getChildAt(i),
-//						folders, sessions);
-//			}
-//		} else {
-//			System.out.println(node.getUserObject());
-//			sessions.add((SessionInfo) node.getUserObject());
-//		}
-//	}
-
     @Override
     public void treeNodesChanged(TreeModelEvent e) {
         System.out.println("treeNodesChanged");
-        // save();
     }
 
     @Override

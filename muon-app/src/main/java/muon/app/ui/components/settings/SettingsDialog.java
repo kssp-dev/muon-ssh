@@ -181,7 +181,7 @@ public class SettingsDialog extends JDialog {
 
         cmbFonts = new JComboBox<>(FontUtils.TERMINAL_FONTS.keySet().toArray(new String[0]));
         cmbFonts.setRenderer(new FontItemRenderer());
-        Dimension d = new Dimension(cmbFonts.getPreferredSize().width * 2, cmbFonts.getPreferredSize().height);// cmbFonts.getPreferredSize();
+        Dimension d = new Dimension(cmbFonts.getPreferredSize().width * 2, cmbFonts.getPreferredSize().height);
         cmbFonts.setPreferredSize(d);
         cmbFonts.setMaximumSize(d);
         cmbFonts.setMinimumSize(d);
@@ -239,9 +239,7 @@ public class SettingsDialog extends JDialog {
         defaultFoundBg = new ColorSelectorButton();
 
         cmbTermTheme = new JComboBox<>(new TerminalTheme[]{new DarkTerminalTheme(), new CustomTerminalTheme()});
-//		cmbTermTheme.setSelectedIndex(0);
-//		cmbTermTheme.setMaximumSize(cmbTermTheme.getPreferredSize());
-//		cmbTermTheme.setMinimumSize(cmbTermTheme.getPreferredSize());
+
 
         d = new Dimension(Math.max(100, cmbTermTheme.getPreferredSize().width * 2),
                 cmbTermTheme.getPreferredSize().height);
@@ -371,7 +369,6 @@ public class SettingsDialog extends JDialog {
         panel.add(Box.createVerticalStrut(10));
         for (Component cc : kcPanels) {
             panel.add(cc);
-            // panel.add(Box.createVerticalStrut(10));
         }
 
         panel.add(Box.createVerticalGlue());
@@ -447,20 +444,6 @@ public class SettingsDialog extends JDialog {
         spLogFontSize.setAlignmentX(Box.LEFT_ALIGNMENT);
         spSysLoadInterval.setAlignmentX(Box.LEFT_ALIGNMENT);
 
-//		Font font = App.SKIN.getDefaultFont().deriveFont(14.0f);
-//		chkConfirmBeforeDelete.setFont(font);
-//		chkConfirmBeforeMoveOrCopy.setFont(font);
-//		chkShowHiddenFilesByDefault.setFont(font);
-//		chkPromptForSudo.setFont(font);
-//		chkDirectoryCache.setFont(font);
-//		chkShowPathBar.setFont(font);
-//		chkUseGlobalDarkTheme.setFont(font);
-//		chkShowMessagePrompt.setFont(font);
-//		spSysLoadInterval.setFont(font);
-//		chkLogWrap.setFont(font);
-//		spLogLinesPerPage.setFont(font);
-//		spLogFontSize.setFont(font);
-
         vbox.add(chkConfirmBeforeDelete);
         vbox.add(Box.createRigidArea(new Dimension(10, 10)));
         vbox.add(chkConfirmBeforeMoveOrCopy);
@@ -485,11 +468,6 @@ public class SettingsDialog extends JDialog {
         JLabel lbl0 = new JLabel(App.bundle.getString("log_viewer_lines")), lbl1 = new JLabel(App.bundle.getString("connection_timeout")), lbl2 = new JLabel(App.bundle.getString("log_viewer_font_size")),
                 lbl3 = new JLabel(App.bundle.getString("system_refresh_interval"));
 
-//		lbl1.setFont(font);
-//		lbl2.setFont(font);
-//		lbl3.setFont(font);
-
-        // LayoutUtilities.equalizeSize(lbl1, lbl2, lbl3);
         LayoutUtilities.equalizeSize(spLogLinesPerPage, spConnectionTimeout, spLogFontSize, spSysLoadInterval);
 
         vbox.add(chkLogWrap);
@@ -512,7 +490,6 @@ public class SettingsDialog extends JDialog {
         vbox.add(Box.createRigidArea(new Dimension(10, 10)));
 
         vbox.setBorder(new EmptyBorder(30, 10, 10, 10));
-        // add(vbox);
 
         panel.add(vbox);
 
@@ -594,7 +571,6 @@ public class SettingsDialog extends JDialog {
         settings.setFileTransferMode((Constants.TransferMode) cmbTransferMode.getSelectedItem());
 
 
-        //settings.setUsingMasterPassword(chkUseMasterPassword.isSelected());
 
         App.saveSettings();
         super.setVisible(false);
@@ -687,7 +663,6 @@ public class SettingsDialog extends JDialog {
                         conflictOptions.addElement(conflictAction);
                     }
                 }
-                //cmbConflictAction.setSelectedIndex(3);
             } else {
                 conflictOptions.removeAllElements();
                 for (Constants.ConflictAction conflictAction : Constants.ConflictAction.values()) {
@@ -695,7 +670,6 @@ public class SettingsDialog extends JDialog {
                         conflictOptions.addElement(conflictAction);
                     }
                 }
-                //cmbConflictAction.setSelectedIndex(0);
             }
         });
 
@@ -749,15 +723,6 @@ public class SettingsDialog extends JDialog {
         return panel;
     }
 
-//	private String[] getTerminalFonts() {
-//		String fontNames[] = new String[FontUtils.TERMINAL_FONTS.size()];
-//		int c = 0;
-//		for (String font : FontUtils.TERMINAL_FONTS.keySet()) {
-//			Font ttf = FontUtils.loadFont(String.format("/fonts/terminal/%s.ttf", font));
-//			fontNames[c++] = ttf.getFontName();
-//		}
-//		return fontNames;
-//	}
 
     private Component createMiscPanel() {
         JPanel panel = new JPanel(new BorderLayout());
@@ -777,7 +742,6 @@ public class SettingsDialog extends JDialog {
         vbox.add(Box.createRigidArea(new Dimension(10, 10)));
         vbox.add(chkUseGlobalDarkTheme);
         vbox.setBorder(new EmptyBorder(30, 10, 10, 10));
-        // add(vbox);
 
         panel.add(vbox);
 
@@ -912,12 +876,4 @@ public class SettingsDialog extends JDialog {
 
     }
 
-//	private void resizeTextField(JTextField txt) {
-//		txt.setText("WW");
-//		Dimension d = txt.getPreferredSize();
-//		txt.setText("");
-//		txt.setPreferredSize(d);
-//		txt.setMaximumSize(d);
-//		txt.setMinimumSize(d);
-//	}
 }

@@ -128,7 +128,6 @@ public class LocalFileBrowserView extends AbstractFileBrowserView {
 
     @Override
     public void openApp(FileInfo file) {
-        // PlatformAppLauncher.shellLaunch(file.getPath());
     }
 
     @Override

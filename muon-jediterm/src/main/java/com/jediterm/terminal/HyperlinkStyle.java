@@ -1,8 +1,6 @@
 package com.jediterm.terminal;
 
 import com.jediterm.terminal.model.hyperlinks.LinkInfo;
-////import org.jetbrains.annotations.NotNull;
-////import org.jetbrains.annotations.Nullable;
 
 /**
  * @author traff
@@ -87,16 +85,16 @@ public class HyperlinkStyle extends TextStyle implements Runnable {
   public static class Builder extends TextStyle.Builder {
 
     
-    private LinkInfo myLinkInfo;
+    private final LinkInfo myLinkInfo;
 
     
-    private TextStyle myHighlightStyle;
+    private final TextStyle myHighlightStyle;
 
     
-    private TextStyle myPrevTextStyle;
+    private final TextStyle myPrevTextStyle;
 
     
-    private HighlightMode myHighlightMode;
+    private final HighlightMode myHighlightMode;
 
     private Builder( HyperlinkStyle style) {
       myLinkInfo = style.myLinkInfo;

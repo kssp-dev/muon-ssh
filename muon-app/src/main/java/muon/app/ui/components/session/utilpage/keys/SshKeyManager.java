@@ -44,13 +44,6 @@ public class SshKeyManager {
         }
     }
 
-//    private static void loadRemoteKeys(SshKeyHolder holder, SessionInfo info) throws Exception {
-//        try (SshFileSystem fileSystem = new SshFileSystem(new SshModalUserInteraction(info))) {
-//            fileSystem.connect();
-//            loadRemoteKeys(holder, fileSystem);
-//        }
-//    }
-
     private static void loadRemoteKeys(SshKeyHolder holder, SshFileSystem fileSystem) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         String path = fileSystem.getHome() + "/.ssh/id_rsa.pub";
@@ -61,7 +54,6 @@ public class SshKeyManager {
                 out.write(bytes);
             }
 
-            // fileSystem.getSftp().get(path, out);
             holder.setRemotePubKeyFile(path);
             holder.setRemotePublicKey(out.toString(StandardCharsets.UTF_8));
         } catch (SFTPException e) {
@@ -79,7 +71,6 @@ public class SshKeyManager {
                 out.write(bytes);
             }
 
-            // fileSystem.getSftp().get(path, out);
             holder.setRemoteAuthorizedKeys(out.toString(StandardCharsets.UTF_8));
         } catch (SFTPException e) {
             if (e.getStatusCode() != Response.StatusCode.NO_SUCH_FILE

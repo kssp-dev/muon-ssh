@@ -95,8 +95,6 @@ public class RemoteSessionInstance {
                 }
                 try (Session session = ssh.openSession()) {
                     session.setAutoExpand(true);
-//				session.allocatePTY(App.getGlobalSettings().getTerminalType(),
-//						80, 24, 0, 0, Collections.<PTYMode, Integer>emptyMap());
                     try (final Command cmd = session.exec(command)) {
                         System.out.println("Command and Session started");
 
@@ -111,8 +109,6 @@ public class RemoteSessionInstance {
                                 break;
                             }
 
-                            // System.out.println(in.available() + " " +
-                            // err.available());
                             if (in.available() > 0) {
                                 int m = in.available();
                                 while (m > 0) {
@@ -143,18 +139,9 @@ public class RemoteSessionInstance {
                                 }
                             }
 
-//						x = err.read(b);
-//						if (x > 0) {
-//							berr.write(b, 0, x);
-//						}
-
-                            // Thread.sleep(500);
                         } while (cmd.isOpen());
 
                         System.out.println(cmd.isOpen() + " " + cmd.isEOF() + " " + cmd.getExitStatus());
-                        // System.out.println((char)in.read());
-
-                        // System.out.println(output + " " + error);
 
                         System.out.println("Command and Session closed");
 

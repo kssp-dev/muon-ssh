@@ -33,15 +33,4 @@ public class AutoScrollingJTree extends JTree implements Autoscroll {
                 outer.width - inner.width - inner.x + outer.x + margin);
     }
 
-    // Use this method if you want to see the boundaries of the
-    // autoscroll active region
-
-//	public void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//		Rectangle outer = getBounds();
-//		Rectangle inner = getParent().getBounds();
-//		g.setColor(Color.red);
-//		g.drawRect(-outer.x + 12, -outer.y + 12, inner.width - 24, inner.height - 24);
-//	}
-
 }

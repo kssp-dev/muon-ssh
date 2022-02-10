@@ -306,9 +306,6 @@ public class LogContent extends JPanel implements ClosableTabContent {
         long lineStart = page * linePerPage;
         long lineEnd = lineStart + linePerPage - 1;
 
-        // System.out.println("Start line: " + lineStart + "\nEnd line: " +
-        // lineEnd);
-
         StringBuilder command = new StringBuilder();
 
         raf.seek(lineStart * 16);
@@ -317,9 +314,7 @@ public class LogContent extends JPanel implements ClosableTabContent {
             throw new Exception("EOF found");
         }
 
-        long startOffset = ByteBuffer.wrap(longBytes).getLong();// Longs.fromByteArray(longBytes);
-
-        // System.out.println("startOffset: " + startOffset);
+        long startOffset = ByteBuffer.wrap(longBytes).getLong();
 
         raf.seek(lineEnd * 16);
         if (raf.read(longBytes) != 8) {
@@ -327,16 +322,13 @@ public class LogContent extends JPanel implements ClosableTabContent {
             raf.read(longBytes);
         }
 
-        long endOffset = ByteBuffer.wrap(longBytes).getLong();// Longs.fromByteArray(longBytes);
+        long endOffset = ByteBuffer.wrap(longBytes).getLong();
         raf.seek(lineEnd * 16 + 8);
         if (raf.read(longBytes) != 8) {
             raf.seek(raf.length() - 8);
             raf.read(longBytes);
         }
-        long lineLength = ByteBuffer.wrap(longBytes).getLong();// Longs.fromByteArray(longBytes);
-
-        // System.out.println("endOffset: " + endOffset + " lineLength: " +
-        // lineLength);
+        long lineLength = ByteBuffer.wrap(longBytes).getLong();
 
         endOffset = endOffset + lineLength;
 
@@ -352,8 +344,6 @@ public class LogContent extends JPanel implements ClosableTabContent {
             long bytesToSkip = startOffset % 8192;
             int blocks = (int) Math.ceil((double) byteRange / 8192);
 
-//			System.out.println("Byte range: "
-//					+ FormatUtils.humanReadableByteCount(byteRange, true));
 
             if (blocks * 8192 - bytesToSkip < byteRange) {
                 blocks++;
@@ -365,8 +355,6 @@ public class LogContent extends JPanel implements ClosableTabContent {
                     + (linePerPage + 1) + "q'");
         }
 
-        // String command = "sed -ne '" + (lineStart + 1) + "," + lineEnd + "p;"
-        // + (lineEnd + 1) + "q' \"" + filePath + "\"";
         System.out.println("Command: " + command);
         StringBuilder output = new StringBuilder();
 
@@ -485,14 +473,6 @@ public class LogContent extends JPanel implements ClosableTabContent {
                     }
                     long lineStart = this.currentPage * linePerPage;
                     gutter.setLineStart(lineStart + 1);
-//					lineModel.clear();
-//					String lines[] = pageText.replace("\t", "    ").split("\n");
-//					lineModel.addAll(Arrays.asList(lines));
-//					if (line < lineModel.getSize() && line != -1) {
-//						lineList.setSelectedIndex(line);
-//						lineList.ensureIndexIsVisible(line);
-//					}
-//					this.txtCurrentPage.setText((this.currentPage + 1) + "");
                 });
             } catch (Exception e) {
                 e.printStackTrace();
@@ -525,7 +505,6 @@ public class LogContent extends JPanel implements ClosableTabContent {
         File tempFile = Files
                 .createTempFile("muon" + UUID.randomUUID(), "index")
                 .toFile();
-        // List<Integer> list = new ArrayList<>();
         StringBuilder command = new StringBuilder();
         command.append("awk '{if(index(tolower($0),\""
                 + text.toLowerCase(Locale.ENGLISH) + "\")){ print NR}}' \""
@@ -570,7 +549,6 @@ public class LogContent extends JPanel implements ClosableTabContent {
             textArea.getHighlighter().addHighlight(startIndex, endIndex,
                     painter);
             System.out.println(textArea.modelToView2D(startIndex));
-            // textArea.select(startIndex, endIndex);
         } catch (Exception e) {
             e.printStackTrace();
         }

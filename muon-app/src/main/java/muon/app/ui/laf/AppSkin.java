@@ -34,8 +34,7 @@ public abstract class AppSkin {
         this.defaults.put("defaultStroke", new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
         this.defaults.put("ScrollPane.contentMargins", new Insets(0, 0, 0, 0));
-        // this.defaults.put("PopupMenu.contentMargins", new Insets(0, 0, 0,
-        // 0));
+
 
         Painter<? extends JComponent> scrollPaneBorderPainter = (graphics, component, width, height) -> {
             graphics.setColor(defaults.getColor("control"));
@@ -63,12 +62,8 @@ public abstract class AppSkin {
     protected Font loadFonts() {
         try (InputStream is = AppSkin.class
 
-                // .getResourceAsStream("/fonts/Verdana.ttf")) {
                 .getResourceAsStream("/fonts/Helvetica.ttf")) {
-            // .getResourceAsStream("/fonts/DejaVuSans.ttf")) {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            // System.out.println("App font: "+font.getFamily()+"
-            // "+font.getFontName());
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
             return font.deriveFont(Font.PLAIN, 12.0f);
@@ -184,9 +179,7 @@ public abstract class AppSkin {
     }
 
     public void createTextFieldSkin(UIDefaults uiDefaults) {
-        final Color borderColor = defaults.getColor("nimbusBorder");// new
-        // Color(230,
-        // 230, 230);
+        final Color borderColor = defaults.getColor("nimbusBorder");
         final Color focusedColor = defaults.getColor("nimbusSelectionBackground");
         Painter<? extends JComponent> focusedBorder = new Painter<JComponent>() {
             @Override
@@ -522,15 +515,11 @@ public abstract class AppSkin {
     }
 
     public void createTableHeaderSkin(UIDefaults uiDefaults) {
-        // Color c1 = defaults.getColor("nimbusBorder");
         Painter<? extends Object> painterNormal = (Graphics2D g, Object object, int width, int height) -> {
-//			g.setColor(c1);
-//			g.drawLine(width - 1, 3, width - 1, height - 6);
+
         };
         uiDefaults.put("TableHeader.font", new Font(Font.DIALOG, Font.PLAIN, 14));
-        uiDefaults.put("TableHeader.background", defaults.getColor("control"));// new
-        // Color(240,
-        // 240, 240));
+        uiDefaults.put("TableHeader.background", defaults.getColor("control"));
         uiDefaults.put("TableHeader.foreground", defaults.getColor("text"));
         uiDefaults.put("TableHeader:\"TableHeader.renderer\".opaque", false);
         uiDefaults.put("TableHeader:\"TableHeader.renderer\"[Enabled+Focused+Sorted].backgroundPainter", painterNormal);
@@ -691,64 +680,6 @@ public abstract class AppSkin {
         uiDefaults.put("ToolTip.background", defaults.getColor("control"));
         uiDefaults.put("ToolTip.foreground", defaults.getColor("text"));
     }
-
-//	public void createToggleButtonSkin(UIDefaults uiDefaults) {
-//		Color c1 = defaults.getColor("text");
-//		Color c2 = defaults.getColor("text");
-//
-//		Painter<? extends JComponent> painter1 = new Painter<JComponent>() {
-//			@Override
-//			public void paint(Graphics2D g, JComponent object, int width, int height) {
-//				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//				g.setColor(c1);
-//				g.drawOval(1, 1, width-2, height-2);
-//			}
-//		};
-//
-//		Painter<? extends JComponent> painter2 = new Painter<JComponent>() {
-//			@Override
-//			public void paint(Graphics2D g, JComponent object, int width, int height) {
-//				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//				g.setColor(c2);
-//				g.drawOval(1, 1, width-2, height-2);
-//				g.fillOval(4, 4, width - 8, height - 8);
-//			}
-//		};
-//
-//		uiDefaults.put("RadioButton[Disabled].iconPainter", painter1);
-//		uiDefaults.put("RadioButton[Enabled].iconPainter", painter1);
-//		uiDefaults.put("RadioButton[Focused+MouseOver+Selected].iconPainter", painter2);
-//		uiDefaults.put("RadioButton[Focused+Pressed+Selected].iconPainter", painter2);
-//		uiDefaults.put("RadioButton[Focused+Selected].iconPainter", painter2);
-//		uiDefaults.put("RadioButton[MouseOver+Selected].iconPainter", painter2);
-//		uiDefaults.put("RadioButton[Pressed+Selected].iconPainter", painter2);
-//
-//		uiDefaults.put("RadioButton[Focused+MouseOver].iconPainter", painter1);
-//		uiDefaults.put("RadioButton[Focused+Pressed].iconPainter", painter1);
-//		uiDefaults.put("RadioButton[Pressed].iconPainter", painter1);
-//		uiDefaults.put("RadioButton[Selected].iconPainter", painter2);
-//		uiDefaults.put("RadioButton[Focused].iconPainter", painter1);
-//		uiDefaults.put("RadioButton[MouseOver].iconPainter", painter1);
-//		
-//		uiDefaults.put("ToggleButton.background", defaults.getColor("control"));
-//		uiDefaults.put("ToggleButton.disabled", defaults.getColor("button.pressedGradient2"));
-//		uiDefaults.put("ToggleButton.foreground", defaults.getColor("text"));
-//		
-//		uiDefaults.put("button.normalGradient1", buttonGradient1);
-//		uiDefaults.put("button.normalGradient2", buttonGradient2);
-//		uiDefaults.put("button.hotGradient1", buttonGradient3);
-//		uiDefaults.put("button.hotGradient2", buttonGradient4);
-//		uiDefaults.put("button.pressedGradient1", buttonGradient5);
-//		uiDefaults.put("button.pressedGradient2", buttonGradient6);
-//
-//		
-//		
-//		uiDefaults.put("ToggleButton.background", defaults.getColor("control"));
-//		uiDefaults.put("ToggleButton.background", defaults.getColor("control"));
-//		uiDefaults.put("ToggleButton.background", defaults.getColor("control"));
-//		ToggleButton.disabled
-//	}
 
     public void createSkinnedToggleButton(UIDefaults btnSkin) {
         RoundedButtonPainter cs = new RoundedButtonPainter(btnSkin);

@@ -26,7 +26,6 @@ public class OverflowMenuHandler {
     private final KeyStroke ksHideShow;
     private final AbstractAction aHideShow;
     private final JPopupMenu popup;
-    // private FileComponentHolder holder;
     private final AbstractFileBrowserView fileBrowserView;
     private final JMenu favouriteLocations;
     private final JMenu mSortMenu;
@@ -34,7 +33,6 @@ public class OverflowMenuHandler {
     private FolderView folderView;
 
     public OverflowMenuHandler(AbstractFileBrowserView fileBrowserView, FileBrowser fileBrowser) {
-        // this.holder = holder;
         this.fileBrowserView = fileBrowserView;
         this.fileBrowser = fileBrowser;
         ksHideShow = KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_DOWN_MASK);
@@ -83,7 +81,6 @@ public class OverflowMenuHandler {
 
         popup.add(mShowHiddenFiles);
         popup.add(favouriteLocations);
-        // popup.add(mSortMenu);
 
         loadFavourites();
     }
@@ -99,16 +96,6 @@ public class OverflowMenuHandler {
                 fileBrowserView.render(item.getName());
             });
         }
-//    	throw new Exception("should not call this");
-//        this.favouriteLocations.removeAll();
-//        for (String fav : holder.getFavouriteLocations(fileBrowserView)) {
-//            JMenuItem item = new JMenuItem(PathUtils.getFileName(fav));
-//            item.setName(fav);
-//            this.favouriteLocations.add(item);
-//            item.addActionListener(e -> {
-//                fileBrowserView.render(item.getName());
-//            });
-//        }
     }
 
     private void hideOptAction() {
@@ -137,49 +124,14 @@ public class OverflowMenuHandler {
     }
 
     public JPopupMenu getOverflowMenu() {
-        // check mode and if in list view then add sort menu
-        // popup.add(mSortMenu);
-//		mSortAsc.setSelected(folderView.isSortAsc());
-//		mSortDesc.setSelected(!folderView.isSortAsc());
-//		int sortIndex = folderView.getSortIndex();
-//		switch (sortIndex) {
-//		case 0:
-//			mSortName.setSelected(true);
-//			break;
-//		case 1:
-//			mSortSize.setSelected(true);
-//			break;
-//		case 2:
-//			mSortModified.setSelected(true);
-//			break;
-//		}
         return popup;
     }
 
     public void setFolderView(FolderView folderView) {
-//        mSortAsc.setSelected(folderView.isSortAsc());
-//        mSortDesc.setSelected(!folderView.isSortAsc());
-//        int sortIndex = folderView.getSortIndex();
-//        switch (sortIndex) {
-//            case 0:
-//                mSortName.setSelected(true);
-//                break;
-//            case 1:
-//                mSortSize.setSelected(true);
-//                break;
-//            case 2:
-//                mSortModified.setSelected(true);
-//                break;
-//        }
         InputMap map = folderView.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         ActionMap act = folderView.getActionMap();
         this.folderView = folderView;
         map.put(ksHideShow, "ksHideShow");
         act.put("ksHideShow", aHideShow);
     }
-
-//	public JPopupMenu getSortMenu() {
-//		return this.mSortMenu;
-//	}
-
 }

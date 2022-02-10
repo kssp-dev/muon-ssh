@@ -70,7 +70,6 @@ public class AddressBarBreadCrumbs extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         Dimension d = getLayout().preferredLayoutSize(this);
-        //System.out.println(d);
         return d;
     }
 
@@ -120,10 +119,7 @@ public class AddressBarBreadCrumbs extends JPanel {
                               int height) {
                 if (object
                         .getClientProperty("path.index.last") == Boolean.TRUE) {
-                    g.setColor(App.SKIN.getAddressBarSelectionBackground());// new
-                    // Color(240,
-                    // 240,
-                    // 240));
+                    g.setColor(App.SKIN.getAddressBarSelectionBackground());
                     g.fillRect(0, 0, width - 1, height - 1);
                 }
             }

@@ -75,9 +75,6 @@ public class AppWindow extends JFrame {
             setSize(width, height);
         }
 
-        // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        // mainWindow.add(new MainContent(mainWindow));
         this.setLocationRelativeTo(null);
 
         this.sessionCard = new CardLayout();
@@ -186,7 +183,6 @@ public class AppWindow extends JFrame {
         Box b1 = Box.createHorizontalBox();
         b1.setOpaque(true);
         b1.setBackground(App.SKIN.getTableBackgroundColor());
-        // b1.setBackground(App.SKIN.getDefaultSelectionBackground());
         b1.setBorder(new CompoundBorder(new MatteBorder(1, 0, 0, 0, App.SKIN.getDefaultBorderColor()),
                 new EmptyBorder(5, 5, 5, 5)));
         b1.add(Box.createRigidArea(new Dimension(10, 10)));
@@ -206,14 +202,10 @@ public class AppWindow extends JFrame {
             }
         };
 
-        // b1.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         JLabel lblBrand = new JLabel(APPLICATION_NAME + " " + APPLICATION_VERSION);
         lblBrand.addMouseListener(ml);
         lblBrand.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        // lblBrand.setFont(App.SKIN.getDefaultFont().deriveFont(Font.PLAIN,
-        // 14));
-        // lblBrand.setForeground(Color.WHITE);
         lblBrand.setVerticalAlignment(JLabel.CENTER);
         b1.add(lblBrand);
         b1.add(Box.createRigidArea(new Dimension(10, 10)));
@@ -221,22 +213,16 @@ public class AppWindow extends JFrame {
         JLabel lblUrl = new JLabel(REPOSITORY_URL);
         lblUrl.addMouseListener(ml);
         lblUrl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        // lblUrl.setFont(App.SKIN.getDefaultFont().deriveFont(Font.PLAIN, 14));
-        // lblUrl.setForeground(Color.WHITE);
-        // lblUrl.setForeground(App.SKIN.getDefaultSelectionForeground());
         b1.add(lblUrl);
 
         b1.add(Box.createHorizontalGlue());
 
         JLabel lblUpload = new JLabel();
         lblUpload.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
-        // lblUpload.setForeground(Color.WHITE);
         lblUpload.setText(FontAwesomeContants.FA_CLOUD_UPLOAD);
         b1.add(lblUpload);
         b1.add(Box.createRigidArea(new Dimension(5, 10)));
         lblUploadCount = new JLabel("0");
-//		lblUploadCount
-//				.setFont(App.SKIN.getDefaultFont().deriveFont(Font.PLAIN, 14));
         b1.add(lblUploadCount);
 
         lblUpload.addMouseListener(new MouseAdapter() {
@@ -257,13 +243,10 @@ public class AppWindow extends JFrame {
 
         JLabel lblDownload = new JLabel();
         lblDownload.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
-        // lblDownload.setForeground(Color.WHITE);
         lblDownload.setText(FontAwesomeContants.FA_CLOUD_DOWNLOAD);
         b1.add(lblDownload);
         b1.add(Box.createRigidArea(new Dimension(5, 10)));
         lblDownloadCount = new JLabel("0");
-//		lblDownloadCount
-//				.setFont(App.SKIN.getDefaultFont().deriveFont(Font.PLAIN, 14));
         b1.add(lblDownloadCount);
 
         lblDownload.addMouseListener(new MouseAdapter() {
@@ -281,18 +264,6 @@ public class AppWindow extends JFrame {
         });
 
         b1.add(Box.createRigidArea(new Dimension(30, 10)));
-
-//		JLabel lblBackgroundTransfer = new JLabel("Background transfer");
-//		lblBackgroundTransfer
-//				.setFont(App.SKIN.getDefaultFont().deriveFont(Font.PLAIN, 14));
-//		b1.add(lblBackgroundTransfer);
-//		b1.add(Box.createRigidArea(new Dimension(5, 10)));
-//		JLabel lblBgToggle = new JLabel();
-//		lblBgToggle.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
-//		lblBgToggle.setForeground(Color.WHITE);
-//		lblBgToggle.setText(FontAwesomeContants.FA_TOGGLE_OFF);
-//		b1.add(lblBgToggle);
-//		b1.add(Box.createRigidArea(new Dimension(20, 10)));
 
         JLabel lblHelp = new JLabel();
         lblHelp.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
@@ -312,7 +283,6 @@ public class AppWindow extends JFrame {
             }
         });
 
-        // lblHelp.setForeground(Color.WHITE);
         lblHelp.setText(FontAwesomeContants.FA_QUESTION_CIRCLE);
         lblHelp.setCursor(new Cursor(Cursor.HAND_CURSOR));
         b1.add(lblHelp);
@@ -328,7 +298,6 @@ public class AppWindow extends JFrame {
         });
 
         lblUpdate.setFont(App.SKIN.getIconFont().deriveFont(16.0f));
-        // lblUpdate.setForeground(Color.WHITE);
         lblUpdate.setText(FontAwesomeContants.FA_REFRESH);
         b1.add(lblUpdate);
 
@@ -348,7 +317,6 @@ public class AppWindow extends JFrame {
         b1.add(Box.createRigidArea(new Dimension(10, 10)));
 
         return b1;
-        // this.setVisible(true);
     }
 
     protected void openUpdateURL() {
@@ -376,7 +344,6 @@ public class AppWindow extends JFrame {
         popup.add(panel);
         popup.setInvoker(bottomPanel);
 
-        // popup.pack();
         popup.show(bottomPanel, bottomPanel.getWidth() - popup.getPreferredSize().width,
                 -popup.getPreferredSize().height);
     }

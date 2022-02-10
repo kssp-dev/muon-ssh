@@ -41,29 +41,7 @@ public class KeyShortcutComponent extends JComponent {
                 revalidate();
                 repaint(0);
 
-//				System.out.println("Key released");
-//				System.out.println(e.getKeyChar() + " "
-//						+ KeyEvent.getKeyText(e.getExtendedKeyCode()) + " -- "
-//						+ KeyEvent.getModifiersExText(e.getModifiersEx()));
             }
-
-//			@Override
-//			public void keyTyped(KeyEvent e) {
-//				System.out.println("Key typed...");
-//				if (!waitingForKeys
-//						|| e.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
-//					return;
-//				}
-//				keyCode = e.getKeyCode();
-//				System.out.println(e.getKeyChar() + " "
-//						+ KeyEvent.getKeyText(e.getExtendedKeyCode()) + " -- "
-//						+ KeyEvent.getModifiersExText(e.getModifiersEx()));
-//				shiftDown = e.isShiftDown();
-//				altDown = e.isAltDown();
-//				ctrlDown = e.isControlDown();
-//				waitingForKeys = false;
-//				repaint(0);
-//			}
         });
         addMouseListener(new MouseAdapter() {
             @Override

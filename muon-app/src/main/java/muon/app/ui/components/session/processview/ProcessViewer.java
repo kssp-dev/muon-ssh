@@ -77,7 +77,6 @@ public class ProcessViewer extends Page {
             SwingUtilities.invokeLater(() -> {
                 // update ui ps
                 processListPanel.setProcessList(list);
-                // processListPanel.activateProcessListPanel();
             });
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -138,7 +137,6 @@ public class ProcessViewer extends Page {
                 stopFlag, out, err);
         if (ret != 0)
             throw new Exception("Error while getting metrics");
-        // System.out.println(new String(bout.toByteArray()));
         return parseProcessList(out.toString());
     }
 

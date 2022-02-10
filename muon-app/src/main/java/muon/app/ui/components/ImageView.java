@@ -17,18 +17,6 @@ import java.io.IOException;
 public class ImageView extends JComponent {
     private BufferedImage image;
 
-    /**
-     *
-     */
-    public ImageView() {
-//		try {
-//			image = ImageIO.read(
-//					new File("C:\\Users\\subhro\\Documents\\Capture.PNG"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
-    }
 
     @Override
     public Dimension getPreferredSize() {

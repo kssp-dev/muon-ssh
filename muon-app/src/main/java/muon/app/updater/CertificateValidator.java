@@ -8,7 +8,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 public class CertificateValidator {
-    public static synchronized final void registerCertificateHook() {
+    public static final synchronized void registerCertificateHook() {
         SSLContext sslContext = null;
         try {
             try {
@@ -30,7 +30,6 @@ public class CertificateValidator {
                 public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
                     try {
                         for (X509Certificate cert : chain) {
-                            //System.out.println("checking certificate: " + cert);
                             cert.checkValidity();
                         }
                     } catch (CertificateException e) {
@@ -66,7 +65,6 @@ public class CertificateValidator {
                         throws CertificateException {
                     try {
                         for (X509Certificate cert : chain) {
-                            //System.out.println("checking certificate:- " + cert);
                             cert.checkValidity();
                         }
                     } catch (CertificateException e) {
@@ -82,7 +80,6 @@ public class CertificateValidator {
                         throws CertificateException {
                     try {
                         for (X509Certificate cert : chain) {
-                            //System.out.println("checking certificate::- " + cert);
                             cert.checkValidity();
                         }
                     } catch (CertificateException e) {

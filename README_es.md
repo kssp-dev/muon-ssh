@@ -4,6 +4,8 @@
 - <a href="https://github.com/devlinx9/muon-ssh/blob/master/README.md">English</a>
 - <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_pt.md">Portuguese</a>
 - <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_ru.md">Pусский</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_fr.md">Français</a>
+- <a href="https://github.com/devlinx9/muon-ssh/blob/master/README_de.md">Deutsch</a>
 
 Una forma fácil y divertida de trabajar con servidores remotos a través de SSH. Este proyecto fue renombrado a Muon debido a que su nombre anterior "Snowflake" es confuso ya que existe un producto popular con el mismo nombre. 
 
@@ -35,6 +37,26 @@ Muon ha sido probado con varios servidores Linux y UNIX, como el servidor Ubuntu
     <th>MacOS</th>
     <th>Otros OSes</th>
     <th>Portable</th>
+  </tr>
+<tr>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.deb">v2.2.0</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.exe">Exe file</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.deb">DEB installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.dmg">DMG installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.jar">Generic installer</a>
+    </td>
+    <td>
+      <a href="https://github.com/devlinx9/muon-ssh/releases/download/v2.2.0/muonssh_2.2.0.jar">Portable JAR (Java 11)</a>
+    </td>
   </tr>
   <tr>
     <td>

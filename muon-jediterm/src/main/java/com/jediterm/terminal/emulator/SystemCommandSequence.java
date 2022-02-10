@@ -1,7 +1,5 @@
 package com.jediterm.terminal.emulator;
 
-//import com.google.common.base.Ascii;
-//import com.google.common.collect.Lists;
 import com.jediterm.terminal.TerminalDataStream;
 
 import muon.terminal.Ascii;

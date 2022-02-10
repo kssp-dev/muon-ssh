@@ -99,9 +99,6 @@ public class FileInfo implements Serializable {
     @Override
     public String toString() {
         return name;
-
-//		"FileInfo [name=" + name + ", path=" + path + ", size=" + size
-//				+ ", type=" + type + ", lastModified=" + lastModified + "]";
     }
 
     public int getPermission() {

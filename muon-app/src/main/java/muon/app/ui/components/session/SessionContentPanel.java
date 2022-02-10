@@ -76,13 +76,6 @@ public class SessionContentPanel extends JPanel implements PageHolder, CachedCre
         Box contentTabs = Box.createHorizontalBox();
         contentTabs.setBorder(new MatteBorder(0, 0, 1, 0, App.SKIN.getDefaultBorderColor()));
 
-//		String names[] = { "File browser", "Log viewer", "Terminal",
-//				"File search", "Utilities" };
-
-//		String icons[] = { FontAwesomeContants.FA_FOLDER_OPEN_O,
-//				FontAwesomeContants.FA_STICKY_NOTE_O,
-//				FontAwesomeContants.FA_TELEVISION,
-//				FontAwesomeContants.FA_SEARCH, FontAwesomeContants.FA_SLIDERS };
         fileBrowser = new FileBrowser(info, this, null, this.hashCode());
         logViewer = new LogViewer(this);
         terminalHolder = new TerminalHolder(info, this);
@@ -99,12 +92,6 @@ public class SessionContentPanel extends JPanel implements PageHolder, CachedCre
             pageArr = new Page[]{terminalHolder, fileBrowser, logViewer, searchPanel, diskspaceAnalyzer,
                     processViewer, utilityPage};
         }
-
-
-//		JPanel[] panels = {
-//				new FileBrowser(info, new AtomicBoolean(), this, null,
-//						this.hashCode()),
-//				new JPanel(), new JPanel(), new JPanel(), new JPanel() };
 
         this.cardLayout = new CardLayout();
         this.cardPanel = new JPanel(this.cardLayout);
@@ -180,7 +167,6 @@ public class SessionContentPanel extends JPanel implements PageHolder, CachedCre
     public void disableUi() {
         SwingUtilities.invokeLater(() -> {
             this.disabledPanel.startAnimation(null);
-            // this.disabledPanel.btn.setVisible(false);
             this.rootPane.setGlassPane(this.disabledPanel);
             this.disabledPanel.setVisible(true);
         });
@@ -189,7 +175,6 @@ public class SessionContentPanel extends JPanel implements PageHolder, CachedCre
     public void disableUi(AtomicBoolean stopFlag) {
         SwingUtilities.invokeLater(() -> {
             this.disabledPanel.startAnimation(stopFlag);
-            // this.disabledPanel.btn.setVisible(true);
             this.rootPane.setGlassPane(this.disabledPanel);
             System.out.println("Showing disable panel");
             this.disabledPanel.setVisible(true);

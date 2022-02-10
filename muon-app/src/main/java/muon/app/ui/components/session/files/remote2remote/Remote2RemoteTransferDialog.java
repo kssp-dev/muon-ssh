@@ -215,14 +215,6 @@ public class Remote2RemoteTransferDialog extends JDialog {
 
     private String generateCommand(RemoteServerEntry e) {
         return createSftpFileList(e);
-//		System.out.println(createSftpFileList(e));
-//		StringBuilder files = new StringBuilder();
-//		for (FileInfo finfo : selectedFiles) {
-//			files.append("'" + finfo.getPath() + "' ");
-//		}
-//		String command = String.format("cd '%s' && tar -cvf - %s | ssh %s@%s <<EOF\ncd '%s' && tar -xvf -",
-//				this.currentDirectory, files.toString(), e.getUser(), e.getHost(), e.getPath());
-//		return command;
     }
 
     private String createSftpFileList(RemoteServerEntry e) {

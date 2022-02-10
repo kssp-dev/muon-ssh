@@ -1,6 +1,5 @@
 package com.jediterm.terminal;
 
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;
@@ -19,7 +18,7 @@ public abstract class ProcessTtyConnector implements TtyConnector {
   protected Charset myCharset;
   private Dimension myPendingTermSize;
   private Dimension myPendingPixelSize;
-  private Process myProcess;
+  private final Process myProcess;
 
   public ProcessTtyConnector( Process process, Charset charset) {
     myOutputStream = process.getOutputStream();
@@ -52,7 +51,6 @@ public abstract class ProcessTtyConnector implements TtyConnector {
 
   public int read(char[] buf, int offset, int length) throws IOException {
     return myReader.read(buf, offset, length);
-    //return myInputStream.read(buf, offset, length);
   }
 
   public void write(byte[] bytes) throws IOException {

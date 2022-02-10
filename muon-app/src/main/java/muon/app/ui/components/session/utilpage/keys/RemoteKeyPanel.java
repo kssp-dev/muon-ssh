@@ -34,10 +34,9 @@ public class RemoteKeyPanel extends JPanel {
         this.info = info;
         this.info = info;
         this.callback1 = callback1;
-        // this.callback2 = callback2;
         this.callback2 = callback3;
         JLabel lblTitle = new JLabel(bundle.getString("public_key_file"));
-        txtKeyFile = new SkinnedTextField(20);// new JTextField(20);
+        txtKeyFile = new SkinnedTextField(20);
         txtKeyFile.setBorder(null);
         txtKeyFile.setBackground(App.SKIN.getDefaultBackground());
         txtKeyFile.setEditable(false);

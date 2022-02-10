@@ -28,7 +28,7 @@ public class LocalKeyPanel extends JPanel {
         this.callback1 = callback1;
         this.callback2 = callback2;
         JLabel lblTitle = new JLabel(bundle.getString("public_key_file"));
-        txtKeyFile = new SkinnedTextField(20);// new JTextField(20);
+        txtKeyFile = new SkinnedTextField(20);
         txtKeyFile.setBackground(App.SKIN.getDefaultBackground());
         txtKeyFile.setBorder(null);
         txtKeyFile.setEditable(false);

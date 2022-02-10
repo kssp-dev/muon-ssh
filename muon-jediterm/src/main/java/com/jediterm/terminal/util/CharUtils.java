@@ -1,6 +1,5 @@
 package com.jediterm.terminal.util;
 
-//import com.google.common.base.*;
 import com.jediterm.terminal.emulator.charset.*;
 import com.jediterm.terminal.model.*;
 
@@ -96,7 +95,7 @@ public class CharUtils {
 		CharacterType last = CharacterType.NONPRINTING;
 		final int end = begin + length;
 		for (int i = begin; i < end; i++) {
-			final char c = (char) bs[i];
+			final char c = bs[i];
 			last = appendChar(sb, last, c);
 		}
 	}

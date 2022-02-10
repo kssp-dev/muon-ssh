@@ -27,7 +27,7 @@ public class ProcessListPanel extends JPanel {
     private final BiConsumer<String, CommandMode> consumer;
     private final JLabel lblProcessCount;
     private JButton btnKill;
-    private final JButton btnCopyArgs;// , btnStop;
+    private final JButton btnCopyArgs;
     private String filterText = "";
 
     public ProcessListPanel(BiConsumer<String, CommandMode> consumer) {
@@ -42,7 +42,6 @@ public class ProcessListPanel extends JPanel {
             enableProcessesButtons();
         });
 
-        // table.setAutoCreateRowSorter(true);
         ProcessListRenderer renderer = new ProcessListRenderer();
         table.setDefaultRenderer(Object.class, renderer);
         table.setRowHeight(renderer.getPreferredSize().height);
@@ -81,10 +80,9 @@ public class ProcessListPanel extends JPanel {
         pan.add(jsp);
 
         Box b1 = Box.createHorizontalBox();
-//        b1.setBorder(new EmptyBorder(5, 5, 5, 5));
         b1.add(new JLabel(bundle.getString("processes")));
         b1.add(Box.createHorizontalStrut(10));
-        txtFilter = new SkinnedTextField(30);// new JTextField(30);
+        txtFilter = new SkinnedTextField(30);
         txtFilter.addActionListener(e -> {
             this.filterText = getProcessFilterText();
             model.fireTableDataChanged();
@@ -157,10 +155,6 @@ public class ProcessListPanel extends JPanel {
         prioPopup.add(mPrioAsRoot);
         prioPopup.pack();
 
-//        btnStop = new JButton("Stop monitoring");
-//        btnStop.addActionListener(e -> {
-//            consumer1.accept(Boolean.TRUE);
-//        });
 
         Box b2 = Box.createHorizontalBox();
         b2.add(lblProcessCount);
@@ -180,25 +174,17 @@ public class ProcessListPanel extends JPanel {
             Dimension d = killPopup.getPreferredSize();
             killPopup.show(btnKill, 0, -d.height);
         });
-//        btnChangePriority = new JButton("Change priority");
-//        btnChangePriority.addActionListener(e -> {
-//            Dimension d = prioPopup.getPreferredSize();
-//            prioPopup.show(btnChangePriority, 0, -d.height);
-//        });
-//        b2.add(btnStop);
         b2.add(Box.createHorizontalGlue());
         b2.add(btnCopyArgs);
         b2.add(Box.createHorizontalStrut(5));
         b2.add(btnKill);
         b2.add(Box.createHorizontalStrut(5));
-//        b2.add(btnChangePriority);
 
         pan.add(b1, BorderLayout.NORTH);
         pan.add(b2, BorderLayout.SOUTH);
         add(pan);
 
         btnKill.setEnabled(false);
-//        btnChangePriority.setEnabled(false);
         btnCopyArgs.setEnabled(false);
     }
 
@@ -238,12 +224,4 @@ public class ProcessListPanel extends JPanel {
         btnKill.setEnabled(table.getSelectedRows().length > 0);
         btnCopyArgs.setEnabled(table.getSelectedRows().length > 0);
     }
-
-//    public void enableStop() {
-//        btnStop.setEnabled(true);
-//    }
-//
-//    public void disableStop() {
-//        btnStop.setEnabled(false);
-//    }
 }

@@ -123,31 +123,6 @@ public class LocalFileSystem implements FileSystem {
         return new File(absPath).mkdirs();
     }
 
-//	@Override
-//	public long getAllFiles(String dir, String baseDir,
-//			Map<String, String> fileMap, Map<String, String> folderMap)
-//			throws Exception {
-//		long size = 0;
-//		System.out.println("get files: " + dir);
-//		String parentFolder = PathUtils.combineUnix(baseDir,
-//				PathUtils.getFileName(dir));
-//
-//		List<FileInfo> list = ll(dir, false);
-//		for (FileInfo f : list) {
-//			if (f.getType() == FileType.Directory) {
-//				folderMap.put(f.getPath(),
-//						PathUtils.combineUnix(parentFolder, f.getName()));
-//				size += getAllFiles(f.getPath(), parentFolder, fileMap,
-//						folderMap);
-//			} else {
-//				fileMap.put(f.getPath(),
-//						PathUtils.combineUnix(parentFolder, f.getName()));
-//				size += f.getSize();
-//			}
-//		}
-//		return size;
-//	}
-
     @Override
     public long getAllFiles(String dir, String baseDir, Map<String, String> fileMap, Map<String, String> folderMap)
             throws Exception {

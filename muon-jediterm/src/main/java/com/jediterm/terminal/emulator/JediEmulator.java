@@ -1,6 +1,5 @@
 package com.jediterm.terminal.emulator;
 
-//import com.google.common.base.Ascii;
 import com.jediterm.terminal.*;
 import com.jediterm.terminal.emulator.mouse.MouseFormat;
 import com.jediterm.terminal.emulator.mouse.MouseMode;
@@ -10,7 +9,6 @@ import com.jediterm.terminal.util.CharUtils;
 import muon.terminal.Ascii;
 
 import org.apache.log4j.Logger;
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;
@@ -28,7 +26,7 @@ public class JediEmulator extends DataStreamIteratingEmulator {
   private static final Logger LOG = Logger.getLogger(JediEmulator.class);
 
   private static int logThrottlerCounter = 0;
-  private static int logThrottlerRatio = 100;
+  private static final int logThrottlerRatio = 100;
   private static int logThrottlerLimit = logThrottlerRatio;
 
   @Deprecated
@@ -636,7 +634,7 @@ public class JediEmulator extends DataStreamIteratingEmulator {
       myTerminal.deviceStatusReport(str);
       return true;
     } else {
-      LOG.error("Sending Device Report Status : unsupported parameter: " + args.toString());
+      LOG.error("Sending Device Report Status : unsupported parameter: " + args);
       return false;
     }
   }
@@ -664,7 +662,7 @@ public class JediEmulator extends DataStreamIteratingEmulator {
         myTerminal.cursorShape(CursorShape.STEADY_VERTICAL_BAR);
         return true;
       default:
-        LOG.error("Setting cursor shape : unsupported parameter " + args.toString());
+        LOG.error("Setting cursor shape : unsupported parameter " + args);
         return false;
     }
   }
@@ -769,15 +767,6 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 
     return true;
   }
-
-//  private boolean setScrollingRegion(ControlSequence args) {
-//    final int top = args.getArg(0, 1);
-//    final int bottom = args.getArg(1, myTerminal.getTerminalHeight());
-//
-//    myTerminal.setScrollingRegion(top, bottom);
-//
-//    return true;
-//  }
   
   private boolean setScrollingRegion(ControlSequence args) {
 	final int top = args.getArg(0, 1);
@@ -787,7 +776,6 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 	} else {
 		bottom = myTerminal.getTerminalHeight();
 	}
-	// int bottom = args.getArg(1, myTerminal.getTerminalHeight());
 
 	myTerminal.setScrollingRegion(top, bottom);
 
@@ -985,14 +973,14 @@ public class JediEmulator extends DataStreamIteratingEmulator {
               (val2 >= 0 && val2 < 256)) {
         return new TerminalColor(val0, val1, val2);
       } else {
-        LOG.error("Bogus color setting " + args.toString());
+        LOG.error("Bogus color setting " + args);
         return null;
       }
     } else if (code == 5) {
       /* indexed color */
       return ColorPalette.getIndexedColor(args.getArg(index + 2, 0));
     } else {
-      LOG.error("Unsupported code for color attribute " + args.toString());
+      LOG.error("Unsupported code for color attribute " + args);
       return null;
     }
   }

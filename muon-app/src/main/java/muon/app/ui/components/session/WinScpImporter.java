@@ -44,9 +44,6 @@ public class WinScpImporter {
     public static void importSessions(DefaultMutableTreeNode node,
                                       List<String> keys) {
 
-        // String[] keys =
-        // Advapi32Util.registryGetKeys(WinReg.HKEY_CURRENT_USER,
-        // WinSCPRegKey);
         for (String key : keys) {
             if (RegUtil.regGetInt(WinReg.HKEY_CURRENT_USER,
                     WinSCPRegKey + "\\" + key, "FSProtocol") == 0) {

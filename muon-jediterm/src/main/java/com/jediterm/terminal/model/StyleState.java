@@ -2,7 +2,6 @@ package com.jediterm.terminal.model;
 
 import com.jediterm.terminal.TerminalColor;
 import com.jediterm.terminal.TextStyle;
-////import org.jetbrains.annotations.NotNull;
 
 public class StyleState {
   private TextStyle myCurrentStyle = TextStyle.EMPTY;

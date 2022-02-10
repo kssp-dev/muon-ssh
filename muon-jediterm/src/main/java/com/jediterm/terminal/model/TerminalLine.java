@@ -1,17 +1,11 @@
 package com.jediterm.terminal.model;
 
-//import com.google.common.base.Joiner;
-//import com.google.common.collect.Lists;
 import com.jediterm.terminal.StyledTextConsumer;
 import com.jediterm.terminal.TextStyle;
 import com.jediterm.terminal.util.CharUtils;
 import com.jediterm.terminal.util.Pair;
-////import org.jetbrains.annotations.NotNull;
-////import org.jetbrains.annotations.Nullable;
-//import org.jetbrains.annotations.TestOnly;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -363,7 +357,7 @@ public class TerminalLine {
 	}
 
 	private static class TextEntries implements Iterable<TextEntry> {
-		private List<TextEntry> myTextEntries = new ArrayList<>();
+		private final List<TextEntry> myTextEntries = new ArrayList<>();
 
 		private int myLength = 0;
 

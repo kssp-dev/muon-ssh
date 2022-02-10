@@ -74,15 +74,6 @@ public class LineGraph extends JComponent {
 
         g2.setColor(textColor);
 
-//        for (int i = 0; i < 4; i++) {
-//            if (i == 0 || i % 2 == 0) {
-//                int val = (int) (den - i * denStep);
-//                String label = val + "" + suffix;
-//                int w = g2.getFontMetrics().stringWidth(label);
-//                g2.drawString(label, labelPaddingX + labelWidth - w, (i * stepy + labelPaddingY + ascent));
-//            }
-//        }
-
         int width = getWidth() - 6;
 
         int xoff = 2 * labelPaddingX + labelWidth;

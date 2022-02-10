@@ -1,16 +1,13 @@
 package com.jediterm.terminal.model.hyperlinks;
 
-//import com.google.common.collect.Lists;
 import com.jediterm.terminal.HyperlinkStyle;
 import com.jediterm.terminal.TextStyle;
 import com.jediterm.terminal.model.CharBuffer;
 import com.jediterm.terminal.model.LinesBuffer;
 import com.jediterm.terminal.model.TerminalLine;
 import com.jediterm.terminal.model.TerminalTextBuffer;
-import com.jediterm.terminal.ui.JediTermWidget;
 import com.jediterm.terminal.util.CharUtils;
 import org.apache.log4j.Logger;
-//import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +20,8 @@ public class TextProcessing {
   private static final Logger LOG = Logger.getLogger(TextProcessing.class);
 
   private final List<HyperlinkFilter> myHyperlinkFilter;
-  private TextStyle myHyperlinkColor;
-  private HyperlinkStyle.HighlightMode myHighlightMode;
+  private final TextStyle myHyperlinkColor;
+  private final HyperlinkStyle.HighlightMode myHighlightMode;
   private TerminalTextBuffer myTerminalTextBuffer;
 
   public TextProcessing( TextStyle hyperlinkColor,

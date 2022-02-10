@@ -13,12 +13,10 @@ import java.awt.event.MouseEvent;
 
 public class TabbedPanel extends JPanel {
     private final Color unselectedBg = App.SKIN.getSelectedTabColor();
-    private final Color selectedBg = App.SKIN.getDefaultBackground();// App.SKIN.getDefaultBorderColor();//
-    // App.SKIN.getAddressBarSelectionBackground();
+    private final Color selectedBg = App.SKIN.getDefaultBackground();
     private final CardLayout cardLayout;
     private final JPanel cardPanel;
     private final Box tabHolder;
-    //	private JPopupMenu popup;
     private final Border selectedTabBorder = new CompoundBorder(
             new MatteBorder(2, 0, 0, 0,
                     App.SKIN.getDefaultSelectionBackground()),
@@ -30,27 +28,6 @@ public class TabbedPanel extends JPanel {
     public TabbedPanel() {
         super(new BorderLayout(), true);
         setOpaque(true);
-
-//		JMenuItem localMenuItem = new JMenuItem("Local file browser");
-//		JMenuItem remoteMenuItem = new JMenuItem("Remote file browser");
-//
-//		popup = new JPopupMenu();
-//		popup.add(remoteMenuItem);
-//		popup.add(localMenuItem);
-//		popup.pack();
-//
-//		localMenuItem.addActionListener(e -> {
-//			callback.accept(NewTabType.LocalTab);
-//		});
-//
-//		remoteMenuItem.addActionListener(e -> {
-//			callback.accept(NewTabType.RemoteTab);
-//		});
-
-//		tabHolder = new JPanel();
-//		BoxLayout boxLayout = new BoxLayout(tabHolder, BoxLayout.LINE_AXIS);
-
-        // tabHolder.setLayout(boxLayout);
         tabHolder = Box.createHorizontalBox();
         tabHolder.setBackground(unselectedBg);
         tabHolder.setOpaque(true);
@@ -139,30 +116,4 @@ public class TabbedPanel extends JPanel {
         // TODO Auto-generated method stub
         return super.add(comp);
     }
-
-//	private void removeTabAt(int index, String name, TabTitleComponent title) {
-//		tabHolder.remove(title);
-//		cardPanel.remove(title.component);
-//		if (index > 0) {
-//			setSelectedIndex(index - 1);
-//		} else if (cardPanel.getComponentCount() > index) {
-//			setSelectedIndex(index);
-//		}
-//		tabHolder.revalidate();
-//		tabHolder.repaint();
-//	}
-
-//	public Component getSelectedContent() {
-//		for (int i = 0; i < tabHolder.getComponentCount(); i++) {
-//			if (tabHolder.getComponent(i) instanceof TabTitleComponent) {
-//				TabTitleComponent c = (TabTitleComponent) tabHolder
-//						.getComponent(i);
-//				if (c.selected) {
-//					return c.component;
-//				}
-//			}
-//		}
-//		return null;
-//	}
-
 }

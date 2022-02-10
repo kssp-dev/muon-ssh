@@ -27,8 +27,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
     private final SshMenuHandler menuHandler;
     private final JPopupMenu addressPopup;
     private final DndTransferHandler transferHandler;
-//	private JComboBox<String> cmbOptions = new JComboBox<>(
-//			new String[] { "Transfer normally", "Transfer in background" });
 
     public SshFileBrowserView(FileBrowser fileBrowser, String initialPath, PanelOrientation orientation) {
         super(orientation, fileBrowser);
@@ -83,36 +81,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
                 + (this.path == null || this.path.length() < 1 ? "" : " [" + this.path + "]");
     }
 
-//    private void connect() throws Exception {
-//        synchronized (fileSystemMap) {
-//            fs = fileSystemMap.get(source.getInfo());
-//            if (fs == null || !fs.isConnected()) {
-//                if (fs == null) {
-//                    fs = new SshFileSystem(source);
-//                }
-//                try {
-//                    fs.connect();
-//                    fileSystemMap.put(source.getInfo(), fs);
-//                    fileViewMap.put(fs, 1);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-//                fileViewMap.put(fs, fileViewMap.get(fs) + 1);
-//            }
-//
-//            String home = source.getInfo().getRemoteFolder();
-//            if (home == null) {
-//                home = fs.getHome();
-//            }
-//            this.path = home;
-//            final String finalHome = home;
-//            SwingUtilities.invokeLater(() -> {
-//                addressBar.setText(finalHome);
-//            });
-//        }
-//    }
-
     private String trimPath(String path) {
         if (path.equals("/"))
             return path;
@@ -162,7 +130,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
                         if (path == null) {
                             SshFileSystem sshfs = this.fileBrowser.getSSHFileSystem();
                             this.path = sshfs.getHome();
-                            // holder.getSshFileSystem().statFs();
                         }
                         renderDirectory(this.path, useCache);
                         break;
@@ -213,7 +180,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
             e1.printStackTrace();
         }
 
-        // holder.openWithDefaultApp(file);
     }
 
     protected void up() {
@@ -259,12 +225,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
                 System.out.println("Source fs is remote");
                 sourceFs = this.fileBrowser.getSSHFileSystem();
             }
-//			else if (transferData.getSourceType() == DndTransferData.DndSourceType.SFTP) {
-            // handle server to server drop - sftp
-//				System.out.println("Foreign file drop");
-//				sourceFs = this.fileBrowser.getFs(transferData.getSource());
-//				System.out.println("Foreign sftp fs: " + sourceFs);
-//			}
 
             if (sourceFs instanceof LocalFileSystem) {
                 System.out.println("Dropped: " + transferData);
@@ -306,12 +266,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
                 }
             } else if (sourceFs instanceof SshFileSystem
                     && (transferData.getSourceType() == DndTransferData.DndSourceType.SFTP)) {
-//				System.out.println("Sftp file drop");
-//				FileSystem targetFs = holder.getSshFileSystem();
-//				holder.newFileTransfer(sourceFs, targetFs,
-//						transferData.getFiles(),
-//						transferData.getCurrentDirectory(), this.path,
-//						this.hashCode(), -1, false);
             }
             System.out.println("12345: " + (sourceFs instanceof SshFileSystem) + " " + transferData.getSourceType());
             return true;
@@ -319,7 +273,6 @@ public class SshFileBrowserView extends AbstractFileBrowserView {
             e.printStackTrace();
             return false;
         }
-        // throw new RuntimeException("Not implemented");
     }
 
     public FileSystem getFileSystem() throws Exception {

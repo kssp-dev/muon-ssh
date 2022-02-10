@@ -37,27 +37,6 @@ public class FileTransfer implements Runnable, AutoCloseable {
     private long totalFiles;
     private Constants.ConflictAction conflictAction = ConflictAction.PROMPT; // 0 -> overwrite, 1 -> auto rename, 2
 
-	/*public enum ConflictAction {
-		OverWrite, AutoRename, Skip, Prompt, Cancel
-	}
-
-	public enum TransferMode {
-		Prompt, Background, Normal
-	}*/
-
-    /*public FileTransfer(FileSystem sourceFs, FileSystem targetFs, FileInfo[] files, String targetFolder,
-                        FileTransferProgress callback, Constants.ConflictAction defaultConflictAction) {
-        this.sourceFs = sourceFs;
-        this.targetFs = targetFs;
-        this.files = files;
-        this.targetFolder = targetFolder;
-        this.callback = callback;
-        this.conflictAction = defaultConflictAction;
-        if (defaultConflictAction == Constants.ConflictAction.CANCEL) {
-            throw new IllegalArgumentException("defaultConflictAction can not be ConflictAction.Cancel");
-        }
-    }
-*/
     public FileTransfer(FileSystem sourceFs, FileSystem targetFs, FileInfo[] files, String targetFolder,
                         FileTransferProgress callback, Constants.ConflictAction defaultConflictAction, RemoteSessionInstance instance) {
         this.sourceFs = sourceFs;
@@ -149,8 +128,7 @@ public class FileTransfer implements Runnable, AutoCloseable {
                                         "Permission denied, do you want to copy files from the temporary folder to destination with sudo?",
                                         "Insufficient permission", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                             String command = "sh -c  \"cd '" + tmpDir + "'; cp -r * '" + this.targetFolder + "'\"";
-                            // String command = "sh -c cp -r \"" + tmpDir + "/*\" \"" +
-                            // this.targetFolder + "\"";
+
                             System.out.println("Invoke sudo: " + command);
                             int ret = SudoUtils.runSudo(command, instance);
                             if (ret == 0) {
@@ -230,7 +208,6 @@ public class FileTransfer implements Runnable, AutoCloseable {
                 len -= x;
                 processedBytes += x;
                 callback.progress(processedBytes, totalSize, processedFilesCount, totalFiles, this);
-                // Thread.sleep(500);
             }
             System.out.println("Copy done before stream closing");
             out.flush();
@@ -245,16 +222,6 @@ public class FileTransfer implements Runnable, AutoCloseable {
     @Override
     public void close() {
         stopFlag.set(true);
-//		try {
-//			this.sourceFs.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		try {
-//			this.targetFs.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
     }
 
     public FileInfo[] getFiles() {

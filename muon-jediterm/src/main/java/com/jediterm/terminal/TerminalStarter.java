@@ -3,7 +3,6 @@ package com.jediterm.terminal;
 import com.jediterm.terminal.emulator.Emulator;
 import com.jediterm.terminal.emulator.JediEmulator;
 import org.apache.log4j.Logger;
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;

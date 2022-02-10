@@ -3,7 +3,6 @@ package com.jediterm.terminal.model;
 import com.jediterm.terminal.util.CharUtils;
 import com.jediterm.terminal.util.Pair;
 import org.apache.log4j.Logger;
-////import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.ArrayList;

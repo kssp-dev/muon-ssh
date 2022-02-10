@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-//import snowflake.utils.SshCommandUtils;
 
 public class DiskAnalysisTask implements Runnable {
-    // private SshUserInteraction source;
     private final RemoteSessionInstance client;
     private final String folder;
     private final AtomicBoolean stopFlag;
@@ -44,10 +42,5 @@ public class DiskAnalysisTask implements Runnable {
     }
 
     public void close() {
-//		try {
-//			client.close();
-//		} catch (Exception e) {
-//
-//		}
     }
 }
