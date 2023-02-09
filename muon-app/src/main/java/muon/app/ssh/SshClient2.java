@@ -189,7 +189,7 @@ public class SshClient2 implements Closeable {
                     System.out.println("adding host key verifier");
                     this.sshj.addHostKeyVerifier(App.hostKeyVerifier);
                     System.out.println("Host key verifier added");
-                    if (this.info.getJumpType() == SessionInfo.JumpType.TCP_FORWARDING) {
+                    if (this.info.getJumpType() == SessionInfo.JumpType.TcpForwarding) {
                         System.out.println("tcp forwarding...");
                         this.connectViaTcpForwarding();
                     } else {

@@ -75,6 +75,6 @@ public class PortForwardingRule {
     }
 
     public enum PortForwardingType {
-        LOCAL, REMOTE
+        Local, Remote
     }
 }

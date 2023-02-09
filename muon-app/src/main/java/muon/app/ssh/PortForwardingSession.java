@@ -57,13 +57,13 @@ public class PortForwardingSession {
                 ssh.connect();
             }
             for (PortForwardingRule r : info.getPortForwardingRules()) {
-                if (r.getType() == PortForwardingType.LOCAL) {
+                if (r.getType() == PortForwardingType.Local) {
                     try {
                         forwardLocalPort(r);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                } else if (r.getType() == PortForwardingType.REMOTE) {
+                } else if (r.getType() == PortForwardingType.Remote) {
                     try {
                         forwardRemotePort(r);
                     } catch (Exception e) {

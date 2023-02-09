@@ -105,7 +105,7 @@ public class PortForwardingPanel extends JPanel {
             spSourcePort.setValue(r.getSourcePort());
             spTargetPort.setValue(r.getTargetPort());
             txtBindAddress.setText(r.getBindHost());
-            cmbPFType.setSelectedIndex(r.getType() == PortForwardingType.LOCAL ? 0 : 1);
+            cmbPFType.setSelectedIndex(r.getType() == PortForwardingType.Local ? 0 : 1);
         }
 
         while (JOptionPane.showOptionDialog(this,
@@ -127,7 +127,7 @@ public class PortForwardingPanel extends JPanel {
             if (r == null) {
                 r = new PortForwardingRule();
             }
-            r.setType(cmbPFType.getSelectedIndex() == 0 ? PortForwardingType.LOCAL : PortForwardingType.REMOTE);
+            r.setType(cmbPFType.getSelectedIndex() == 0 ? PortForwardingType.Local : PortForwardingType.Remote);
             r.setHost(host);
             r.setBindHost(bindAddress);
             r.setSourcePort(port1);

@@ -24,7 +24,7 @@ public class SessionInfo extends NamedItem implements Serializable {
     private String proxyPassword;
     private int proxyType = 0;
     private boolean useJumpHosts = false;
-    private JumpType jumpType = JumpType.TCP_FORWARDING;
+    private JumpType jumpType = JumpType.TcpForwarding;
     private List<HopEntry> jumpHosts = new ArrayList<>();
     private List<PortForwardingRule> portForwardingRules = new ArrayList<>();
 
@@ -323,6 +323,6 @@ public class SessionInfo extends NamedItem implements Serializable {
     }
 
     public enum JumpType {
-        TCP_FORWARDING, PORT_FORWARDING
+        TcpForwarding, PortForwarding
     }
 }

@@ -150,7 +150,7 @@ public class SessionInfoPanel extends JPanel {
 
     private void setJumpHostDetails(boolean useJumpHosts, JumpType jumpType, List<HopEntry> jumpHosts) {
         this.chkUseJumpHosts.setSelected(useJumpHosts);
-        if (jumpType == JumpType.TCP_FORWARDING) {
+        if (jumpType == JumpType.TcpForwarding) {
             radMultiHopTunnel.setSelected(true);
         } else {
             radMultiHopPortForwarding.setSelected(true);
@@ -809,9 +809,9 @@ public class SessionInfoPanel extends JPanel {
 
     private void updateHopMode() {
         if (radMultiHopPortForwarding.isSelected()) {
-            info.setJumpType(JumpType.PORT_FORWARDING);
+            info.setJumpType(JumpType.PortForwarding);
         } else {
-            info.setJumpType(JumpType.TCP_FORWARDING);
+            info.setJumpType(JumpType.TcpForwarding);
         }
     }
 
