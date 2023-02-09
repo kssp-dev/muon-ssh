@@ -61,12 +61,8 @@ public class SessionStore {
             tree.setFolder(folder);
             tree.setLastSelection(lastSelectionPath);
             objectMapper.writeValue(file, tree);
-            try {
-                PasswordStore.getSharedInstance().savePasswords(tree);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
+            PasswordStore.getSharedInstance().savePasswords(tree);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

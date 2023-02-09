@@ -10,7 +10,6 @@ import util.Constants;
 import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +20,11 @@ import java.util.zip.ZipOutputStream;
 import static muon.app.App.bundle;
 import static muon.app.ui.components.session.SessionStore.load;
 import static muon.app.ui.components.session.SessionStore.save;
-import static util.Constants.*;
+import static util.Constants.SESSION_DB_FILE;
+import static util.Constants.configDir;
 
 public class SessionExportImport {
-    public static final synchronized void exportSessions() {
+    public static synchronized void exportSessions() {
         JFileChooser jfc = new JFileChooser();
         if (jfc.showSaveDialog(App.getAppWindow()) == JFileChooser.APPROVE_OPTION) {
             File file = jfc.getSelectedFile();
@@ -35,15 +35,13 @@ public class SessionExportImport {
                     out.write(Files.readAllBytes(f.toPath()));
                     out.closeEntry();
                 }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static final synchronized boolean importSessions() {
+    public static synchronized boolean importSessions() {
         JFileChooser jfc = new JFileChooser();
         if (jfc.showOpenDialog(App.getAppWindow()) != JFileChooser.APPROVE_OPTION) {
             return false;
@@ -71,7 +69,7 @@ public class SessionExportImport {
         return true;
     }
 
-    public static final synchronized boolean importSessionsSSHConfig() {
+    public static synchronized boolean importSessionsSSHConfig() {
         JFileChooser jfc = new JFileChooser();
         if (jfc.showOpenDialog(App.getAppWindow()) != JFileChooser.APPROVE_OPTION) {
             return false;
@@ -144,18 +142,17 @@ public class SessionExportImport {
         return true;
     }
 
-    public static final synchronized void importOnFirstRun() {
+    public static synchronized void importOnFirstRun() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
-            SavedSessionTree savedSessionTree = objectMapper.readValue(new File(System.getProperty("user.home")
-                            + File.separator + "muon-ssh" + File.separator + "session-store.json"),
-                    new TypeReference<SavedSessionTree>() {
+            SavedSessionTree savedSessionTree = objectMapper.readValue(new File(configDir + File.separator + SESSION_DB_FILE),
+                    new TypeReference<>() {
                     });
             save(savedSessionTree.getFolder(), savedSessionTree.getLastSelection(),
                     new File(configDir, SESSION_DB_FILE));
-            Files.copy(Paths.get(System.getProperty("user.home"), "muon-ssh", "snippets.json"),
-                    Paths.get(configDir, SNIPPETS_FILE));
+//            Files.copy(Paths.get(configDir, SNIPPETS_FILE),
+//                    Paths.get(configDir, SNIPPETS_FILE));
         } catch (IOException e) {
             e.printStackTrace();
         }

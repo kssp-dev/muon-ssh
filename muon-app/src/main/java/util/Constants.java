@@ -19,7 +19,8 @@ public class Constants {
     public static final VersionEntry VERSION = new VersionEntry("v" + APPLICATION_VERSION);
     public static final String UPDATE_URL2 = UPDATE_URL + "/check-update.html?v="
             + VERSION.getNumericValue();
-    public static String configDir = System.getProperty("user.home") + File.separatorChar + "muon-ssh";
+    public static String oldConfigDir = System.getProperty("user.home") + File.separatorChar + "muon-ssh";
+    public static String configDir = System.getProperty("user.home") + File.separatorChar + ".muon-ssh";
     public static final String SESSION_DB_FILE = "session-store.json";
     public static final String CONFIG_DB_FILE = "settings.json";
     public static final String SNIPPETS_FILE = "snippets.json";

@@ -31,6 +31,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static org.apache.commons.io.FileUtils.copyDirectory;
 import static util.Constants.*;
 
 /**
@@ -73,16 +74,18 @@ public class App {
         Security.setProperty("networkaddress.cache.negative.ttl", "1");
         Security.setProperty("crypto.policy", "unlimited");
 
+        boolean importOnFirstRun = validateCustomMuonPath() || !validateConfigPath();
+
         setBundleLanguage();
         loadSettings();
+
+        if (importOnFirstRun) {
+            SessionExportImport.importOnFirstRun();
+        }
 
         if (settings.isManualScaling()) {
             System.setProperty("sun.java2d.uiScale.enabled", "true");
             System.setProperty("sun.java2d.uiScale", String.format("%.2f", settings.getUiScaling()));
-        }
-
-        if (validateFirstRun() && !validateMuonPath()) {
-            SessionExportImport.importOnFirstRun();
         }
 
         if (settings.getEditors().isEmpty()) {
@@ -127,19 +130,28 @@ public class App {
         mw.createFirstSessionPanel();
     }
 
-    private static boolean validateMuonPath() {
-        boolean firstRun = false;
-
+    private static boolean validateConfigPath() {
         File appDir = new File(configDir);
+        File oldAppDir = new File(oldConfigDir);
         if (!appDir.exists()) {
             //Validate if the config directory can be created
             if (!appDir.mkdirs()) {
                 LOG.error("The config directory for moun cannot be created: " + configDir);
                 System.exit(1);
             }
-            firstRun = true;
+
+            if (!oldAppDir.exists()) {
+                return true;
+            }
+
+            try {
+                copyDirectory(oldAppDir, appDir);
+            } catch (IOException e) {
+                LOG.error("The copy to the new directory failed: " + oldConfigDir, e);
+                System.exit(1);
+            }
         }
-        return firstRun;
+        return false;
     }
 
     private static void validateMaxKeySize() {
@@ -154,7 +166,7 @@ public class App {
         }
     }
 
-    private static boolean validateFirstRun() {
+    private static boolean validateCustomMuonPath() {
         //Checks if the parameter muonPath is set in the startup
         String muonPath = System.getProperty("muonPath");
         boolean isMuonPath = false;
