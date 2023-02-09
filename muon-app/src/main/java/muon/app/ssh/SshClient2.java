@@ -36,7 +36,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author subhro
- *
  */
 public class SshClient2 implements Closeable {
     private static final int CONNECTION_TIMEOUT = App.getGlobalSettings().getConnectionTimeout() * 1000;
@@ -160,7 +159,7 @@ public class SshClient2 implements Closeable {
     }
 
     public void connect() throws IOException, OperationCancelledException {
-        Deque<HopEntry> hopStack = new ArrayDeque<HopEntry>();
+        Deque<HopEntry> hopStack = new ArrayDeque<>();
         for (HopEntry e : this.info.getJumpHosts()) {
             hopStack.add(e);
         }
@@ -168,7 +167,7 @@ public class SshClient2 implements Closeable {
     }
 
     private void connect(Deque<HopEntry> hopStack) throws IOException, OperationCancelledException {
-        this.inputBlocker.blockInput();
+        //this.inputBlocker.blockInput();
         try {
             defaultConfig = new DefaultConfig();
             if (App.getGlobalSettings().isShowMessagePrompt()) {
@@ -181,16 +180,16 @@ public class SshClient2 implements Closeable {
             sshj.setTimeout(CONNECTION_TIMEOUT);
             if (hopStack.isEmpty()) {
                 this.setupProxyAndSocketFactory();
-                this.sshj.addHostKeyVerifier(App.HOST_KEY_VERIFIER);
+                this.sshj.addHostKeyVerifier(App.hostKeyVerifier);
                 sshj.connect(info.getHost(), info.getPort());
             } else {
                 try {
                     System.out.println("Tunneling through...");
                     tunnelThrough(hopStack);
                     System.out.println("adding host key verifier");
-                    this.sshj.addHostKeyVerifier(App.HOST_KEY_VERIFIER);
+                    this.sshj.addHostKeyVerifier(App.hostKeyVerifier);
                     System.out.println("Host key verifier added");
-                    if (this.info.getJumpType() == SessionInfo.JumpType.TcpForwarding) {
+                    if (this.info.getJumpType() == SessionInfo.JumpType.TCP_FORWARDING) {
                         System.out.println("tcp forwarding...");
                         this.connectViaTcpForwarding();
                     } else {
@@ -283,9 +282,10 @@ public class SshClient2 implements Closeable {
                 this.sshj.close();
             }
             throw e;
-        } finally {
-            this.inputBlocker.unblockInput();
         }
+//        } finally {
+//            this.inputBlocker.unblockInput();
+//        }
     }
 
     private boolean isPasswordSet() {

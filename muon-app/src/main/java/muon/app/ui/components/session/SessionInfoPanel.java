@@ -150,7 +150,7 @@ public class SessionInfoPanel extends JPanel {
 
     private void setJumpHostDetails(boolean useJumpHosts, JumpType jumpType, List<HopEntry> jumpHosts) {
         this.chkUseJumpHosts.setSelected(useJumpHosts);
-        if (jumpType == JumpType.TcpForwarding) {
+        if (jumpType == JumpType.TCP_FORWARDING) {
             radMultiHopTunnel.setSelected(true);
         } else {
             radMultiHopPortForwarding.setSelected(true);
@@ -182,9 +182,7 @@ public class SessionInfoPanel extends JPanel {
         radMultiHopTunnel = new JRadioButton("Use multihop SSH tunnel");
         radMultiHopPortForwarding = new JRadioButton("Use multihop port forwarding");
 
-        chkUseJumpHosts.addActionListener(e -> {
-            info.setUseJumpHosts(chkUseJumpHosts.isSelected());
-        });
+        chkUseJumpHosts.addActionListener(e -> info.setUseJumpHosts(chkUseJumpHosts.isSelected()));
 
         radMultiHopPortForwarding.addActionListener(e -> updateHopMode());
         radMultiHopTunnel.addActionListener(e -> updateHopMode());
@@ -274,9 +272,7 @@ public class SessionInfoPanel extends JPanel {
         lblProxyPass = new JLabel(bundle.getString("proxy_password") + bundle.getString("warning_plain_text"));
 
         cmbProxy = new JComboBox<>(new String[]{"NONE", "HTTP", "SOCKS"});
-        cmbProxy.addActionListener(e -> {
-            info.setProxyType(cmbProxy.getSelectedIndex());
-        });
+        cmbProxy.addActionListener(e -> info.setProxyType(cmbProxy.getSelectedIndex()));
 
         inpProxyHostName = new SkinnedTextField(10);// new
         inpProxyHostName.getDocument().addDocumentListener(new DocumentListener() {
@@ -694,13 +690,12 @@ public class SessionInfoPanel extends JPanel {
             jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 String selectedFile = jfc.getSelectedFile().getAbsolutePath();
-                if (selectedFile.endsWith(".ppk")) {
-                    if (!isSupportedPuttyKeyFile(jfc.getSelectedFile())) {
-                        JOptionPane.showMessageDialog(this, bundle.getString("unsupported_key")
-                        );
-                        return;
-                    }
+                if (selectedFile.endsWith(".ppk") && !isSupportedPuttyKeyFile(jfc.getSelectedFile())) {
+                    JOptionPane.showMessageDialog(this, bundle.getString("unsupported_key")
+                    );
+                    return;
                 }
+
                 inpKeyFile.setText(jfc.getSelectedFile().getAbsolutePath());
             }
         });
@@ -814,9 +809,9 @@ public class SessionInfoPanel extends JPanel {
 
     private void updateHopMode() {
         if (radMultiHopPortForwarding.isSelected()) {
-            info.setJumpType(JumpType.PortForwarding);
+            info.setJumpType(JumpType.PORT_FORWARDING);
         } else {
-            info.setJumpType(JumpType.TcpForwarding);
+            info.setJumpType(JumpType.TCP_FORWARDING);
         }
     }
 

@@ -61,7 +61,7 @@ public class SshFileOperations {
         }
 
         int action = -1;
-        if (dupList.size() > 0) {
+        if (!dupList.isEmpty()) {
             JComboBox<String> cmbs = new JComboBox<>(
                     new String[]{"Auto rename", "Overwrite"});
             if (JOptionPane.showOptionDialog(null, new Object[]{
@@ -139,7 +139,7 @@ public class SshFileOperations {
         }
 
         int action = -1;
-        if (dupList.size() > 0) {
+        if (!dupList.isEmpty()) {
             JComboBox<String> cmbs = new JComboBox<>(
                     new String[]{"Auto rename", "Overwrite"});
             if (JOptionPane.showOptionDialog(null, new Object[]{
