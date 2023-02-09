@@ -25,6 +25,7 @@ import util.PlatformUtils;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.util.*;
@@ -173,6 +174,11 @@ public class App {
         if (muonPath != null && !muonPath.isEmpty()) {
             LOG.info("Muon path: " + muonPath);
             configDir = muonPath;
+            //Validate if the config directory can be created
+            if (!Paths.get(muonPath).toFile().exists()) {
+                LOG.error("The config directory for moun doesn't exists: " + configDir);
+                System.exit(1);
+            }
             isMuonPath = true;
         }
         return isMuonPath;
