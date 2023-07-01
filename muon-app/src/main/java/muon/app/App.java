@@ -40,6 +40,10 @@ import static util.Constants.*;
  */
 public class App {
 
+    private App() {
+
+    }
+
     private static final Logger LOG = Logger.getLogger(App.class);
 
     public static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
@@ -184,23 +188,7 @@ public class App {
         return isMuonPath;
     }
 
-    public static synchronized void loadSettings() {
-        File file = new File(configDir, CONFIG_DB_FILE);
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        if (file.exists()) {
-            try {
-                settings = objectMapper.readValue(file, new TypeReference<>() {
-                });
-                return;
-            } catch (IOException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        }
-        settings = new Settings();
-    }
-
-    public static synchronized Settings loadSettings2() {
+    public static synchronized Settings loadSettings() {
         File file = new File(configDir, CONFIG_DB_FILE);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
