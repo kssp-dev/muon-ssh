@@ -23,8 +23,13 @@ import util.PlatformUtils;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.NotDirectoryException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
+import java.security.Permission;
 import java.security.Security;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -40,7 +45,7 @@ public class App {
     public static final VersionEntry VERSION = new VersionEntry("v" + APPLICATION_VERSION);
     public static final String UPDATE_URL2 = UPDATE_URL + "/check-update.html?v="
             + VERSION.getNumericValue();
-    public static String CONFIG_DIR = System.getProperty("user.home") + File.separatorChar + "muon-ssh";
+    public static String CONFIG_DIR = "muon-ssh";
     public static final String SESSION_DB_FILE = "session-store.json";
     public static final String CONFIG_DB_FILE = "settings.json";
     public static final String SNIPPETS_FILE = "snippets.json";
@@ -89,7 +94,22 @@ public class App {
             System.out.println("Muon path: "+muonPath);
             CONFIG_DIR = muonPath;
             isMuonPath = true;
+        } else {
+            // Check for portable mode
+            try {
+                String p = getJarPath();
+                System.out.println("Jar file path is: " + p);
+                p += File.separatorChar + CONFIG_DIR;
+                if (! new File(p).isDirectory()) {
+                    throw new NotDirectoryException("Config directory not found: " + p);
+                }
+                CONFIG_DIR = p;
+            } catch (Exception e) {
+                CONFIG_DIR = System.getProperty("user.home") + File.separatorChar + CONFIG_DIR;
+            }
         }
+
+        System.out.println("The config directory is: " + CONFIG_DIR);
 
         File appDir = new File(CONFIG_DIR);
         if (!appDir.exists()) {
@@ -165,6 +185,37 @@ public class App {
         }
 
         mw.createFirstSessionPanel();
+    }
+
+    private static String getJarPath() throws FileNotFoundException, NotDirectoryException {
+        Path p = null;
+
+        try {
+            Enumeration<Permission> permissions = App.class
+                    .getProtectionDomain()
+                    .getPermissions()
+                    .elements();
+
+            while (p == null && permissions.hasMoreElements()) {
+                try {
+                    Path path = Paths.get(permissions.nextElement().getName()).getParent();
+                    if (path.toFile().isDirectory()) {
+                        p = path;
+                    }
+                } catch (Exception ignored) {}
+            }
+        } catch (Exception ignored) {}
+
+        if (p == null) {
+            System.out.println("Jar file path not found");
+            throw new FileNotFoundException("Jar file path not found");
+        }
+        if (! p.toFile().isDirectory()) {
+            System.out.println("Jar file path is not a directory: " + p);
+            throw new NotDirectoryException("Jar file path is not a directory: " + p);
+        }
+
+        return p.toString();
     }
 
     public synchronized static void loadSettings() {
