@@ -16,7 +16,6 @@ import java.security.KeyStore;
 import java.security.KeyStore.SecretKeyEntry;
 import java.security.KeyStoreException;
 import java.security.UnrecoverableKeyException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;

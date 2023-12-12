@@ -3,6 +3,7 @@ package muon.app.ui.components.session.files.remote2remote;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import muon.app.App;
 import muon.app.common.FileInfo;
 import muon.app.common.FileType;
@@ -243,6 +244,7 @@ public class Remote2RemoteTransferDialog extends JDialog {
         }
         File file = new File(App.CONFIG_DIR, App.TRANSFER_HOSTS);
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
             objectMapper.writeValue(file, list);
         } catch (IOException e) {

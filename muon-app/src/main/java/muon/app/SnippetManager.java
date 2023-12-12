@@ -6,6 +6,7 @@ package muon.app;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import muon.app.ui.components.session.terminal.snippets.SnippetItem;
 
 import java.io.File;
@@ -41,6 +42,7 @@ public class SnippetManager {
     public synchronized void saveSnippets() {
         File file = new File(App.CONFIG_DIR, App.SNIPPETS_FILE);
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
             objectMapper.writeValue(file, snippetItems);
         } catch (IOException e) {

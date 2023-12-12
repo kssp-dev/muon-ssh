@@ -3,6 +3,7 @@ package muon.app.ui.components.session;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import muon.app.App;
 import muon.app.PasswordStore;
 
@@ -54,6 +55,7 @@ public class SessionStore {
 
     public synchronized static void save(SessionFolder folder, String lastSelectionPath, File file) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
             SavedSessionTree tree = new SavedSessionTree();
             tree.setFolder(folder);

@@ -3,6 +3,7 @@ package muon.app.ui.components.session;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import muon.app.App;
 
 import java.io.File;
@@ -29,6 +30,7 @@ public final class BookmarkManager {
 
     public static final synchronized void save(Map<String, List<String>> bookmarks) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         File bookmarkFile = new File(App.CONFIG_DIR, App.BOOKMARKS_FILE);
         try {
             objectMapper.writeValue(bookmarkFile, bookmarks);

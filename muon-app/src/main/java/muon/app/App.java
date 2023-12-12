@@ -3,6 +3,7 @@ package muon.app;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import muon.app.ssh.GraphicalHostKeyVerifier;
 import muon.app.ssh.GraphicalInputBlocker;
 import muon.app.ssh.InputBlocker;
@@ -254,6 +255,7 @@ public class App {
     public synchronized static void saveSettings() {
         File file = new File(CONFIG_DIR, CONFIG_DB_FILE);
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
             objectMapper.writeValue(file, settings);
         } catch (IOException e) {
@@ -309,6 +311,7 @@ public class App {
     public synchronized static void savePinnedLogs() {
         File file = new File(CONFIG_DIR, PINNED_LOGS);
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
             objectMapper.writeValue(file, pinnedLogs);
         } catch (IOException e) {
