@@ -16,7 +16,7 @@ import java.util.Map;
 public class FontUtils {
     public static final Map<String, String> TERMINAL_FONTS = new CollectionHelper.OrderedDict<String, String>()
             .putItem("DejaVuSansMono", "DejaVu Sans Mono").putItem("FiraCode-Regular", "Fira Code Regular")
-            .putItem("Inconsolata-Regular", "Inconsolata Regular").putItem("NotoMono-Regular", "Noto Mono");
+            .putItem("Inconsolata-Regular", "Inconsolata Regular");
 
     public static Font loadFont(String path) {
         try (InputStream is = AppSkin.class.getResourceAsStream(path)) {
