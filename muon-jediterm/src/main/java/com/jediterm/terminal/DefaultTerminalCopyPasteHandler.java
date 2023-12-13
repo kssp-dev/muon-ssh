@@ -1,13 +1,14 @@
 package com.jediterm.terminal;
 
 import com.jediterm.terminal.ui.UIUtil;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.awt.datatransfer.*;
 
 public class DefaultTerminalCopyPasteHandler implements TerminalCopyPasteHandler, ClipboardOwner {
-  private static final Logger LOG = Logger.getLogger(DefaultTerminalCopyPasteHandler.class);
+  private static final Logger LOG = LogManager.getLogger(DefaultTerminalCopyPasteHandler.class);
 
   @Override
   public void setContents( String text, boolean useSystemSelectionClipboardIfAvailable) {

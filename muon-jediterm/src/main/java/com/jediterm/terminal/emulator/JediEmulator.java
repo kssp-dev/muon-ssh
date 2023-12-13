@@ -3,12 +3,11 @@ package com.jediterm.terminal.emulator;
 import com.jediterm.terminal.*;
 import com.jediterm.terminal.emulator.mouse.MouseFormat;
 import com.jediterm.terminal.emulator.mouse.MouseMode;
-import com.jediterm.terminal.model.JediTerminal;
 import com.jediterm.terminal.util.CharUtils;
 
 import muon.terminal.Ascii;
-
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.io.IOException;
  */
 
 public class JediEmulator extends DataStreamIteratingEmulator {
-  private static final Logger LOG = Logger.getLogger(JediEmulator.class);
+  private static final Logger LOG = LogManager.getLogger(JediEmulator.class);
 
   private static int logThrottlerCounter = 0;
   private static final int logThrottlerRatio = 100;

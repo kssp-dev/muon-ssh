@@ -14,7 +14,8 @@ import com.jediterm.terminal.ui.settings.SettingsProvider;
 import com.jediterm.terminal.util.CharUtils;
 import com.jediterm.terminal.util.Pair;
 import muon.terminal.Ascii;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -38,7 +39,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TerminalPanel extends JComponent
 		implements TerminalDisplay, TerminalActionProvider {
-	private static final Logger LOG = Logger.getLogger(TerminalPanel.class);
+	private static final Logger LOG = LogManager.getLogger(TerminalPanel.class);
 	private static final long serialVersionUID = -1048763516632093014L;
 
 	public static final double SCROLL_SPEED = 0.05;

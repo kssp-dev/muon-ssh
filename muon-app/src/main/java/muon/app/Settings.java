@@ -5,6 +5,7 @@ import muon.app.ui.components.settings.DarkTerminalTheme;
 import muon.app.ui.components.settings.EditorEntry;
 import util.CollectionHelper;
 import util.Constants;
+import util.FontUtils;
 import util.Language;
 
 import java.awt.event.InputEvent;
@@ -43,7 +44,7 @@ public class Settings {
     private int termWidth = 80;
     private int termHeight = 24;
     private boolean terminalBell = false;
-    private String terminalFontName = "NotoMono-Regular";
+    private String terminalFontName;
     private int terminalFontSize = 14;
     private Language language = Language.ENGLISH;
     private String terminalTheme = "Dark";
@@ -279,6 +280,9 @@ public class Settings {
      * @return the terminalFontName
      */
     public String getTerminalFontName() {
+        if (terminalFontName == null) {
+            terminalFontName = (String) FontUtils.TERMINAL_FONTS.keySet().toArray()[0];
+        }
         return terminalFontName;
     }
 

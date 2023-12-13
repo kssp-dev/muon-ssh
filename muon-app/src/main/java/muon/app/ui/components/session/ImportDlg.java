@@ -81,16 +81,16 @@ public class ImportDlg extends JDialog {
 
     private void importFromPutty() {
         model.clear();
-        model.addAll(PuttyImporter.getKeyNames().keySet());
+        PuttyImporter.getKeyNames().keySet().forEach(model::addElement);
     }
 
     private void importFromWinScp() {
         model.clear();
-        model.addAll(WinScpImporter.getKeyNames().keySet());
+        WinScpImporter.getKeyNames().keySet().forEach(model::addElement);
     }
 
     private void importSessionsFromPutty(DefaultMutableTreeNode node) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         int[] arr = sessionList.getSelectedIndices();
         if (arr != null) {
             for (int i = 0; i < arr.length; i++) {

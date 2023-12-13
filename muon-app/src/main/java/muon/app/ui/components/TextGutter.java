@@ -52,7 +52,7 @@ public class TextGutter extends JComponent {
             for (int i = 0; i < textArea.getLineCount(); i++) {
                 String lineNum = (lineStart + i) + "";
                 int startIndex = textArea.getLineStartOffset(i);
-                double y = textArea.modelToView2D(startIndex).getY();
+                double y = textArea.modelToView(startIndex).getY();
                 int x = getWidth() / 2 - fm.stringWidth(lineNum) / 2;
                 g.drawString(lineNum, x, (int) (y + asc));
             }

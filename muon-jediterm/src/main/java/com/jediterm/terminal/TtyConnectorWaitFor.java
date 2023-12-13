@@ -1,6 +1,7 @@
 package com.jediterm.terminal;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -9,7 +10,7 @@ import java.util.concurrent.Future;
 import java.util.function.Predicate;
 
 public class TtyConnectorWaitFor {
-  private static final Logger LOG = Logger.getLogger(TtyConnectorWaitFor.class);
+  private static final Logger LOG = LogManager.getLogger(TtyConnectorWaitFor.class);
 
   private final Future<?> myWaitForThreadFuture;
   private final BlockingQueue<Predicate<Integer>> myTerminationCallback = new ArrayBlockingQueue<Predicate<Integer>>(1);

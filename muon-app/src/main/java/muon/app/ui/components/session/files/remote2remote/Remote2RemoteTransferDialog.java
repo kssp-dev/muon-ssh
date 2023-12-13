@@ -49,7 +49,7 @@ public class Remote2RemoteTransferDialog extends JDialog {
         remoteHostModel = new DefaultListModel<RemoteServerEntry>();
         this.list.clear();
         this.list.addAll(load());
-        remoteHostModel.addAll(this.list);
+        this.list.forEach(remoteHostModel::addElement);
         remoteHostList = new JList<RemoteServerEntry>(remoteHostModel);
         remoteHostList.setCellRenderer(new RemoteHostRenderer());
 

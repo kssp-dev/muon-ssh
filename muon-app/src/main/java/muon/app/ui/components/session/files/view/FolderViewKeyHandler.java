@@ -28,7 +28,7 @@ public class FolderViewKeyHandler extends KeyAdapter {
 
     static boolean isMenuShortcutKeyDown(InputEvent event) {
         return (event.getModifiersEx()
-                & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0;
+                & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0;
     }
 
     private static int adjustIndex(int index, JTable list) {

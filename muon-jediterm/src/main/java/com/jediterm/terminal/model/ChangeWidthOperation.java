@@ -1,13 +1,14 @@
 package com.jediterm.terminal.model;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.util.List;
 import java.util.*;
 
 class ChangeWidthOperation {
-	private static final Logger LOG = Logger
+	private static final Logger LOG = LogManager
 			.getLogger(TerminalTextBuffer.class);
 
 	private final TerminalTextBuffer myTextBuffer;

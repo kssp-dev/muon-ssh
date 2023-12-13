@@ -548,7 +548,7 @@ public class LogContent extends JPanel implements ClosableTabContent {
             textArea.getHighlighter().removeAllHighlights();
             textArea.getHighlighter().addHighlight(startIndex, endIndex,
                     painter);
-            System.out.println(textArea.modelToView2D(startIndex));
+            //System.out.println(textArea.modelToView2D(startIndex));
         } catch (Exception e) {
             e.printStackTrace();
         }

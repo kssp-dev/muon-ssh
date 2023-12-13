@@ -8,7 +8,6 @@ import com.sun.jna.platform.win32.WinReg;
 import util.RegUtil;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -86,8 +85,11 @@ public class WinScpImporter {
                 info.setPort(port);
                 info.setUser(user);
                 if (keyfile != null && keyfile.length() > 0) {
-                    info.setPrivateKeyFile(
-                            URLDecoder.decode(keyfile, StandardCharsets.UTF_8));
+                    try {
+                        info.setPrivateKeyFile(
+                                URLDecoder.decode(keyfile, StandardCharsets.UTF_8.name())
+                        );
+                    } catch (Exception ignored) {}
                 }
                 info.setProxyHost(proxyHost);
                 info.setProxyPort(proxyPort);
@@ -97,7 +99,7 @@ public class WinScpImporter {
 
                 try {
 
-                    String[] arr = URLDecoder.decode(key, StandardCharsets.UTF_8).split("/");
+                    String[] arr = URLDecoder.decode(key, StandardCharsets.UTF_8.name()).split("/");
                     info.setName(arr[arr.length - 1]);
 
                     DefaultMutableTreeNode parent = node;

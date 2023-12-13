@@ -15,8 +15,8 @@ import java.util.Map;
  */
 public class FontUtils {
     public static final Map<String, String> TERMINAL_FONTS = new CollectionHelper.OrderedDict<String, String>()
-            .putItem("DejaVuSansMono", "DejaVu Sans Mono").putItem("FiraCode-Regular", "Fira Code Regular")
-            .putItem("Inconsolata-Regular", "Inconsolata Regular");
+            .putItem("DejaVu Sans Mono", "DejaVuSansMono").putItem("Fira Code Regular", "FiraCode-Regular")
+            .putItem("Inconsolata Regular", "Inconsolata-Regular");
 
     public static Font loadFont(String path) {
         try (InputStream is = AppSkin.class.getResourceAsStream(path)) {
@@ -33,7 +33,7 @@ public class FontUtils {
 
     public static Font loadTerminalFont(String name) {
         System.out.println("Loading font: " + name);
-        try (InputStream is = AppSkin.class.getResourceAsStream(String.format("/fonts/terminal/%s.ttf", name))) {
+        try (InputStream is = AppSkin.class.getResourceAsStream(String.format("/fonts/terminal/%s.ttf", TERMINAL_FONTS.get(name)))) {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);

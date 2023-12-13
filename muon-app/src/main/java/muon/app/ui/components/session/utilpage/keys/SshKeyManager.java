@@ -50,12 +50,13 @@ public class SshKeyManager {
         try {
             InputTransferChannel itc = fileSystem.inputTransferChannel();
             try (InputStream in = itc.getInputStream(path)) {
-                byte[] bytes = in.readAllBytes();
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
                 out.write(bytes);
             }
 
             holder.setRemotePubKeyFile(path);
-            holder.setRemotePublicKey(out.toString(StandardCharsets.UTF_8));
+            holder.setRemotePublicKey(out.toString(StandardCharsets.UTF_8.name()));
         } catch (SFTPException e) {
             if (e.getStatusCode() != Response.StatusCode.NO_SUCH_FILE
                     && e.getStatusCode() != Response.StatusCode.NO_SUCH_PATH) {
@@ -67,11 +68,12 @@ public class SshKeyManager {
         try {
             InputTransferChannel itc = fileSystem.inputTransferChannel();
             try (InputStream in = itc.getInputStream(path)) {
-                byte[] bytes = in.readAllBytes();
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
                 out.write(bytes);
             }
 
-            holder.setRemoteAuthorizedKeys(out.toString(StandardCharsets.UTF_8));
+            holder.setRemoteAuthorizedKeys(out.toString(StandardCharsets.UTF_8.name()));
         } catch (SFTPException e) {
             if (e.getStatusCode() != Response.StatusCode.NO_SUCH_FILE
                     && e.getStatusCode() != Response.StatusCode.NO_SUCH_PATH) {

@@ -10,7 +10,8 @@ import com.jediterm.terminal.model.TerminalTextBuffer;
 import com.jediterm.terminal.model.hyperlinks.HyperlinkFilter;
 import com.jediterm.terminal.model.hyperlinks.TextProcessing;
 import com.jediterm.terminal.ui.settings.SettingsProvider;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -32,7 +33,7 @@ import java.util.function.Predicate;
  */
 public class JediTermWidget extends JPanel
 		implements TerminalSession, TerminalWidget, TerminalActionProvider {
-	private static final Logger LOG = Logger.getLogger(JediTermWidget.class);
+	private static final Logger LOG = LogManager.getLogger(JediTermWidget.class);
 
 	protected final TerminalPanel myTerminalPanel;
 	protected final JScrollBar myScrollBar;

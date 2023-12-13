@@ -204,7 +204,7 @@ public class SnippetPanel extends JPanel {
         this.listModel.clear();
         String text = searchTextField.getText().trim();
         if (text.length() < 1) {
-            this.listModel.addAll(this.snippetList);
+            this.snippetList.forEach(this.listModel::addElement);
             return;
         }
         for (SnippetItem item : snippetList) {

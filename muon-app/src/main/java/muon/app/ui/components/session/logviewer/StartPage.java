@@ -50,7 +50,7 @@ public class StartPage extends JPanel {
         this.finalPinnedLogs = pinnedLogs;
 
         pinnedLogsModel = new DefaultListModel<>();
-        pinnedLogsModel.addAll(finalPinnedLogs);
+        finalPinnedLogs.forEach(pinnedLogsModel::addElement);
         pinnedLogList = new JList<>(pinnedLogsModel);
         pinnedLogList.setCellRenderer(new PinnedLogsRenderer());
         pinnedLogList.setBackground(App.SKIN.getSelectedTabColor());

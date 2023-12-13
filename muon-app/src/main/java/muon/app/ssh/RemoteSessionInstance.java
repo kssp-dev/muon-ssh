@@ -71,10 +71,10 @@ public class RemoteSessionInstance {
         ByteArrayOutputStream berr = error == null ? null : new ByteArrayOutputStream();
         int ret = execBin(command, stopFlag, bout, berr);
         if (output != null) {
-            output.append(bout.toString(StandardCharsets.UTF_8));
+            output.append(bout.toString(StandardCharsets.UTF_8.name()));
         }
         if (error != null) {
-            error.append(berr.toString(StandardCharsets.UTF_8));
+            error.append(berr.toString(StandardCharsets.UTF_8.name()));
         }
         return ret;
     }

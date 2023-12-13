@@ -3,7 +3,9 @@
  */
 package com.jediterm.terminal;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 
@@ -100,7 +102,7 @@ public enum TerminalMode {
           }
   ;
 
-  private static final Logger LOG = Logger.getLogger(TerminalMode.class);
+  private static final Logger LOG = LogManager.getLogger(TerminalMode.class);
   
   public void setEnabled(Terminal terminal, boolean enabled) {
     LOG.error("Mode " + name() + " is not implemented, setting to " + enabled);

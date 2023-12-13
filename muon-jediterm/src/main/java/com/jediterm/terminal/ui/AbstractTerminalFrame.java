@@ -8,8 +8,9 @@ import com.jediterm.terminal.model.SelectionUtil;
 import com.jediterm.terminal.ui.settings.DefaultTabbedSettingsProvider;
 import com.jediterm.terminal.ui.settings.TabbedSettingsProvider;
 import com.jediterm.terminal.util.Pair;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ import java.awt.event.WindowEvent;
 
 
 public abstract class AbstractTerminalFrame {
-  public static final Logger LOG = Logger.getLogger(AbstractTerminalFrame.class);
+  public static final Logger LOG = LogManager.getLogger(AbstractTerminalFrame.class);
 
   private JFrame myBufferFrame;
 
@@ -94,7 +95,7 @@ public abstract class AbstractTerminalFrame {
       logLevel.add(new AbstractAction(l.toString()) {
         @Override
         public void actionPerformed(ActionEvent e) {
-          Logger.getRootLogger().setLevel(l);
+          LogManager.getRootLogger().atLevel(l);
         }
       });
     }

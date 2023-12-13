@@ -125,7 +125,7 @@ public class NetworkToolsPage extends UtilPageItemView {
                 ByteArrayOutputStream bout = new ByteArrayOutputStream();
                 if (holder.getRemoteSessionInstance().execBin(cmd, stopFlag,
                         bout, null) == 0) {
-                    outText.append(bout.toString(StandardCharsets.UTF_8)).append("\n");
+                    outText.append(bout.toString(StandardCharsets.UTF_8.name())).append("\n");
                     System.out.println("Command stdout: " + outText);
                 } else {
                     JOptionPane.showMessageDialog(this,

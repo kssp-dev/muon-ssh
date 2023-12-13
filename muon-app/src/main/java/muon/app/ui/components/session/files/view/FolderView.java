@@ -76,7 +76,7 @@ public class FolderView extends JPanel {
         });
 
         // compare name
-        sorter.setComparator(0, new Comparator<>() {
+        sorter.setComparator(0, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 FileInfo fi1 = (FileInfo) o1;
@@ -97,7 +97,7 @@ public class FolderView extends JPanel {
         });
 
         // compare size
-        sorter.setComparator(2, new Comparator<>() {
+        sorter.setComparator(2, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 FileInfo fi1 = (FileInfo) o1;
@@ -120,7 +120,7 @@ public class FolderView extends JPanel {
         });
 
         // compare type
-        sorter.setComparator(3, new Comparator<>() {
+        sorter.setComparator(3, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 String s1 = ((FileInfo) o1).getType().toString();
@@ -130,7 +130,7 @@ public class FolderView extends JPanel {
         });
 
         // compare last modified
-        sorter.setComparator(1, new Comparator<>() {
+        sorter.setComparator(1, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 FileInfo fi1 = (FileInfo) o1;
@@ -151,7 +151,7 @@ public class FolderView extends JPanel {
         });
 
         // compare permission
-        sorter.setComparator(4, new Comparator<>() {
+        sorter.setComparator(4, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 FileInfo fi1 = (FileInfo) o1;
@@ -174,7 +174,7 @@ public class FolderView extends JPanel {
         });
 
         // compare owner
-        sorter.setComparator(5, new Comparator<>() {
+        sorter.setComparator(5, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
                 FileInfo fi1 = (FileInfo) o1;

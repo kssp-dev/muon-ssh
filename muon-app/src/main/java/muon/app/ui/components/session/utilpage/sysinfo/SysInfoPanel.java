@@ -3,10 +3,12 @@
  */
 package muon.app.ui.components.session.utilpage.sysinfo;
 
+import muon.app.App;
 import muon.app.ui.components.SkinnedScrollPane;
 import muon.app.ui.components.SkinnedTextArea;
 import muon.app.ui.components.session.SessionContentPanel;
 import muon.app.ui.components.session.utilpage.UtilPageItemView;
+import util.FontUtils;
 import util.ScriptLoader;
 
 import javax.swing.*;
@@ -32,7 +34,7 @@ public class SysInfoPanel extends UtilPageItemView {
     protected void createUI() {
         textArea = new SkinnedTextArea();
         textArea.setFont(new Font(
-                "Noto Mono"
+                App.getGlobalSettings().getTerminalFontName()
                 , Font.PLAIN, 14));
         JScrollPane scrollPane = new SkinnedScrollPane(textArea);
         this.add(scrollPane);

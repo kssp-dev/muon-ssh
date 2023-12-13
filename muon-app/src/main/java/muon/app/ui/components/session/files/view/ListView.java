@@ -25,7 +25,7 @@ public class ListView extends JList<FileInfo> {
 
             private boolean isMenuShortcutKeyDown(InputEvent event) {
                 return (event.getModifiersEx() & Toolkit.getDefaultToolkit()
-                        .getMenuShortcutKeyMaskEx()) != 0;
+                        .getMenuShortcutKeyMask()) != 0;
             }
         });
     }

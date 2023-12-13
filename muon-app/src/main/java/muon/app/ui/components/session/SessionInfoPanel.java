@@ -822,7 +822,7 @@ public class SessionInfoPanel extends JPanel {
 
     private boolean isSupportedPuttyKeyFile(File file) {
         try {
-            String content = Files.readString(file.toPath());
+            String content = new String(Files.readAllBytes(file.toPath()));
             if (content.contains("ssh-ed25519")) {
                 return false;
             }
