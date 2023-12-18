@@ -343,11 +343,10 @@ public class App {
         }
 
         Locale locale =  new Locale.Builder().setLanguage(language.getLangAbbr()).build();
-        bundle = ResourceBundle.getBundle(PATH_MESSAGES_FILE, locale);
-
-        System.out.println("Language " + language.getLangAbbr()
-                + " Locale " + locale.getLanguage()
-                + " Bundle " + bundle.getLocale().getLanguage()
+        bundle = ResourceBundle.getBundle(
+                PATH_MESSAGES_FILE
+                , locale
+                , ResourceBundle.Control.getNoFallbackControl(ResourceBundle.Control.FORMAT_PROPERTIES)
         );
 
         return bundle;
