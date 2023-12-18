@@ -4,10 +4,10 @@
 package muon.app.ui;
 
 import muon.app.App;
-import muon.app.ui.components.session.NewSessionDlg;
+import muon.app.ui.components.session.SessionListPanel;
+import muon.app.ui.components.session.settings.NewSessionDlg;
 import muon.app.ui.components.session.SessionContentPanel;
 import muon.app.ui.components.session.SessionInfo;
-import muon.app.ui.components.session.SessionListPanel;
 import muon.app.ui.components.session.files.transfer.BackgroundFileTransfer;
 import muon.app.ui.components.session.files.transfer.BackgroundTransferPanel;
 import muon.app.ui.components.settings.SettingsDialog;

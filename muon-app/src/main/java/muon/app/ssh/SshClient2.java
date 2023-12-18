@@ -5,7 +5,8 @@ package muon.app.ssh;
 
 import muon.app.App;
 import muon.app.ui.components.SkinnedTextField;
-import muon.app.ui.components.session.HopEntry;
+import muon.app.ui.components.session.SavedSessionTree;
+import muon.app.ui.components.session.SessionFolder;
 import muon.app.ui.components.session.SessionInfo;
 import net.schmizz.keepalive.KeepAliveProvider;
 import net.schmizz.sshj.DefaultConfig;
@@ -33,6 +34,8 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static muon.app.ui.components.session.SessionStore.load;
 
 /**
  * @author subhro
@@ -160,14 +163,29 @@ public class SshClient2 implements Closeable {
     }
 
     public void connect() throws IOException, OperationCancelledException {
-        Deque<HopEntry> hopStack = new ArrayDeque<HopEntry>();
-        for (HopEntry e : this.info.getJumpHosts()) {
-            hopStack.add(e);
+        Deque<SessionInfo> hopStack = new ArrayDeque<>();
+        String id = this.info.getJumpId();
+
+        if (id != null) {
+            SavedSessionTree tree = load();
+            SessionFolder folder = tree.getFolder();
+            List<SessionInfo> items = folder.getItems();
+
+            do {
+                for (SessionInfo info : items) {
+                    if (id.equals(info.getId())) {
+                        hopStack.push(info);
+                        id = info.getJumpId();
+                        break;
+                    }
+                }
+            } while (id != null);
         }
+
         this.connect(hopStack);
     }
 
-    private void connect(Deque<HopEntry> hopStack) throws IOException, OperationCancelledException {
+    private void connect(Deque<SessionInfo> hopStack) throws IOException, OperationCancelledException {
         this.inputBlocker.blockInput();
         try {
             defaultConfig = new DefaultConfig();
@@ -404,15 +422,8 @@ public class SshClient2 implements Closeable {
     }
 
     // recursively
-    private void tunnelThrough(Deque<HopEntry> hopStack) throws Exception {
-        HopEntry ent = hopStack.poll();
-        SessionInfo hopInfo = new SessionInfo();
-        hopInfo.setHost(ent.getHost());
-        hopInfo.setPort(ent.getPort());
-        hopInfo.setUser(ent.getUser());
-        hopInfo.setPassword(ent.getPassword());
-        hopInfo.setPrivateKeyFile(ent.getKeypath());
-        previousHop = new SshClient2(hopInfo, inputBlocker, cachedCredentialProvider);
+    private void tunnelThrough(Deque<SessionInfo> hopStack) throws Exception {
+        previousHop = new SshClient2(hopStack.poll(), inputBlocker, cachedCredentialProvider);
         previousHop.connect(hopStack);
     }
 

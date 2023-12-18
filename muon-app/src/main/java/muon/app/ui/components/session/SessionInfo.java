@@ -2,6 +2,8 @@ package muon.app.ui.components.session;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,9 +20,14 @@ public class SessionInfo extends NamedItem implements Serializable {
     private int proxyPort = 8080;
     private String proxyHost, proxyUser, proxyPassword;
     private int proxyType = 0;
-    private boolean useJumpHosts = false;
+    //private boolean useJumpHosts = false;
+    @Getter
+    @Setter
     private JumpType jumpType = JumpType.TcpForwarding;
-    private List<HopEntry> jumpHosts = new ArrayList<>();
+    //private List<HopEntry> jumpHosts = new ArrayList<>();
+    @Getter
+    @Setter
+    private String jumpId;
     private List<PortForwardingRule> portForwardingRules = new ArrayList<>();
 
     private String password;
@@ -272,7 +279,7 @@ public class SessionInfo extends NamedItem implements Serializable {
         this.proxyType = proxyType;
     }
 
-    public boolean isUseJumpHosts() {
+  /*  public boolean isUseJumpHosts() {
         return useJumpHosts;
     }
 
@@ -294,7 +301,7 @@ public class SessionInfo extends NamedItem implements Serializable {
 
     public void setJumpHosts(List<HopEntry> jumpHosts) {
         this.jumpHosts = jumpHosts;
-    }
+    }*/
 
     public List<PortForwardingRule> getPortForwardingRules() {
         return portForwardingRules;
@@ -314,7 +321,14 @@ public class SessionInfo extends NamedItem implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(host, user, localFolder, remoteFolder, port, favouriteRemoteFolders, favouriteLocalFolders, privateKeyFile, proxyPort, proxyHost, proxyUser, proxyPassword, proxyType, useJumpHosts, jumpType, jumpHosts, portForwardingRules, password);
+        return Objects.hash(
+                host, user, localFolder, remoteFolder, port
+                , favouriteRemoteFolders, favouriteLocalFolders
+                , privateKeyFile, proxyPort, proxyHost, proxyUser, proxyPassword, proxyType
+                //, useJumpHosts, jumpType, jumpHosts
+                , jumpId
+                , portForwardingRules, password
+        );
     }
 
     public enum JumpType {

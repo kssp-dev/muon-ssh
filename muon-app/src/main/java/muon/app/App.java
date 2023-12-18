@@ -144,8 +144,6 @@ public class App {
         Constants.TransferMode.update();
         Constants.ConflictAction.update();
 
-
-
         SKIN = settings.isUseGlobalDarkTheme() ? new AppSkinDark() : new AppSkinLight();
 
         UIManager.setLookAndFeel(SKIN.getLaf());
@@ -184,8 +182,6 @@ public class App {
             // TODO: handle exception
             e2.printStackTrace();
         }
-
-        mw.createFirstSessionPanel();
     }
 
     private static String getJarPath() throws FileNotFoundException, NotDirectoryException {
@@ -340,7 +336,7 @@ public class App {
     }
 
     //Set the bundle language
-    private static void setBundleLanguage(){
+    private static ResourceBundle setBundleLanguage(){
         Language language = Language.ENGLISH;
         if (settings != null && settings.getLanguage() != null){
             language = settings.getLanguage();
@@ -349,5 +345,11 @@ public class App {
         Locale locale =  new Locale.Builder().setLanguage(language.getLangAbbr()).build();
         bundle = ResourceBundle.getBundle(PATH_MESSAGES_FILE, locale);
 
+        System.out.println("Language " + language.getLangAbbr()
+                + " Locale " + locale.getLanguage()
+                + " Bundle " + bundle.getLocale().getLanguage()
+        );
+
+        return bundle;
     }
 }

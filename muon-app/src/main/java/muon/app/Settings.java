@@ -32,7 +32,7 @@ public class Settings {
     private boolean useDarkThemeForTerminal = false;
     private boolean showMessagePrompt = false;
     private boolean useGlobalDarkTheme = true;
-    private int connectionTimeout = 60;
+    private int connectionTimeout = 5;
     private boolean connectionKeepAlive = false;
     private int logViewerFont = 14;
     private boolean logViewerUseWordWrap = true;
